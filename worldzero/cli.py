@@ -9,6 +9,12 @@ import re
 import sys
 from typing import Any
 
+from .benchmark import (
+    DEFAULT_BASELINES,
+    create_benchmark_manifest,
+    load_benchmark_manifest,
+    run_benchmark,
+)
 from .experiment import genealogy, verify_replay
 from .laws import (
     FamilyTestKit,
@@ -87,6 +93,31 @@ def _parser() -> argparse.ArgumentParser:
     preregister.add_argument("--seed", type=int, default=20260830)
     preregister.add_argument("--dev-count", type=int, default=16)
     preregister.add_argument("--test-count", type=int, default=64)
+
+    benchmark = sub.add_parser(
+        "benchmark", help="Create or run the strategy-neutral Agent Challenge"
+    )
+    benchmark_sub = benchmark.add_subparsers(dest="benchmark_command", required=True)
+    benchmark_manifest = benchmark_sub.add_parser(
+        "create-manifest", help="Create a frozen local core-v1 challenge manifest"
+    )
+    benchmark_manifest.add_argument("--output", type=Path, default=Path("benchmark.json"))
+    benchmark_manifest.add_argument("--seed", type=int, default=20260902)
+    benchmark_manifest.add_argument("--dev-count", type=int, default=8)
+    benchmark_manifest.add_argument("--test-count", type=int, default=32)
+    benchmark_run = benchmark_sub.add_parser(
+        "run", help="Evaluate a participant-owned agent on the frozen suite"
+    )
+    benchmark_run.add_argument("--manifest", type=Path, required=True)
+    benchmark_run.add_argument("--output", type=Path, default=Path("runs/benchmark"))
+    benchmark_run.add_argument("--agent", required=True, help="Exact module:function factory")
+    benchmark_run.add_argument("--agent-version", required=True)
+    benchmark_run.add_argument("--split", choices=["dev", "test"], default="dev")
+    benchmark_run.add_argument("--confirm-test", action="store_true")
+    benchmark_run.add_argument(
+        "--no-baselines", action="store_true",
+        help="Skip reference agents for a faster local development run",
+    )
 
     for name in ("demo", "validate"):
         command = sub.add_parser(
@@ -256,6 +287,37 @@ def main() -> None:
             out = create_manifest(
                 args.output, seed=args.seed, dev=args.dev_count, test=args.test_count
             )
+        elif args.command == "benchmark":
+            if args.benchmark_command == "create-manifest":
+                out = create_benchmark_manifest(
+                    args.output,
+                    seed=args.seed,
+                    dev_count=args.dev_count,
+                    test_count=args.test_count,
+                )
+            else:
+                result = run_benchmark(
+                    load_benchmark_manifest(args.manifest),
+                    output=args.output,
+                    agent_reference=args.agent,
+                    agent_version=args.agent_version,
+                    split=args.split,
+                    confirm_test=args.confirm_test,
+                    baselines=() if args.no_baselines else DEFAULT_BASELINES,
+                    progress=False,
+                )
+                out = {
+                    "schema": "worldzero-benchmark-summary-v1",
+                    "output": str(args.output / "benchmark-result.json"),
+                    "split": result["split"],
+                    "agent": result["agent"],
+                    "profile": result["candidate"]["profile"],
+                    "baselines": {
+                        name: value["profile"]
+                        for name, value in result["baselines"].items()
+                    },
+                    "limitations": result["limitations"],
+                }
         elif args.command == "laws":
             if args.laws_command == "list":
                 out = {

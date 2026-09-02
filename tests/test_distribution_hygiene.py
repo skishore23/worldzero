@@ -40,6 +40,8 @@ def test_required_public_files_are_explicitly_tracked() -> None:
         "docs/SUPPORT.md",
         "docs/THIRD_PARTY.md",
         "docs/CONTRIBUTING_LAWS.md",
+        "docs/AGENT_SDK.md",
+        "docs/BENCHMARK.md",
         "docs/RELEASE_CHECKLIST.md",
         "evidence/reference/README.md",
         "evidence/reference/manifest.json",
@@ -47,6 +49,7 @@ def test_required_public_files_are_explicitly_tracked() -> None:
         "evidence/release/commands/complete_test_suite.json",
         "evidence/release/commands/readme_quickstart.json",
         "examples/community_law_plugin/pyproject.toml",
+        "examples/custom_agent.py",
         "scripts/release/capture_command.py",
         "scripts/release/verify_readme_quickstart.py",
         "scripts/release/build_offline_smoke.py",
@@ -54,6 +57,10 @@ def test_required_public_files_are_explicitly_tracked() -> None:
         "worldzero/laws/testing.py",
         "worldzero/laws/registry.py",
         "worldzero/laws/official_registry.json",
+        "worldzero/agent_sdk.py",
+        "worldzero/benchmark.py",
+        "worldzero/causal_evidence.py",
+        "worldzero/levels.py",
         "release-verification.json",
     }
     assert required <= files

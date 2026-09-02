@@ -19,7 +19,8 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 | Goal | Start here | What you get |
 | --- | --- | --- |
 | **Watch an experiment** | [Run the local reference demo](#watch-a-reference-experiment) | A visual replay showing an agent, a hidden mechanism, and matched controls. |
-| **Test my agent** | [Connect an agent model](#test-an-agent-model) | Reproducible traces and a score comparing the candidate with baseline and null worlds. |
+| **Build an agent** | [Attempt the Agent Challenge](#attempt-the-agent-challenge) | A level profile for your own memory, exploration, planning, and model architecture. |
+| **Test a raw model** | [Connect a model endpoint](#test-a-model-endpoint) | A reference-agent run using WorldZero's standard prompt and action loop. |
 | **Build a hidden world** | [Create a law-family plugin](#build-a-hidden-world) | A validated experimental mechanism that reuses WorldZero's kernel, controls, replay, and scoring. |
 
 ## What does it mean to solve a world?
@@ -120,7 +121,32 @@ python -m worldzero laws validate worldzero:delayed-transformation --seeds 1
 python -m worldzero laws validate worldzero:null --seeds 1
 ```
 
-## Test an agent model
+## Attempt the Agent Challenge
+
+Build any agent you want behind four lifecycle methods: `reset`, `act`,
+`observe_result`, and `close`. WorldZero does not choose your model, prompt,
+memory, planner, tools, or exploration strategy. It supplies the hidden worlds,
+public observations, primitive actions, budgets, matched controls, traces, and
+level scoring.
+
+Run the deliberately strategy-free example on one development seed:
+
+```bash
+python -m worldzero benchmark create-manifest \
+  --output benchmark.json --dev-count 1 --test-count 1
+python -m worldzero benchmark run \
+  --manifest benchmark.json \
+  --agent examples.custom_agent:create_agent \
+  --agent-version 0.1.0 --split dev --no-baselines \
+  --output runs/custom-agent
+```
+
+The result reports the rate reaching each level, Level 3 mastery as the
+headline, null-world false discoveries, coverage, and resource use. Start with
+[Build a WorldZero agent](docs/AGENT_SDK.md) and read the full
+[benchmark contract](docs/BENCHMARK.md).
+
+## Test a model endpoint
 
 Connect an explicitly configured OpenAI-compatible endpoint to put your model in the same hidden-law worlds. WorldZero records whether the model completes its episodes, constructs a functional mechanism, outperforms a matched forager, and reports false effects in null worlds. It also preserves the traces needed to inspect stronger evidence such as verification, reconstruction, use, and inheritance.
 

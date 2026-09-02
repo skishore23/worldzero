@@ -59,6 +59,8 @@ def _required_readme_commands() -> tuple[str, ...]:
         *(f"python -m worldzero laws validate {family_id} --seeds 1" for family_id in FAMILY_IDS),
         "python -m worldzero demo --seeds 1 --output worldzero-demo",
         "python -m worldzero replay worldzero-demo/traces/pressure-experimenter/1452232541.json.gz",
+        "python -m worldzero benchmark create-manifest --output benchmark.json --dev-count 1 --test-count 1",
+        "python -m worldzero benchmark run --manifest benchmark.json --agent examples.custom_agent:create_agent --agent-version 0.1.0 --split dev --no-baselines --output runs/custom-agent",
         "python -m pip wheel --no-deps --no-build-isolation --wheel-dir example-dist ./examples/community_law_plugin",
         "python -m pip install --no-index --no-deps example-dist/worldzero_example_law-0.1.0-py3-none-any.whl",
         "python -m worldzero laws inspect example_org:preserver --experimental-family",
@@ -212,6 +214,38 @@ def main() -> int:
             python=python,
             env=env,
             validate=lambda result: _json(result.stdout).get("verified") is True,
+        )
+        _run_check(
+            checks,
+            name="agent_challenge_manifest",
+            argv=[
+                "python", "-m", "worldzero", "benchmark", "create-manifest",
+                "--output", "benchmark.json", "--dev-count", "1", "--test-count", "1",
+            ],
+            cwd=source,
+            python=python,
+            env=env,
+            validate=lambda result: (
+                _json(result.stdout).get("suite", {}).get("suite_id") == "worldzero:core-v1"
+            ),
+        )
+        _run_check(
+            checks,
+            name="custom_agent_challenge",
+            argv=[
+                "python", "-m", "worldzero", "benchmark", "run",
+                "--manifest", "benchmark.json",
+                "--agent", "examples.custom_agent:create_agent",
+                "--agent-version", "0.1.0", "--split", "dev", "--no-baselines",
+                "--output", "runs/custom-agent",
+            ],
+            cwd=source,
+            python=python,
+            env=env,
+            validate=lambda result: (
+                _json(result.stdout).get("profile", {}).get("coverage", {})
+                .get("active") == 3
+            ),
         )
         _run_check(
             checks,
