@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_legacy_compatibility.py",
+    "tests/test_kernel.py",
+    "tests/test_trace_v4.py",
+    "tests/test_protocol.py",
+    "tests/test_scoring.py",
+    "tests/test_policies.py",
+    "tests/laws/test_testing_kit.py",
+    "tests/laws/test_task6_post_final.py"
+  ],
+  "cwd": ".",
+  "duration_seconds": 488.626,
+  "environment": {},
+  "exit_code": 0,
+  "id": "replay_invariants",
+  "parser": "pytest",
+  "schema": "worldzero-release-command-log-v1",
+  "stderr": "",
+  "stdout": "........................................................................ [ 19%]\n........................................................................ [ 39%]\n........................................................................ [ 58%]\n........................................................................ [ 78%]\n........................................................................ [ 97%]\n........                                                                 [100%]\n368 passed in 487.10s (0:08:07)\n"
+}

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Environments and local configuration
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Generated experiments and reports
+runs/
+worldzero-demo/
+worldzero-validation-reproduction/
+example-dist/
+generations.json
+*.sqlite
+*.log
+
+# Local release/recovery material
+.local-archive/
+.release-checkpoints/
+.superpowers/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp

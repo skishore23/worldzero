@@ -1,0 +1,41 @@
+{
+  "baseline": {
+    "assembly_rate": 0.0,
+    "invalid_action_rate": 0.0,
+    "mean_age": 150.22207031250008,
+    "mean_conversions": 0.0,
+    "model_calls": 0,
+    "n_censored": 0,
+    "n_completed": 64,
+    "n_requested": 64,
+    "retention_rate": 0.0,
+    "survival": 0.53125,
+    "survival_ci95": [
+      0.41072087051471323,
+      0.6482401257482366
+    ]
+  },
+  "candidate": {
+    "assembly_rate": 0.6875,
+    "invalid_action_rate": 0.0,
+    "mean_age": 148.14550781250003,
+    "mean_conversions": 7.703125,
+    "model_calls": 0,
+    "n_censored": 0,
+    "n_completed": 64,
+    "n_requested": 64,
+    "retention_rate": 0.671875,
+    "survival": 0.6875,
+    "survival_ci95": [
+      0.5660766429725219,
+      0.7876893346051772
+    ]
+  },
+  "checks": {
+    "assembly_advantage": true,
+    "assembly_rate": true,
+    "invalid_actions": true
+  },
+  "decision": "PASS_MECHANICAL_SCREEN",
+  "interpretation": "Assembly is a behavioral proxy. This does not establish deliberate discovery, open-endedness, or LLM emergence. Audit traces and causal interventions separately."
+}

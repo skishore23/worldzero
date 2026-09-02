@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "worldzero",
+    "laws",
+    "validate",
+    "worldzero:catalysis",
+    "--seeds",
+    "1"
+  ],
+  "cwd": ".",
+  "duration_seconds": 7.794,
+  "environment": {},
+  "exit_code": 0,
+  "id": "validate_catalysis",
+  "parser": "family_validation",
+  "schema": "worldzero-release-command-log-v1",
+  "stderr": "",
+  "stdout": "{\n  \"calibration_suite_sha256\": \"2dc085b1aeeec38b2957545cf4f57137ae3b7bb56f6c4ef9efb29b73d0e29a8e\",\n  \"checks\": [\n    {\n      \"failures\": [],\n      \"name\": \"accounting\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"ambient_rng\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"calibration\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"callback_isolation\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"controls\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"descriptor\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"determinism\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"lifecycle\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"observation_boundary\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"snapshot_replay\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"state_independent_channels\",\n      \"passed\": true\n    }\n  ],\n  \"descriptor\": {\n    \"api_version\": \"1.0\",\n    \"capabilities\": [\n      \"geometry_control\",\n      \"resource_transition\"\n    ],\n    \"display_name\": \"Catalysis\",\n    \"documentation_url\": null,\n    \"family_id\": \"worldzero:catalysis\",\n    \"family_version\": \"1.0.0\",\n    \"observation_schema\": {\n      \"additionalProperties\": false,\n      \"properties\": {},\n      \"type\": \"object\"\n    },\n    \"package\": \"worldzero-research\",\n    \"package_version\": \"0.3.0\"\n  },\n  \"experimental\": false,\n  \"failures\": [],\n  \"family_id\": \"worldzero:catalysis\",\n  \"fingerprint\": \"b141777ab4c6402ab2eca34ffbaa0592dbae6303f74b1439782821b1fabe6fdf\",\n  \"official\": true,\n  \"origin\": \"builtin\",\n  \"passed\": true,\n  \"schema\": \"worldzero-family-validation-v1\",\n  \"seed_count\": 1\n}\n"
+}

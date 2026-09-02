@@ -1,0 +1,21 @@
+include .gitignore README.md LICENSE CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md
+include pyproject.toml
+exclude release-verification.json
+include docs/public-files.json
+recursive-include .github *.yml *.yaml
+recursive-include worldzero *.py *.json *.html
+recursive-include docs *.md
+recursive-include evidence/reference *.md *.json *.gz
+include evidence/release/schema-identities.json
+recursive-include examples *.sh
+recursive-include examples/community_law_plugin *.py *.toml
+recursive-include scripts/release *.py
+recursive-include tests *.py *.json *.gz
+prune .local-archive
+prune .release-checkpoints
+prune .superpowers
+prune build
+prune dist
+prune runs
+prune pilot_evidence
+global-exclude __pycache__ *.py[cod] *.egg-info *.sqlite *.log

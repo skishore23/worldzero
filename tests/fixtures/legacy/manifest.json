@@ -1,0 +1,111 @@
+{
+  "schema": "worldzero-legacy-fixture-manifest-v1",
+  "generated_from": {
+    "policy": "current legacy public APIs only; no model or endpoint calls",
+    "source_sha256": {
+      "worldzero/causal_scaffold.py": "9f05e6c36c298770097fc2a99bcaa6847f8b7e799c1086e2edd44605fac8c978",
+      "worldzero/core.py": "fb4bfc7dafce3ea1d6685238f71f6124e1f80db85f620a32d333162cc5a1b45d",
+      "worldzero/experiment.py": "d29757c77b7bd78f5f2c3fd673ae364083dccb3bcfbbededc08a6baae557bd16"
+    }
+  },
+  "fixtures": {
+    "state-v2.json": {
+      "bytes": 2229,
+      "provenance": "World(seed=1729, Config(max_decisions=1), Law((0, 1), 'catalysis')).snapshot()",
+      "schema": "worldzero-state-v2",
+      "sha256": "49c8ec8aadf448215be2ca04216f5e1fb52fc5af3d5fba3e27e3400362492ac0"
+    },
+    "state-v2-null.json": {
+      "bytes": 2235,
+      "provenance": "World(seed=2731, Config(max_decisions=1), Law((0, 1), 'null')).snapshot()",
+      "schema": "worldzero-state-v2",
+      "sha256": "155f4037a1d290d2ee6fba56ff8aa0f0be8939760e559ce114568f0c9db6456c"
+    },
+    "trace-v2.json.gz": {
+      "bytes": 2202,
+      "provenance": "simulate(seed=1730, policy='forager', Config(max_decisions=1), Law((0, 1), 'catalysis'), capture=True); canonical JSON gzip with mtime=0",
+      "schema": "worldzero-trace-v2",
+      "sha256": "154e45149f36d79cf11a7e2c8a0218d1c63699912ec3a73aa52084c4fda625db"
+    },
+    "trace-v2-null.json.gz": {
+      "bytes": 2173,
+      "provenance": "simulate(seed=2732, policy='forager', Config(max_decisions=1), Law((0, 1), 'null'), capture=True); canonical JSON gzip with mtime=0",
+      "schema": "worldzero-trace-v2",
+      "sha256": "ce0dc0e5a1a5d7ad2a0b46e54c03ef3a46fa5cfe8a6072756594817100110ebe"
+    },
+    "trace-v3.json.gz": {
+      "bytes": 2775,
+      "provenance": "run_episode(World(seed=1731, Config(max_decisions=1), Law((0, 1), 'catalysis')), CausalScaffoldPolicy(local deterministic WAIT/STAY policy), capture=True); canonical JSON gzip with mtime=0",
+      "schema": "worldzero-trace-v3",
+      "sha256": "8d836d245999c4dc92eb5d869ec43caa50181fb2379c3fe03dcc3330beca633c"
+    },
+    "trace-v3-null.json.gz": {
+      "bytes": 2705,
+      "provenance": "run_episode(World(seed=2733, Config(max_decisions=1), Law((0, 1), 'null')), CausalScaffoldPolicy(local deterministic WAIT/STAY policy), capture=True); canonical JSON gzip with mtime=0",
+      "schema": "worldzero-trace-v3",
+      "sha256": "0e8151ce0ddd389f8998ff46bf07a49ede4c09061be611cb4c41df0424020c9d"
+    }
+  },
+  "expectations": {
+    "state-v2": {
+      "accounting": {"energy": 0.0, "material": 0},
+      "decision_count": 0,
+      "history_sha256": "dcaae079d4e954555d9a4bb4cb155f21b9f82a528110dab083a9ea880066411a",
+      "observation_sha256": "1973f35b03c887caf4814dace2a7404cf704166a323c54d21c72c0bf1e378ad7",
+      "rng_state_sha256": "98fc4188d8b614dc3b0ec0a956a5df2ea23714a873a205a757144d14b2146ea5",
+      "schema": "worldzero-state-v2",
+      "seed": 1729,
+      "terminal_snapshot_sha256": "5c3cb2176e45a0013eef0c4648f98b6b76bee78de7e0121dda89634444970405"
+    },
+    "state-v2-null": {
+      "accounting": {"energy": 0.0, "material": 0},
+      "decision_count": 0,
+      "history_sha256": "dcaae079d4e954555d9a4bb4cb155f21b9f82a528110dab083a9ea880066411a",
+      "observation_sha256": "a192b5e0fcc5464910696cee61634030186cf743db048b7239cdc405ac9f8773",
+      "rng_state_sha256": "25ea2bcad6556e0ae5d9510872f3e71c0ca889251abdb0a984a8dc285fcb3d88",
+      "schema": "worldzero-state-v2",
+      "seed": 2731,
+      "terminal_snapshot_sha256": "78c5a81172a8eac9e0510e90b01bfa7a6857e2b93ccb12c4dfe796fa57fcf727"
+    },
+    "trace-v2": {
+      "accounting": {"energy": -7.105427357601002e-15, "material": 0},
+      "decision_count": 1,
+      "history_sha256": "d13e365b5e9cd1350dbedfb58f943ebbf29146d50f36f0993b31065a4cf9d98f",
+      "observation_sha256": "62fc7ea7c19e7db07100d2703a5d51e0e54b23d652c10a80ff1b1cea9647a5bb",
+      "rng_state_sha256": "013425718e9b7d66b2b5fd9754bd70b83cd476af209eb7335a17100c7c73046d",
+      "schema": "worldzero-trace-v2",
+      "seed": 1730,
+      "terminal_snapshot_sha256": "133529f73af8f32f3b5d93faceeb3a250747e465b1a7535ff5e1837145c5795a"
+    },
+    "trace-v2-null": {
+      "accounting": {"energy": 0.0, "material": 0},
+      "decision_count": 1,
+      "history_sha256": "60cb65add941c663b9aa4974d12cfc208d790baa801e6c4172b5cde69362a2d7",
+      "observation_sha256": "a8196f1492f7a0cdb1092e8e51be38006b251503949cb80b5461eb5eeae0a483",
+      "rng_state_sha256": "fff1a875fb5c5c54822f2e037dcc4c465e926885324d580d4ae3ce7d38a311c0",
+      "schema": "worldzero-trace-v2",
+      "seed": 2732,
+      "terminal_snapshot_sha256": "7993aeb4b8dc442b63a56cf014d8b6c28a9995d2a69a5143ae979108b9fc869f"
+    },
+    "trace-v3": {
+      "accounting": {"energy": 0.0, "material": 0},
+      "decision_count": 1,
+      "history_sha256": "932c6b85db3c62b87de6aa3e023e3d750bc2ae992eefccf2cae47933f0633153",
+      "observation_sha256": "24b4eaaddcbbce684e7f436abda048dbc1f1d4fb604fda064984fc316d711555",
+      "rng_state_sha256": "6b2c2cd11155f4464beff991360b05957db9e54d5f0a06db92383e3c55c04127",
+      "schema": "worldzero-trace-v3",
+      "seed": 1731,
+      "terminal_snapshot_sha256": "3d52fcd98049bb35387f3c000bb022087b3daa20bf3f38c9a7d76a09b19e98cd"
+    },
+    "trace-v3-null": {
+      "accounting": {"energy": -3.552713678800501e-15, "material": 0},
+      "decision_count": 1,
+      "history_sha256": "f14ad3901b6bf6986afbc8432293e57ac9c0b6b553e7b38c701c3245c81d69b2",
+      "observation_sha256": "af26e402f242656b9a05003151b199c71e28efac7755d5654e2dd96845541ea7",
+      "rng_state_sha256": "2a73a423d43104c8a2bb833d74a2d750cdfc4d080a06a592ab837273d3ed54bc",
+      "schema": "worldzero-trace-v3",
+      "seed": 2733,
+      "terminal_snapshot_sha256": "e5afb2239618211a1da266ba7057074b39b6e8b7d7a46b1dfc8d71e90ee90238"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "worldzero",
+    "laws",
+    "validate",
+    "worldzero:delayed-transformation",
+    "--seeds",
+    "1"
+  ],
+  "cwd": ".",
+  "duration_seconds": 7.762,
+  "environment": {},
+  "exit_code": 0,
+  "id": "validate_delayed",
+  "parser": "family_validation",
+  "schema": "worldzero-release-command-log-v1",
+  "stderr": "",
+  "stdout": "{\n  \"calibration_suite_sha256\": \"f52fa6cb1041e5259079b8848fbc32159c38ebbd256ce18bd3dcd8c8dd244923\",\n  \"checks\": [\n    {\n      \"failures\": [],\n      \"name\": \"accounting\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"ambient_rng\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"calibration\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"callback_isolation\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"controls\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"descriptor\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"determinism\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"lifecycle\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"observation_boundary\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"snapshot_replay\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"state_independent_channels\",\n      \"passed\": true\n    }\n  ],\n  \"descriptor\": {\n    \"api_version\": \"1.0\",\n    \"capabilities\": [\n      \"geometry_control\",\n      \"private_state_transition\",\n      \"resource_transition\"\n    ],\n    \"display_name\": \"Delayed transformation\",\n    \"documentation_url\": null,\n    \"family_id\": \"worldzero:delayed-transformation\",\n    \"family_version\": \"1.0.0\",\n    \"observation_schema\": {\n      \"additionalProperties\": false,\n      \"properties\": {},\n      \"type\": \"object\"\n    },\n    \"package\": \"worldzero-research\",\n    \"package_version\": \"0.3.0\"\n  },\n  \"experimental\": false,\n  \"failures\": [],\n  \"family_id\": \"worldzero:delayed-transformation\",\n  \"fingerprint\": \"8b802b4c5165dd62d3b9bd59dedb64915c8c0de7977fa7ea94eb4a921fb42454\",\n  \"official\": true,\n  \"origin\": \"builtin\",\n  \"passed\": true,\n  \"schema\": \"worldzero-family-validation-v1\",\n  \"seed_count\": 1\n}\n"
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "worldzero-legacy-fixture-hashes-v1",
+  "sha256": {
+    "state-v2.json": "49c8ec8aadf448215be2ca04216f5e1fb52fc5af3d5fba3e27e3400362492ac0",
+    "state-v2-null.json": "155f4037a1d290d2ee6fba56ff8aa0f0be8939760e559ce114568f0c9db6456c",
+    "trace-v2.json.gz": "154e45149f36d79cf11a7e2c8a0218d1c63699912ec3a73aa52084c4fda625db",
+    "trace-v2-null.json.gz": "ce0dc0e5a1a5d7ad2a0b46e54c03ef3a46fa5cfe8a6072756594817100110ebe",
+    "trace-v3.json.gz": "8d836d245999c4dc92eb5d869ec43caa50181fb2379c3fe03dcc3330beca633c",
+    "trace-v3-null.json.gz": "0e8151ce0ddd389f8998ff46bf07a49ede4c09061be611cb4c41df0424020c9d"
+  }
+}

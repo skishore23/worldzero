@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "worldzero",
+    "laws",
+    "validate",
+    "worldzero:inhibition",
+    "--seeds",
+    "1"
+  ],
+  "cwd": ".",
+  "duration_seconds": 6.043,
+  "environment": {},
+  "exit_code": 0,
+  "id": "validate_inhibition",
+  "parser": "family_validation",
+  "schema": "worldzero-release-command-log-v1",
+  "stderr": "",
+  "stdout": "{\n  \"calibration_suite_sha256\": \"627eccc149657006ec4a4971804fb9b7c80589d4799c907ec6752d3a2f089b08\",\n  \"checks\": [\n    {\n      \"failures\": [],\n      \"name\": \"accounting\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"ambient_rng\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"calibration\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"callback_isolation\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"controls\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"descriptor\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"determinism\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"lifecycle\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"observation_boundary\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"snapshot_replay\",\n      \"passed\": true\n    },\n    {\n      \"failures\": [],\n      \"name\": \"state_independent_channels\",\n      \"passed\": true\n    }\n  ],\n  \"descriptor\": {\n    \"api_version\": \"1.0\",\n    \"capabilities\": [\n      \"event_evidence\",\n      \"geometry_control\",\n      \"proposal_filter\",\n      \"resource_preservation\"\n    ],\n    \"display_name\": \"Inhibition\",\n    \"documentation_url\": null,\n    \"family_id\": \"worldzero:inhibition\",\n    \"family_version\": \"1.0.0\",\n    \"observation_schema\": {\n      \"additionalProperties\": false,\n      \"properties\": {},\n      \"type\": \"object\"\n    },\n    \"package\": \"worldzero-research\",\n    \"package_version\": \"0.3.0\"\n  },\n  \"experimental\": false,\n  \"failures\": [],\n  \"family_id\": \"worldzero:inhibition\",\n  \"fingerprint\": \"3cb77085467468c136168f249b71249a62bc323ff6dd1d53f6fb662c96af06b9\",\n  \"official\": true,\n  \"origin\": \"builtin\",\n  \"passed\": true,\n  \"schema\": \"worldzero-family-validation-v1\",\n  \"seed_count\": 1\n}\n"
+}

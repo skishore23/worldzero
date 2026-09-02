@@ -1,0 +1,388 @@
+{
+  "contracts": [
+    {
+      "field_manifest": {
+        "null_top_fields": [
+          "agent",
+          "assemblies",
+          "audit",
+          "config",
+          "conversions",
+          "conversions_without_living_agent",
+          "event_count",
+          "events",
+          "fertile",
+          "first_assembly",
+          "history_hash",
+          "home",
+          "integrated_motif_time",
+          "law",
+          "mechanism_enabled",
+          "modules",
+          "pending",
+          "proposals",
+          "record",
+          "regime",
+          "resources",
+          "rng",
+          "schema",
+          "seed",
+          "symbols",
+          "time"
+        ],
+        "top_fields": [
+          "agent",
+          "assemblies",
+          "audit",
+          "config",
+          "conversions",
+          "conversions_without_living_agent",
+          "event_count",
+          "events",
+          "fertile",
+          "first_assembly",
+          "history_hash",
+          "home",
+          "integrated_motif_time",
+          "law",
+          "mechanism_enabled",
+          "modules",
+          "pending",
+          "proposals",
+          "record",
+          "regime",
+          "resources",
+          "rng",
+          "schema",
+          "seed",
+          "symbols",
+          "time"
+        ]
+      },
+      "identity_sha256": "1b45d262774bb84769b6ad60f400510e87c77ceed4d0d7a25fe62bab19787a42",
+      "kind": "state",
+      "schema_id": "worldzero-state-v2",
+      "source_files": [
+        {
+          "path": "worldzero/kernel.py",
+          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+        },
+        {
+          "path": "tests/fixtures/legacy/state-v2.json",
+          "sha256": "49c8ec8aadf448215be2ca04216f5e1fb52fc5af3d5fba3e27e3400362492ac0"
+        },
+        {
+          "path": "tests/fixtures/legacy/state-v2-null.json",
+          "sha256": "155f4037a1d290d2ee6fba56ff8aa0f0be8939760e559ce114568f0c9db6456c"
+        }
+      ]
+    },
+    {
+      "field_manifest": {
+        "agent_fields": [
+          "age",
+          "alive",
+          "born",
+          "decisions",
+          "energy",
+          "generation",
+          "invalid_actions",
+          "inventory",
+          "last_result",
+          "memory",
+          "position",
+          "raw_consumed",
+          "rich_consumed",
+          "termination"
+        ],
+        "audit_fields": [
+          "dissipated_energy",
+          "external_energy",
+          "incoming_material",
+          "initial_energy",
+          "initial_material",
+          "outgoing_material"
+        ],
+        "config_fields": [
+          "cognition_energy",
+          "cognition_time",
+          "consume_time",
+          "conversion_rate",
+          "default_wait",
+          "height",
+          "initial_energy",
+          "initial_resource_fraction",
+          "lean_source_multiplier",
+          "lifespan",
+          "manipulate_time",
+          "max_decisions",
+          "max_wait",
+          "metabolism",
+          "module_decay",
+          "move_time",
+          "private_memory_chars",
+          "radius",
+          "raw_decay",
+          "raw_energy",
+          "regime_rate",
+          "rich_decay",
+          "rich_energy",
+          "source_rate",
+          "width"
+        ],
+        "event_kinds": [
+          "action",
+          "assembly",
+          "birth",
+          "death",
+          "death_drop",
+          "decision",
+          "family_error",
+          "family_evidence",
+          "initialized",
+          "intervention",
+          "physics",
+          "private_state_transition",
+          "retired"
+        ],
+        "family_fields": [
+          "calibration_suite_sha256",
+          "channels",
+          "derived",
+          "descriptor",
+          "experimental",
+          "fingerprint",
+          "instance",
+          "official",
+          "origin",
+          "private_transition_records",
+          "proposal_records"
+        ],
+        "instance_fields": [
+          "enabled",
+          "family_id",
+          "family_version",
+          "hidden_parameters",
+          "private_state"
+        ],
+        "law_fields": [
+          "family",
+          "geometry",
+          "pair"
+        ],
+        "pcg64_fields": [
+          "bit_generator",
+          "has_uint32",
+          "state",
+          "uinteger"
+        ],
+        "pcg64_state_fields": [
+          "inc",
+          "state"
+        ],
+        "top_fields": [
+          "agent",
+          "assemblies",
+          "audit",
+          "config",
+          "conversions",
+          "conversions_without_living_agent",
+          "event_count",
+          "events",
+          "family",
+          "fertile",
+          "first_assembly",
+          "history_hash",
+          "home",
+          "integrated_motif_time",
+          "law",
+          "mechanism_enabled",
+          "module_states",
+          "modules",
+          "pending",
+          "proposals",
+          "record",
+          "regime",
+          "resources",
+          "rng",
+          "schema",
+          "seed",
+          "symbols",
+          "time"
+        ]
+      },
+      "identity_sha256": "f4222205cfbfa555d068395abe17b7653fb875a513398c6b66ef98e563daefdc",
+      "kind": "state",
+      "schema_id": "worldzero-state-v3",
+      "source_files": [
+        {
+          "path": "worldzero/kernel.py",
+          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+        }
+      ]
+    },
+    {
+      "field_manifest": {
+        "null_top_fields": [
+          "decisions",
+          "final",
+          "initial",
+          "result",
+          "schema",
+          "states"
+        ],
+        "top_fields": [
+          "decisions",
+          "final",
+          "initial",
+          "result",
+          "schema",
+          "states"
+        ]
+      },
+      "identity_sha256": "4e6503382a0239d498db15169d28c763e77ba56d391527dcd0262152e4264af8",
+      "kind": "trace",
+      "schema_id": "worldzero-trace-v2",
+      "source_files": [
+        {
+          "path": "worldzero/experiment.py",
+          "sha256": "d5f2ac2653d72d93d40293c1b46a004a36143b5d1b8574b66efcd19512c05792"
+        },
+        {
+          "path": "tests/fixtures/legacy/trace-v2.json.gz",
+          "sha256": "154e45149f36d79cf11a7e2c8a0218d1c63699912ec3a73aa52084c4fda625db"
+        },
+        {
+          "path": "tests/fixtures/legacy/trace-v2-null.json.gz",
+          "sha256": "ce0dc0e5a1a5d7ad2a0b46e54c03ef3a46fa5cfe8a6072756594817100110ebe"
+        }
+      ]
+    },
+    {
+      "field_manifest": {
+        "null_top_fields": [
+          "decisions",
+          "final",
+          "initial",
+          "result",
+          "scaffold",
+          "schema",
+          "states"
+        ],
+        "top_fields": [
+          "decisions",
+          "final",
+          "initial",
+          "result",
+          "scaffold",
+          "schema",
+          "states"
+        ]
+      },
+      "identity_sha256": "af07b753f31b01c8cafb9b9b89adf4319e34145d2022545185cdcbf380664638",
+      "kind": "trace",
+      "schema_id": "worldzero-trace-v3",
+      "source_files": [
+        {
+          "path": "worldzero/experiment.py",
+          "sha256": "d5f2ac2653d72d93d40293c1b46a004a36143b5d1b8574b66efcd19512c05792"
+        },
+        {
+          "path": "tests/fixtures/legacy/trace-v3.json.gz",
+          "sha256": "8d836d245999c4dc92eb5d869ec43caa50181fb2379c3fe03dcc3330beca633c"
+        },
+        {
+          "path": "tests/fixtures/legacy/trace-v3-null.json.gz",
+          "sha256": "0e8151ce0ddd389f8998ff46bf07a49ede4c09061be611cb4c41df0424020c9d"
+        }
+      ]
+    },
+    {
+      "field_manifest": {
+        "decision_fields": [
+          "observation",
+          "post_display",
+          "post_snapshot_sha256",
+          "proposal_records",
+          "response",
+          "result"
+        ],
+        "evaluator_baseline_fields": [
+          "evaluator_event_start",
+          "initial_assemblies",
+          "initial_conversions",
+          "initial_functional",
+          "initial_proposals",
+          "initial_time",
+          "proposal_record_start"
+        ],
+        "identity_fields": [
+          "calibration_suite_sha256",
+          "channels",
+          "descriptor",
+          "experimental",
+          "fingerprint",
+          "official",
+          "origin"
+        ],
+        "initial_state_schema": "worldzero-state-v3",
+        "result_fields": [
+          "accounting_error",
+          "age",
+          "assemblies",
+          "born",
+          "censor_reason",
+          "conversions",
+          "decisions",
+          "energy",
+          "first_assembly",
+          "functional_assembly",
+          "generation",
+          "history_sha256",
+          "invalid_actions",
+          "raw_consumed",
+          "retained",
+          "rich_consumed",
+          "seed",
+          "status",
+          "survived",
+          "termination",
+          "world_time"
+        ],
+        "top_fields": [
+          "accounting_error",
+          "censoring",
+          "decisions",
+          "evaluator_baseline",
+          "family_evidence",
+          "family_identity",
+          "final",
+          "final_history_sha256",
+          "final_rng_sha256",
+          "initial",
+          "plugin_diagnostics",
+          "proposal_records",
+          "result",
+          "result_sha256",
+          "schema",
+          "scoring_profile",
+          "states"
+        ]
+      },
+      "identity_sha256": "502914a8358a32a40e0a5cbd9811f44a783a1b7cb793709fe0c68ff3936c4cb0",
+      "kind": "trace",
+      "schema_id": "worldzero-trace-v4",
+      "source_files": [
+        {
+          "path": "worldzero/experiment.py",
+          "sha256": "d5f2ac2653d72d93d40293c1b46a004a36143b5d1b8574b66efcd19512c05792"
+        },
+        {
+          "path": "worldzero/kernel.py",
+          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+        }
+      ]
+    }
+  ],
+  "schema": "worldzero-schema-identities-v1"
+}

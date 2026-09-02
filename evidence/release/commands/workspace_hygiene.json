@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "worldzero.release_hygiene",
+    "workspace",
+    ".",
+    "--skip-release-record"
+  ],
+  "cwd": ".",
+  "duration_seconds": 0.234,
+  "environment": {},
+  "exit_code": 0,
+  "id": "workspace_hygiene",
+  "parser": "hygiene",
+  "schema": "worldzero-release-command-log-v1",
+  "stderr": "",
+  "stdout": "hygiene: passed\n"
+}

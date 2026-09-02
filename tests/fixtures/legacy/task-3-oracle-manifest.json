@@ -1,0 +1,36 @@
+{
+  "schema": "worldzero-task-3-oracle-manifest-v1",
+  "generated_from": {
+    "policy": "local deterministic actions only; no model or endpoint calls",
+    "source_sha256": {
+      "worldzero/core.py": "fb4bfc7dafce3ea1d6685238f71f6124e1f80db85f620a32d333162cc5a1b45d",
+      "worldzero/experiment.py": "d29757c77b7bd78f5f2c3fd673ae364083dccb3bcfbbededc08a6baae557bd16",
+      "worldzero/mathcheck.py": "6ce41e4cd3b5723c7a09cdfd42ce2991ac243f6801d6671ea51b821cbec56555"
+    }
+  },
+  "oracle": {
+    "bytes": 370420,
+    "families": [
+      "catalysis",
+      "null"
+    ],
+    "fixture": "task-3-legacy-oracle.json.gz",
+    "scenarios": [
+      "ordinary",
+      "short_lifespan"
+    ],
+    "seeds_per_family": 64,
+    "sha256": "fd3da59943e41b5ea2e871288753909c23b364667ec6febffbf0403d33f34127",
+    "trajectory_count": 256
+  },
+  "task_1_fixture_sha256": {
+    "hashes.json": "5291a8182b86c8aa0c1dad62b6aa3fb5c4d281346cf5c400893b031374d2bb25",
+    "manifest.json": "3f41ddc1474852aa423ad712097c38e8396e96e156b617343e48b99ec30ca785",
+    "state-v2-null.json": "155f4037a1d290d2ee6fba56ff8aa0f0be8939760e559ce114568f0c9db6456c",
+    "state-v2.json": "49c8ec8aadf448215be2ca04216f5e1fb52fc5af3d5fba3e27e3400362492ac0",
+    "trace-v2-null.json.gz": "ce0dc0e5a1a5d7ad2a0b46e54c03ef3a46fa5cfe8a6072756594817100110ebe",
+    "trace-v2.json.gz": "154e45149f36d79cf11a7e2c8a0218d1c63699912ec3a73aa52084c4fda625db",
+    "trace-v3-null.json.gz": "0e8151ce0ddd389f8998ff46bf07a49ede4c09061be611cb4c41df0424020c9d",
+    "trace-v3.json.gz": "8d836d245999c4dc92eb5d869ec43caa50181fb2379c3fe03dcc3330beca633c"
+  }
+}

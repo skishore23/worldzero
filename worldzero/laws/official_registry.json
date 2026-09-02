@@ -1,0 +1,45 @@
+{
+  "schema": "worldzero-official-law-registry-v1",
+  "approved_families": [
+    {
+      "family_id": "worldzero:catalysis",
+      "api_version": "1.0",
+      "family_version": "1.0.0",
+      "package": "worldzero-research",
+      "package_version": "0.3.0",
+      "fingerprint": "b141777ab4c6402ab2eca34ffbaa0592dbae6303f74b1439782821b1fabe6fdf",
+      "calibration_suite_sha256": "2dc085b1aeeec38b2957545cf4f57137ae3b7bb56f6c4ef9efb29b73d0e29a8e",
+      "release_status": "approved"
+    },
+    {
+      "family_id": "worldzero:delayed-transformation",
+      "api_version": "1.0",
+      "family_version": "1.0.0",
+      "package": "worldzero-research",
+      "package_version": "0.3.0",
+      "fingerprint": "8b802b4c5165dd62d3b9bd59dedb64915c8c0de7977fa7ea94eb4a921fb42454",
+      "calibration_suite_sha256": "f52fa6cb1041e5259079b8848fbc32159c38ebbd256ce18bd3dcd8c8dd244923",
+      "release_status": "approved"
+    },
+    {
+      "family_id": "worldzero:inhibition",
+      "api_version": "1.0",
+      "family_version": "1.0.0",
+      "package": "worldzero-research",
+      "package_version": "0.3.0",
+      "fingerprint": "3cb77085467468c136168f249b71249a62bc323ff6dd1d53f6fb662c96af06b9",
+      "calibration_suite_sha256": "627eccc149657006ec4a4971804fb9b7c80589d4799c907ec6752d3a2f089b08",
+      "release_status": "approved"
+    },
+    {
+      "family_id": "worldzero:null",
+      "api_version": "1.0",
+      "family_version": "1.0.0",
+      "package": "worldzero-research",
+      "package_version": "0.3.0",
+      "fingerprint": "bba08b178cf12be2f2dfcebd80b47844c8e73778d1f88270f8872c8727465faf",
+      "calibration_suite_sha256": "0d9f0d622a19cfe6b1e289cfa99d44fd8718deaeb95e248613b8f8d3e82d971c",
+      "release_status": "approved"
+    }
+  ]
+}

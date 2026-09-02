@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "analytic": 0.4511883639059736,
+      "empirical": 0.4557291666666667,
+      "name": "source birth probability",
+      "passed": true,
+      "standard_error": 0.01795601629176371,
+      "z_score": 0.2528847538847415
+    },
+    {
+      "analytic": 0.5564674078522757,
+      "empirical": 0.5638020833333334,
+      "name": "reversible conversion probability",
+      "passed": true,
+      "standard_error": 0.017926769142503064,
+      "z_score": 0.4091465351482507
+    }
+  ],
+  "entropy_example": {
+    "bits_per_sample": 0.6457635982841395,
+    "note": "Sampled stationary two-state chain. Shannon entropy in bits is not thermodynamic entropy.",
+    "symmetric_regime_flip_probability": 0.16483997698218034
+  },
+  "passed": true,
+  "samples_per_check": 768,
+  "tolerance": "Predefined five-binomial-standard-error numerical diagnostic; not a scientific effect test."
+}

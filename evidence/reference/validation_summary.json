@@ -1,0 +1,1404 @@
+{
+  "llm_inference_executed": false,
+  "mathematical_checks": {
+    "checks": [
+      {
+        "analytic": 0.4511883639059736,
+        "empirical": 0.4557291666666667,
+        "name": "source birth probability",
+        "passed": true,
+        "standard_error": 0.01795601629176371,
+        "z_score": 0.2528847538847415
+      },
+      {
+        "analytic": 0.5564674078522757,
+        "empirical": 0.5638020833333334,
+        "name": "reversible conversion probability",
+        "passed": true,
+        "standard_error": 0.017926769142503064,
+        "z_score": 0.4091465351482507
+      }
+    ],
+    "entropy_example": {
+      "bits_per_sample": 0.6457635982841395,
+      "note": "Sampled stationary two-state chain. Shannon entropy in bits is not thermodynamic entropy.",
+      "symmetric_regime_flip_probability": 0.16483997698218034
+    },
+    "passed": true,
+    "samples_per_check": 768,
+    "tolerance": "Predefined five-binomial-standard-error numerical diagnostic; not a scientific effect test."
+  },
+  "mechanical_screen": {
+    "baseline": {
+      "assembly_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "mean_age": 150.22207031250008,
+      "mean_conversions": 0.0,
+      "model_calls": 0,
+      "n_censored": 0,
+      "n_completed": 64,
+      "n_requested": 64,
+      "retention_rate": 0.0,
+      "survival": 0.53125,
+      "survival_ci95": [
+        0.41072087051471323,
+        0.6482401257482366
+      ]
+    },
+    "candidate": {
+      "assembly_rate": 0.6875,
+      "invalid_action_rate": 0.0,
+      "mean_age": 148.14550781250003,
+      "mean_conversions": 7.703125,
+      "model_calls": 0,
+      "n_censored": 0,
+      "n_completed": 64,
+      "n_requested": 64,
+      "retention_rate": 0.671875,
+      "survival": 0.6875,
+      "survival_ci95": [
+        0.5660766429725219,
+        0.7876893346051772
+      ]
+    },
+    "checks": {
+      "assembly_advantage": true,
+      "assembly_rate": true,
+      "invalid_actions": true
+    },
+    "decision": "PASS_MECHANICAL_SCREEN",
+    "interpretation": "Assembly is a behavioral proxy. This does not establish deliberate discovery, open-endedness, or LLM emergence. Audit traces and causal interventions separately."
+  },
+  "runs": [
+    {
+      "cells_sha256": "da893ea36746fa6904d3968b715283333ce5fbcfa505870cf29082de0da2b536",
+      "episodes": {
+        "assembly_rate": 1.0,
+        "invalid_action_rate": 0.0,
+        "mean_age": 159.5859375,
+        "mean_conversions": 11.40625,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.984375,
+        "survival": 0.984375,
+        "survival_ci95": [
+          0.9166589839990601,
+          0.9972364580766623
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": [
+              -4.3520742565306136e-14,
+              1.0664062500000613
+            ],
+            "mean": 0.3554687500000089,
+            "n": 64
+          },
+          "broken_survival": 0.984375,
+          "geometry_effect": {
+            "ci95": [
+              0.0,
+              0.046875
+            ],
+            "mean": 0.015625,
+            "n": 64
+          },
+          "knockout_survival": 0.984375,
+          "mechanism_effect": {
+            "ci95": [
+              0.0,
+              0.046875
+            ],
+            "mean": 0.015625,
+            "n": 64
+          },
+          "n": 64,
+          "passive_retained_conversions": 1.625,
+          "retained_survival": 1.0
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": [
+              -4.150471853328839e-14,
+              1.0833333333333919
+            ],
+            "mean": 0.36111111111112015,
+            "n": 63
+          },
+          "broken_survival": 0.9841269841269841,
+          "geometry_effect": {
+            "ci95": [
+              0.0,
+              0.047619047619047616
+            ],
+            "mean": 0.015873015873015872,
+            "n": 63
+          },
+          "knockout_survival": 0.9841269841269841,
+          "mechanism_effect": {
+            "ci95": [
+              0.0,
+              0.047619047619047616
+            ],
+            "mean": 0.015873015873015872,
+            "n": 63
+          },
+          "n": 63,
+          "passive_retained_conversions": 1.6507936507936507,
+          "retained_survival": 1.0
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "easy-experimenter",
+      "specification": {
+        "capture_first": 2,
+        "condition": "easy",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.24,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": true,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "experimenter",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "80f8cda089a4ef16f7773f22ca11c885af90657af4c86d612d69b07e6423649d",
+      "episodes": {
+        "assembly_rate": 0.0,
+        "invalid_action_rate": 0.0,
+        "mean_age": 119.45234375000005,
+        "mean_conversions": 0.0,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.0,
+        "survival": 0.015625,
+        "survival_ci95": [
+          0.002763541923337609,
+          0.08334101600093971
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mean": 0.0,
+            "n": 64
+          },
+          "broken_survival": 0.296875,
+          "geometry_effect": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mean": 0.0,
+            "n": 64
+          },
+          "knockout_survival": 0.296875,
+          "mechanism_effect": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mean": 0.0,
+            "n": 64
+          },
+          "n": 64,
+          "passive_retained_conversions": 0.0,
+          "retained_survival": 0.296875
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "null-experimenter",
+      "specification": {
+        "capture_first": 2,
+        "condition": "null",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.32,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": true,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "experimenter",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "9daf533617a07dcfe0de90b8af4a936f7fa7a9b3608ce68d8cc71f090e3c23d1",
+      "episodes": {
+        "assembly_rate": 0.6875,
+        "invalid_action_rate": 0.0,
+        "mean_age": 148.14550781250003,
+        "mean_conversions": 7.703125,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.671875,
+        "survival": 0.6875,
+        "survival_ci95": [
+          0.5660766429725219,
+          0.7876893346051772
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": [
+              3.577695312499955,
+              10.594941406249896
+            ],
+            "mean": 6.834570312499907,
+            "n": 64
+          },
+          "broken_survival": 0.5,
+          "geometry_effect": {
+            "ci95": [
+              0.15625,
+              0.375
+            ],
+            "mean": 0.265625,
+            "n": 64
+          },
+          "knockout_survival": 0.5,
+          "mechanism_effect": {
+            "ci95": [
+              0.15625,
+              0.375
+            ],
+            "mean": 0.265625,
+            "n": 64
+          },
+          "n": 64,
+          "passive_retained_conversions": 1.03125,
+          "retained_survival": 0.765625
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": [
+              5.539164244185982,
+              15.570159883720805
+            ],
+            "mean": 10.172383720930094,
+            "n": 43
+          },
+          "broken_survival": 0.5813953488372093,
+          "geometry_effect": {
+            "ci95": [
+              0.2558139534883721,
+              0.5348837209302325
+            ],
+            "mean": 0.3953488372093023,
+            "n": 43
+          },
+          "knockout_survival": 0.5813953488372093,
+          "mechanism_effect": {
+            "ci95": [
+              0.2558139534883721,
+              0.5348837209302325
+            ],
+            "mean": 0.3953488372093023,
+            "n": 43
+          },
+          "n": 43,
+          "passive_retained_conversions": 1.5348837209302326,
+          "retained_survival": 0.9767441860465116
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "pressure-experimenter",
+      "specification": {
+        "capture_first": 2,
+        "condition": "pressure",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.32,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": true,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "experimenter",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "7182e2985a213e2529aeff175ca6003f3853908021cb1640bae7116d36845d54",
+      "episodes": {
+        "assembly_rate": 0.0,
+        "invalid_action_rate": 0.0,
+        "mean_age": 150.22207031250008,
+        "mean_conversions": 0.0,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.0,
+        "survival": 0.53125,
+        "survival_ci95": [
+          0.41072087051471323,
+          0.6482401257482366
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "pressure-forager",
+      "specification": {
+        "capture_first": 2,
+        "condition": "pressure",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.32,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": false,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "forager",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "813ebfa7209ae23d591f5ceafac017843a92b11ed5b0abf042eb00537060ae7c",
+      "episodes": {
+        "assembly_rate": 1.0,
+        "invalid_action_rate": 0.0,
+        "mean_age": 159.244921875,
+        "mean_conversions": 11.140625,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 1.0,
+        "survival": 0.96875,
+        "survival_ci95": [
+          0.8930270822904198,
+          0.9913878616538279
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "pressure-informed",
+      "specification": {
+        "capture_first": 2,
+        "condition": "pressure",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.32,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": false,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "informed",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "391b8e50576fd4478d5a5e95fed6f4dc46aca4b4289849cba140c9758facd02f",
+      "episodes": {
+        "assembly_rate": 0.0,
+        "invalid_action_rate": 0.0,
+        "mean_age": 60.42558593750003,
+        "mean_conversions": 0.0,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.0,
+        "survival": 0.0,
+        "survival_ci95": [
+          0.0,
+          0.05662405979280239
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "broken_survival": null,
+          "geometry_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "knockout_survival": null,
+          "mechanism_effect": {
+            "ci95": null,
+            "mean": null,
+            "n": 0
+          },
+          "n": 0,
+          "passive_retained_conversions": null,
+          "retained_survival": null
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "pressure-random",
+      "specification": {
+        "capture_first": 2,
+        "condition": "pressure",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.32,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": false,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "random",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    },
+    {
+      "cells_sha256": "8e427db4105e8ae76a37af1dfc641e699ffb72c9877d0051e3ec530ab3880d6c",
+      "episodes": {
+        "assembly_rate": 0.53125,
+        "invalid_action_rate": 0.0,
+        "mean_age": 108.83541666666669,
+        "mean_conversions": 5.6875,
+        "model_calls": 0,
+        "n_censored": 0,
+        "n_completed": 64,
+        "n_requested": 64,
+        "retention_rate": 0.515625,
+        "survival": 0.421875,
+        "survival_ci95": [
+          0.3086978247434577,
+          0.5438996845991676
+        ]
+      },
+      "inheritance": {
+        "all_completed_ancestors": {
+          "age_effect": {
+            "ci95": [
+              25.070136718749975,
+              43.57304361979162
+            ],
+            "mean": 34.17174479166665,
+            "n": 64
+          },
+          "broken_survival": 0.0,
+          "geometry_effect": {
+            "ci95": [
+              0.265625,
+              0.5
+            ],
+            "mean": 0.375,
+            "n": 64
+          },
+          "knockout_survival": 0.0,
+          "mechanism_effect": {
+            "ci95": [
+              0.265625,
+              0.5
+            ],
+            "mean": 0.375,
+            "n": 64
+          },
+          "n": 64,
+          "passive_retained_conversions": 0.734375,
+          "retained_survival": 0.375
+        },
+        "conditional_on_retained_motif": {
+          "age_effect": {
+            "ci95": [
+              58.556041666666545,
+              73.275303030303
+            ],
+            "mean": 66.27247474747472,
+            "n": 33
+          },
+          "broken_survival": 0.0,
+          "geometry_effect": {
+            "ci95": [
+              0.5757575757575758,
+              0.8787878787878788
+            ],
+            "mean": 0.7272727272727273,
+            "n": 33
+          },
+          "knockout_survival": 0.0,
+          "mechanism_effect": {
+            "ci95": [
+              0.5757575757575758,
+              0.8787878787878788
+            ],
+            "mean": 0.7272727272727273,
+            "n": 33
+          },
+          "n": 33,
+          "passive_retained_conversions": 1.4242424242424243,
+          "retained_survival": 0.7272727272727273
+        },
+        "n_censored": 0,
+        "scope": "scripted controls unless explicitly labeled LLM"
+      },
+      "llm_inference_executed": false,
+      "run": "severe-experimenter",
+      "specification": {
+        "capture_first": 2,
+        "condition": "severe",
+        "config": {
+          "cognition_energy": 0.06,
+          "cognition_time": 0.2,
+          "consume_time": 0.25,
+          "conversion_rate": 0.45,
+          "default_wait": 2.0,
+          "height": 9,
+          "initial_energy": 22.0,
+          "initial_resource_fraction": 0.32,
+          "lean_source_multiplier": 0.6,
+          "lifespan": 160.0,
+          "manipulate_time": 0.6,
+          "max_decisions": 500,
+          "max_wait": 8.0,
+          "metabolism": 0.48,
+          "module_decay": 0.0001,
+          "move_time": 0.8,
+          "private_memory_chars": 2400,
+          "radius": 3,
+          "raw_decay": 0.008,
+          "raw_energy": 0.8,
+          "regime_rate": 0.004,
+          "rich_decay": 0.016,
+          "rich_energy": 6.0,
+          "source_rate": 0.012,
+          "width": 13
+        },
+        "include_inheritance": true,
+        "inheritance": {
+          "idle_time": 20,
+          "initial_energy": 22.0,
+          "spawn": "fixed home",
+          "stock_normalized": true
+        },
+        "llm": null,
+        "policy": "experimenter",
+        "prompt_sha256": null,
+        "protocol_sha256": "d7f5de1cad041afb98e23fa5b8fc77246af19e037aaea6547282cdd7b9656916",
+        "schema": "worldzero-run-v2",
+        "seeds": [
+          1641858184,
+          1185694215,
+          1223592663,
+          937749010,
+          991172330,
+          1818817377,
+          1770261504,
+          873337859,
+          128310387,
+          662188661,
+          1687258361,
+          285985335,
+          1763608536,
+          1279380678,
+          666155327,
+          257403058,
+          997359272,
+          1898316754,
+          939840087,
+          1876751451,
+          251847671,
+          284082445,
+          586958833,
+          221309578,
+          1883869450,
+          816109415,
+          1681406427,
+          776209288,
+          1439143519,
+          1823218603,
+          1654018538,
+          95624507,
+          932503442,
+          1348367536,
+          847543882,
+          1650855194,
+          1595188903,
+          979090165,
+          1162337678,
+          945554101,
+          452994616,
+          614187994,
+          203054512,
+          1521824634,
+          1216311407,
+          1216974446,
+          871885070,
+          126871838,
+          1986114338,
+          847411964,
+          1567321135,
+          520829254,
+          1160992764,
+          1527659951,
+          925693538,
+          792749417,
+          1897317033,
+          1938994998,
+          1417265697,
+          1998730114,
+          1812227736,
+          689325185,
+          589738881,
+          1506869010
+        ],
+        "source_sha256": "f70b1a85b9cd98101220d64f42b655ec5290dc08ca9ea8c1cca01a78df6e964e",
+        "split": "test",
+        "successor": "forager"
+      }
+    }
+  ]
+}
