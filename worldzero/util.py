@@ -458,7 +458,19 @@ def protected_sqlite_persist(
             raise ValueError(
                 f"Protected SQLite publication refused forbidden sidecar: {sidecar.name}"
             )
-    atomic_bytes(Path(path), connection.serialize())
+    serialize = getattr(connection, "serialize", None)
+    if serialize is not None:
+        database = serialize()
+    else:  # Python 3.10
+        with tempfile.TemporaryDirectory(prefix="worldzero-sqlite-image-") as scratch:
+            snapshot = Path(scratch) / "database.sqlite"
+            target = sqlite3.connect(snapshot)
+            try:
+                connection.backup(target)
+            finally:
+                target.close()
+            database = snapshot.read_bytes()
+    atomic_bytes(Path(path), database)
 
 
 def require_finite(name: str, value: float, *, positive: bool = False) -> None:
