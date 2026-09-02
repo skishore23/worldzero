@@ -7,7 +7,7 @@
     "release_id": "0.3.0-20260901",
     "status": "release_ready"
   },
-  "generated_at_utc": "2026-09-02T03:57:47Z",
+  "generated_at_utc": "2026-09-02T06:49:51Z",
   "environment": {
     "platform": "macOS-26.6-x86_64-i386-64bit",
     "python": "3.12.8",
@@ -276,7 +276,7 @@
       "capture_status": "captured",
       "log": {
         "path": "evidence/release/commands/workspace_hygiene.json",
-        "sha256": "e62a6819313785c1d8098212ef3758bc11f3369305fc6a2f86692b4c35c9f388",
+        "sha256": "c5cffa29850c2baca8c4ce10568dcbdddca53a91233e049b2356ebf0f300a154",
         "bytes": 362
       },
       "exit_code": 0,
@@ -284,7 +284,7 @@
       "pass_count": 1,
       "fail_count": 0,
       "error_count": 0,
-      "duration_seconds": 0.234
+      "duration_seconds": 0.231
     },
     {
       "id": "build_offline_smoke",
@@ -298,7 +298,7 @@
       "capture_status": "captured",
       "log": {
         "path": "evidence/release/commands/build_offline_smoke.json",
-        "sha256": "f2c193f6bd7f002e32d3504921ffe32914445d36f741d6a9daafe1660bfd034c",
+        "sha256": "14aac4cb7523cdf6d55f45e305ca057dafc949f9fec233bb7045770446e0d0be",
         "bytes": 2893
       },
       "exit_code": 0,
@@ -306,7 +306,7 @@
       "pass_count": 14,
       "fail_count": 0,
       "error_count": 0,
-      "duration_seconds": 22.288
+      "duration_seconds": 22.762
     },
     {
       "id": "readme_quickstart",
@@ -320,7 +320,7 @@
       "capture_status": "captured",
       "log": {
         "path": "evidence/release/commands/readme_quickstart.json",
-        "sha256": "64f7e30867c83e2f54eb735739e602d75be4677f9785e2c6dd65b50b117fe293",
+        "sha256": "3d1f59ec47cfe0bbf90333b25b4428be4a44c2e3b57fa38b4277a094ef77db6a",
         "bytes": 8348
       },
       "exit_code": 0,
@@ -328,7 +328,7 @@
       "pass_count": 21,
       "fail_count": 0,
       "error_count": 0,
-      "duration_seconds": 79.939
+      "duration_seconds": 80.634
     }
   ],
   "identities": {
@@ -444,9 +444,9 @@
     "artifacts": [
       {
         "name": "worldzero_research-0.3.0-py3-none-any.whl",
-        "sha256": "9c33d6681340e32e8e5565441ca83f9336028c3e5cbccad6f822b79c4ae5f367",
+        "sha256": "09e0233bcde570dbc110f6d8daca59e9e3bde9c3536438117383a64632aad1ce",
         "member_count": 35,
-        "member_manifest_sha256": "a2dedad128a241f9681e4a9eff78e94a81adf159c181859546058751f0ce18de"
+        "member_manifest_sha256": "f45a184190de0af6ce98f0149549fe6da9f90b5b2caa4686793594d16ba5b131"
       },
       {
         "name": "worldzero_example_law-0.1.0-py3-none-any.whl",
@@ -456,9 +456,9 @@
       },
       {
         "name": "worldzero_research-0.3.0.tar.gz",
-        "sha256": "7a97b78b7b0f4e350ee49950bd8084074c786bdd160b2c9351878f54c93d3036",
+        "sha256": "b4b71cff0f5696cd4464301aeb1d189051e2c6fdb0903a979fb5c309f61a2ef1",
         "member_count": 116,
-        "member_manifest_sha256": "c3ecb4edb15ae89a3477696ffc871d7e1f3f8fafa8afe4d78cabd9cab2be722d"
+        "member_manifest_sha256": "be3434c7b2b83c976e77d03a4430b93b63a6ff814074ca1a1ecce710b50937c9"
       }
     ],
     "two_build_comparison": {
@@ -466,7 +466,7 @@
       "example_wheel_bytes_equal": true,
       "sdist_member_names_and_bytes_equal": true,
       "sdist_container_bytes_equal": false,
-      "sdist_second_sha256": "9f0d7a309d57b1842ae6486321d40df11d1e185ed22303413331eb01e82e909f",
+      "sdist_second_sha256": "97eb305011898fdd380b5ebc3cf99da0c48a6b0bf9782f6e8f7dd75d0d0d7a9a",
       "sdist_container_note": "Setuptools preserves a varying gzip header timestamp; exact member names and bytes are identical."
     }
   },
@@ -503,7 +503,7 @@
     "critical": 0,
     "important": 0,
     "minor": 0,
-    "report_sha256": "9befc178c9736e7e1cff980ffd384a90b777bf8e2f49d33e9f1aa875eee57b9d"
+    "report_sha256": "479cb905dc6ff87d0daf9844aa5ccab1335e0cceeb7d62ee2cfd1ec5793d2861"
   },
   "open_source_ready": true
 }

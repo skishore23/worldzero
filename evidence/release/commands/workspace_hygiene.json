@@ -8,7 +8,7 @@
     "--skip-release-record"
   ],
   "cwd": ".",
-  "duration_seconds": 0.234,
+  "duration_seconds": 0.231,
   "environment": {},
   "exit_code": 0,
   "id": "workspace_hygiene",
