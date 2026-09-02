@@ -5,10 +5,14 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import tomllib
 from typing import Any, Mapping
 
 import pytest
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10
+    import tomli as tomllib
 
 from worldzero.laws import (
     AccountingDelta,
@@ -506,5 +510,6 @@ def test_package_metadata_declares_v030_and_bundles_official_registry() -> None:
     assert worldzero.__version__ == "0.3.0"
     assert project["project"]["version"] == "0.3.0"
     assert project["project"]["dependencies"] == ["numpy>=1.26,<3"]
+    assert "tomli>=2; python_version < '3.11'" in project["project"]["optional-dependencies"]["test"]
     assert "Programming Language :: Python :: 3" in project["project"]["classifiers"]
     assert "laws/official_registry.json" in project["tool"]["setuptools"]["package-data"]["worldzero"]
