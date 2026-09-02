@@ -927,19 +927,33 @@ def check_release_verification(path: Path) -> list[str]:
             "task_6_final_review_finding_sha256": ".superpowers/sdd/2026-08-31-worldzero-law-family-plugins/task-6-final-review.md",
             "task_7_review_sha256": ".superpowers/sdd/2026-08-31-worldzero-law-family-plugins/task-7-review.md"}
         if checkpoints:
-            for name, relative in checkpoint_paths.items():
-                checkpoint_path = root / relative
-                if not checkpoint_path.is_file() or sha256_file(checkpoint_path) != checkpoints[name]:
-                    errors.append(f"checkpoints.{name} disagrees with current source")
+            checkpoint_files = {
+                name: root / relative for name, relative in checkpoint_paths.items()
+            }
+            if any(path.is_file() for path in checkpoint_files.values()):
+                for name, checkpoint_path in checkpoint_files.items():
+                    if not checkpoint_path.is_file():
+                        errors.append(f"checkpoints.{name} private trust root is missing")
+                    elif sha256_file(checkpoint_path) != checkpoints[name]:
+                        errors.append(f"checkpoints.{name} disagrees with current source")
         if cleanup:
             public_manifest = root / "docs/public-files.json"
             public_payload = json.loads(public_manifest.read_text(encoding="utf-8"))
             expected_cleanup = {
                 "public_manifest_sha256": sha256_file(public_manifest),
                 "public_file_count": len(public_payload["files"]),
-                "archive_manifest_sha256": sha256_file(root / ".local-archive/worldzero-pre-open-source-0.3.0-20260901/archive-manifest.json"),
-                "archive_source_identities_sha256": sha256_file(root / ".local-archive/worldzero-pre-open-source-0.3.0-20260901/archive-source-identities.json"),
             }
+            archive_root = root / ".local-archive/worldzero-pre-open-source-0.3.0-20260901"
+            archive_files = {
+                "archive_manifest_sha256": archive_root / "archive-manifest.json",
+                "archive_source_identities_sha256": archive_root / "archive-source-identities.json",
+            }
+            if any(path.is_file() for path in archive_files.values()):
+                for name, archive_path in archive_files.items():
+                    if not archive_path.is_file():
+                        errors.append(f"cleanup.{name} private trust root is missing")
+                    else:
+                        expected_cleanup[name] = sha256_file(archive_path)
             for name, expected in expected_cleanup.items():
                 if cleanup[name] != expected:
                     errors.append(f"cleanup.{name} disagrees with current manifest")

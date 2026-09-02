@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import io
 import json
+import shutil
 import tarfile
 import zipfile
 from pathlib import Path
@@ -133,6 +134,23 @@ def test_release_verification_schema_is_closed_and_finite() -> None:
         assert any("not closed" in error for error in check_release_verification(changed))
     finally:
         changed.unlink(missing_ok=True)
+
+
+def test_release_verification_accepts_clean_public_checkout_without_private_roots(
+    tmp_path: Path,
+) -> None:
+    public = tmp_path / "worldzero"
+    manifest = json.loads((ROOT / "docs/public-files.json").read_text())
+    for relative in manifest["files"]:
+        source = ROOT / relative
+        destination = public / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
+
+    assert not (public / ".local-archive").exists()
+    assert not (public / ".release-checkpoints").exists()
+    assert not (public / ".superpowers").exists()
+    assert check_release_verification(public / "release-verification.json") == []
 
 
 def _release_mutations(payload: dict[str, object]):
