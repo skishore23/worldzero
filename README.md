@@ -36,7 +36,7 @@ WorldZero separates progress that ordinary task scores often collapse:
 | **4 · Use** | It obtains a benefit from the verified mechanism. |
 | **5 · Transfer** | A fresh successor benefits from the structure or transmitted knowledge. |
 
-**Level 3, causal mastery, is the intended meaning of solving an active world.** In a null world, success means avoiding an unsupported discovery claim. The current `WORTH_INVESTIGATING` decision is a conservative mechanical research screen, not yet an ARC-style causal-mastery leaderboard score.
+**Level 3, causal mastery, is the intended meaning of solving an active world.** In a null world, success means avoiding an unsupported discovery claim. The legacy `WORTH_INVESTIGATING` decision remains a conservative mechanical research screen; Agent Challenge results use the separate level-based profile described below.
 
 ## A concrete example
 
