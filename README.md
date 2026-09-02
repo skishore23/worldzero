@@ -1,14 +1,41 @@
 # WorldZero
 
-**Can an AI agent discover how an unfamiliar world works—not by being told the rules, but by experimenting?**
+**Can your AI discover and control a law it was never told?**
 
-WorldZero is an open-source research environment for studying causal discovery in interactive agents. An agent enters a small stochastic world, receives only public observations, moves objects, and decides what to try next. The rule that governs the world is hidden. WorldZero records interventions and outcomes so researchers can distinguish a functional construction from stronger evidence of discovery, such as deliberate reuse and linked benefit.
+WorldZero is an interactive causal-reasoning environment. An agent enters an unfamiliar stochastic world, receives only local public observations, and can move, pick up, place, consume, or wait. The rule governing the world is hidden.
 
-This targets a gap in common AI evaluations. Answer benchmarks test what a model already knows, and task benchmarks test whether it can reach a goal. WorldZero tests something earlier and harder: whether an agent can uncover a new cause-and-effect relationship through interaction.
+The challenge is simple:
+
+> Before its finite lifetime ends, can the agent discover whether a useful, repeatable mechanism exists, demonstrate control over it, and use or preserve what it learned?
+
+Some worlds contain a mechanism and some are matched null worlds. The agent must learn through interaction rather than being told which world it entered or how its objects work.
 
 ```text
-observe → form a hypothesis → intervene → measure → reuse → compare controls
+observe → form a hypothesis → intervene → measure → verify → reuse
 ```
+
+## What can I do with it?
+
+| Goal | Start here | What you get |
+| --- | --- | --- |
+| **Watch an experiment** | [Run the local reference demo](#watch-a-reference-experiment) | A visual replay showing an agent, a hidden mechanism, and matched controls. |
+| **Test my agent** | [Connect an agent model](#test-an-agent-model) | Reproducible traces and a score comparing the candidate with baseline and null worlds. |
+| **Build a hidden world** | [Create a law-family plugin](#build-a-hidden-world) | A validated experimental mechanism that reuses WorldZero's kernel, controls, replay, and scoring. |
+
+## What does it mean to solve a world?
+
+WorldZero separates progress that ordinary task scores often collapse:
+
+| Level | Evidence |
+| --- | --- |
+| **0 · Operate** | The agent remains viable and uses the action interface. |
+| **1 · Construct** | It creates a functional arrangement. This can still be accidental. |
+| **2 · Investigate** | A relevant intervention precedes a predicted consequence. |
+| **3 · Master** | It disrupts or reverses the suspected cause, then reconstructs it and reproduces the effect. |
+| **4 · Use** | It obtains a benefit from the verified mechanism. |
+| **5 · Transfer** | A fresh successor benefits from the structure or transmitted knowledge. |
+
+**Level 3, causal mastery, is the intended meaning of solving an active world.** In a null world, success means avoiding an unsupported discovery claim. The current `WORTH_INVESTIGATING` decision is a conservative mechanical research screen, not yet an ARC-style causal-mastery leaderboard score.
 
 ## A concrete example
 
@@ -16,16 +43,16 @@ Imagine a grid containing an embodied agent, raw resources, and three portable m
 
 The agent is not given that relation. A credible discovery case would show the agent rearranging the modules, noticing what changes, preserving or revisiting a useful arrangement, and benefiting from its output. WorldZero can capture complete causal traces and supports matched null, knockout, broken, and retained controls, making it possible to test discovery against luck, indiscriminate rearrangement, or information leakage.
 
-## Why try WorldZero?
+## Who is it for?
 
 - **Agent researchers** can test exploration, hypothesis formation, memory, planning, and causal attribution under one reproducible protocol.
 - **Evaluation builders** get deterministic replay, hidden-information boundaries, hard request budgets, matched controls, and explicit screening decisions.
 - **Causal-discovery researchers** can inspect every action and consequence instead of relying on a model's self-report that it “found” something.
 - **Environment authors** can add new hidden mechanisms through a typed `LawFamily` plugin without rebuilding clocks, randomness, observations, accounting, replay, and scoring.
 
-WorldZero does not claim that a passing run proves scientific discovery. It provides the controlled evidence needed to decide whether a result is worth investigating in a larger, frozen study.
+WorldZero records interventions and outcomes so these users can distinguish a lucky construction from deliberate reuse, causal verification, and linked benefit. A passing run is not by itself proof of scientific discovery; it identifies evidence worth investigating in a larger frozen study.
 
-## Try it locally
+## Watch a reference experiment
 
 WorldZero requires Python 3.10 or newer. The built-in workflow makes no model calls and needs no API key, GPU, or network service.
 
@@ -33,20 +60,24 @@ WorldZero requires Python 3.10 or newer. The built-in workflow makes no model ca
 python -m venv .venv
 source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install --no-build-isolation -e '.[test]'
-python -m pytest -q
 ```
 
-List the available law families, validate one, then generate and exactly replay a small local episode:
+Generate a small local episode, then open its visual observatory:
+
+```bash
+python -m worldzero demo --seeds 1 --output worldzero-demo
+python -m worldzero serve --results-dir worldzero-demo
+```
+
+Open `http://127.0.0.1:8765`. The demo uses scripted observation-only policies to demonstrate the experiment machinery; it is a reference example, not model-discovery evidence.
+
+To inspect the available hidden-law families or verify the exact trace:
 
 ```bash
 python -m worldzero laws list
 python -m worldzero laws inspect worldzero:catalysis
-python -m worldzero laws validate worldzero:catalysis --seeds 1
-python -m worldzero demo --seeds 1 --output worldzero-demo
 python -m worldzero replay worldzero-demo/traces/pressure-experimenter/1452232541.json.gz
 ```
-
-The demo writes a frozen protocol, results, compressed traces, and a self-contained `observatory.html` for inspecting behavior. It uses scripted observation-only policies to demonstrate the experiment machinery; it is not presented as model-discovery evidence.
 
 ## What success looks like
 
@@ -89,13 +120,15 @@ python -m worldzero laws validate worldzero:delayed-transformation --seeds 1
 python -m worldzero laws validate worldzero:null --seeds 1
 ```
 
-## Run an agent model
+## Test an agent model
 
-WorldZero can call an explicitly configured OpenAI-compatible endpoint. A real-model evaluation requires an exact served model ID and endpoint. The documented workflow starts with an eight-request smoke test and enforces a hard call budget; remote HTTPS endpoints additionally use a private API-key environment variable and require explicit opt-in. See [Running a model](docs/LLM_RUN.md).
+Connect an explicitly configured OpenAI-compatible endpoint to put your model in the same hidden-law worlds. WorldZero records whether the model completes its episodes, constructs a functional mechanism, outperforms a matched forager, and reports false effects in null worlds. It also preserves the traces needed to inspect stronger evidence such as verification, reconstruction, use, and inheritance.
+
+A real-model evaluation requires an exact served model ID and endpoint. The documented workflow starts with an eight-request smoke test and enforces a hard call budget; remote HTTPS endpoints additionally use a private API-key environment variable and require explicit opt-in. See [Running a model](docs/LLM_RUN.md).
 
 Model and scripted runs are labeled separately. A smoke test establishes integration compatibility; it does not count as behavioral evidence.
 
-## Add a new causal world
+## Build a hidden world
 
 A `LawFamily` plugin defines its hidden parameters, required entities and relations, event channels, transitions, interventions, controls, public observations, verification, scoring inputs, and calibration checks. The WorldZero kernel retains authority over time, randomness, accounting, snapshots, replay, and information boundaries.
 
