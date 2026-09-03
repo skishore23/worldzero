@@ -19,9 +19,68 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 | Goal | Start here | What you get |
 | --- | --- | --- |
 | **Watch an experiment** | [Run the local reference demo](#watch-a-reference-experiment) | A visual replay showing an agent, a hidden mechanism, and matched controls. |
-| **Build an agent** | [Attempt the Agent Challenge](#attempt-the-agent-challenge) | A level profile for your own memory, exploration, planning, and model architecture. |
+| **Build an agent** | [Start the Agent Challenge](#start-the-agent-challenge) | A level profile for your own memory, exploration, planning, and model architecture. |
 | **Test a raw model** | [Connect a model endpoint](#test-a-model-endpoint) | A reference-agent run using WorldZero's standard prompt and action loop. |
 | **Build a hidden world** | [Create a law-family plugin](#build-a-hidden-world) | A validated experimental mechanism that reuses WorldZero's kernel, controls, replay, and scoring. |
+
+## Start the Agent Challenge
+
+**Your job is to build the agent.** Replace the deliberately strategy-free
+example with any system you choose: an LLM, planner, learned policy, program
+search, model ensemble, or no model at all. Improve the percentage of active
+worlds reaching Level 3 while keeping false discoveries in null worlds low.
+
+Clone and install WorldZero (Python 3.10 or newer):
+
+```bash
+git clone https://github.com/skishore23/worldzero.git
+cd worldzero
+python -m venv .venv
+source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install --no-build-isolation -e '.[test]'
+```
+
+Open [`examples/custom_agent.py`](examples/custom_agent.py). The included agent
+only waits and reports insufficient evidence. Its zero score is intentional: it
+proves the interface works without prescribing a solution.
+
+Run it on one development seed:
+
+```bash
+python -m worldzero benchmark create-manifest \
+  --output benchmark.json --dev-count 1 --test-count 1
+python -m worldzero benchmark run \
+  --manifest benchmark.json \
+  --agent examples.custom_agent:create_agent \
+  --agent-version 0.1.0 --split dev --no-baselines \
+  --output runs/custom-agent
+python -m json.tool runs/custom-agent/benchmark-result.json
+```
+
+Then follow the challenge loop:
+
+1. Change the example or point `--agent` at your own `module:create_agent` factory.
+2. Run development worlds and inspect the level profile and traces.
+3. Improve your memory, exploration, hypotheses, planning, or action selection.
+4. Repeat, freeze a version, and evaluate it on the test split.
+
+An illustrative result reads like this:
+
+```text
+Level 0 · Operate       100%
+Level 1 · Construct      70%
+Level 2 · Investigate    40%
+Level 3 · Master         20%  ← headline result; higher is better
+Level 4 · Use            10%
+Level 5 · Transfer        0%
+Null false discovery      5%  ← lower is better
+```
+
+WorldZero does not choose your prompt, model, memory, tools, planner, or
+exploration strategy. It supplies the hidden worlds, public observations,
+primitive actions, budgets, matched controls, traces, and scoring. Start with
+[Build a WorldZero agent](docs/AGENT_SDK.md), then read the full
+[benchmark contract](docs/BENCHMARK.md).
 
 ## What does it mean to solve a world?
 
@@ -55,13 +114,7 @@ WorldZero records interventions and outcomes so these users can distinguish a lu
 
 ## Watch a reference experiment
 
-WorldZero requires Python 3.10 or newer. The built-in workflow makes no model calls and needs no API key, GPU, or network service.
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install --no-build-isolation -e '.[test]'
-```
+The built-in workflow makes no model calls and needs no API key, GPU, or network service.
 
 Generate a small local episode, then open its visual observatory:
 
@@ -120,31 +173,6 @@ python -m worldzero laws validate worldzero:inhibition --seeds 1
 python -m worldzero laws validate worldzero:delayed-transformation --seeds 1
 python -m worldzero laws validate worldzero:null --seeds 1
 ```
-
-## Attempt the Agent Challenge
-
-Build any agent you want behind four lifecycle methods: `reset`, `act`,
-`observe_result`, and `close`. WorldZero does not choose your model, prompt,
-memory, planner, tools, or exploration strategy. It supplies the hidden worlds,
-public observations, primitive actions, budgets, matched controls, traces, and
-level scoring.
-
-Run the deliberately strategy-free example on one development seed:
-
-```bash
-python -m worldzero benchmark create-manifest \
-  --output benchmark.json --dev-count 1 --test-count 1
-python -m worldzero benchmark run \
-  --manifest benchmark.json \
-  --agent examples.custom_agent:create_agent \
-  --agent-version 0.1.0 --split dev --no-baselines \
-  --output runs/custom-agent
-```
-
-The result reports the rate reaching each level, Level 3 mastery as the
-headline, null-world false discoveries, coverage, and resource use. Start with
-[Build a WorldZero agent](docs/AGENT_SDK.md) and read the full
-[benchmark contract](docs/BENCHMARK.md).
 
 ## Test a model endpoint
 
