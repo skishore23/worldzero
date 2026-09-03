@@ -38,6 +38,23 @@ class RecordingAgent:
         self.calls.append(("close", None))
 
 
+def evidence_ledger(**overrides):
+    value = {
+        "mode": "observe",
+        "trial_id": 0,
+        "hypothesis": None,
+        "candidate_components": [],
+        "prediction": None,
+        "intervention": None,
+        "observe_until": None,
+        "evidence": None,
+        "conclusion": "untested",
+        "next_test": None,
+    }
+    value.update(overrides)
+    return value
+
+
 def context():
     return agent_context(
         suite="worldzero:core-v1",
@@ -85,6 +102,33 @@ def test_adapter_runs_lifecycle_with_detached_values_and_tracks_finding():
     }
 
 
+def test_adapter_preserves_a_bounded_public_evidence_ledger():
+    ledger = evidence_ledger(
+        mode="build",
+        hypothesis="alpha beside beta changes a nearby resource",
+        candidate_components=["alpha", "beta"],
+        prediction="a rich resource appears nearby",
+        intervention="place alpha beside beta",
+        observe_until=12.5,
+    )
+
+    class Agent(RecordingAgent):
+        def act(self, observation):
+            return {
+                "action": {"type": "WAIT", "duration": 1.0},
+                "ledger": ledger,
+            }
+
+    adapter = AgentPolicyAdapter(Agent, context(), name="fixture:evidence-agent")
+
+    assert adapter.decide({}) == {
+        "action": {"type": "WAIT", "duration": 1.0},
+        "ledger": ledger,
+        "memory": "",
+    }
+    assert adapter.contract_errors == 0
+
+
 @pytest.mark.parametrize(
     "decision",
     [
@@ -92,6 +136,7 @@ def test_adapter_runs_lifecycle_with_detached_values_and_tracks_finding():
         {"action": {"type": "WAIT"}, "extra": True},
         {"action": "WAIT"},
         {"action": {"type": "WAIT"}, "finding": {"status": "invented"}},
+        {"action": {"type": "WAIT"}, "ledger": {"hypothesis": "incomplete"}},
     ],
 )
 def test_malformed_decision_becomes_an_explicit_invalid_kernel_envelope(decision):
@@ -169,6 +214,31 @@ def test_run_agent_episode_returns_finding_and_guarantees_close():
     assert trace is not None
     assert finding == {"status": "no_mechanism"}
     assert [call[0] for call in instances[0].calls][-2:] == ["observe_result", "close"]
+
+
+def test_run_agent_episode_records_the_public_evidence_ledger_in_trace():
+    ledger = evidence_ledger(
+        hypothesis="alpha and beta may interact",
+        candidate_components=["alpha", "beta"],
+        prediction="the local resource changes",
+    )
+
+    class Agent(RecordingAgent):
+        def act(self, observation):
+            return {
+                "action": {"type": "WAIT", "duration": 2.0},
+                "ledger": ledger,
+            }
+
+    world = World(7, Config(lifespan=3.0, initial_energy=50.0, max_decisions=10))
+
+    _, trace, _ = run_agent_episode(
+        world, Agent, context(), name="fixture:evidence-agent", capture=True,
+    )
+
+    assert trace is not None
+    assert trace["decisions"]
+    assert trace["decisions"][0]["response"]["ledger"] == ledger
 
 
 def test_run_agent_episode_closes_after_act_failure():

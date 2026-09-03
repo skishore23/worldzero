@@ -53,6 +53,41 @@ Finding statuses are `supported`, `no_mechanism`, and
 Level 3 also requires recorded disruption, reconstruction, and recurrence of an
 effect. A supported finding in a matched-null world counts as a false discovery.
 
+### Optional public evidence ledger
+
+An agent may attach a concise `ledger` to any decision so a later audit can
+check whether a hypothesis and prediction were recorded before an intervention.
+Every field is required when the optional ledger is present:
+
+```python
+return {
+    "action": {"type": "DROP"},
+    "ledger": {
+        "mode": "build",
+        "trial_id": 3,
+        "hypothesis": "alpha beside beta changes a nearby resource",
+        "candidate_components": ["alpha", "beta"],
+        "prediction": "a new consumable resource will appear nearby",
+        "intervention": "place alpha beside beta",
+        "observe_until": 42.0,
+        "evidence": None,
+        "conclusion": "untested",
+        "next_test": None,
+    },
+}
+```
+
+Modes are `forage`, `select`, `build`, `observe`, `evaluate`, and `replicate`.
+Conclusions are `untested`, `supported`, `refuted`, and `inconclusive`. The
+authoritative bounded JSON schema is exported as
+`worldzero.agent_sdk.EVIDENCE_LEDGER_SCHEMA`.
+
+The ledger is public evidence: WorldZero validates it and stores it in the
+decision trace. Do not put secrets or private reasoning in it. It is optional,
+is not used as custom-agent memory, and does not change the behavior-first level
+score. It only enables the separate post-hoc audit of ordered hypothesis,
+intervention, observation, attribution, and verification evidence.
+
 `observe_result(result)` receives the public outcome immediately after an
 action. The same result also appears in the next observation. `close()` is
 called once when the episode finishes or fails.

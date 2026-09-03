@@ -10,6 +10,8 @@ import math
 import re
 from typing import Any, Protocol
 
+from .evidence_ledger import EVIDENCE_LEDGER_SCHEMA, canonical_ledger
+
 
 class WorldZeroAgent(Protocol):
     """Minimal lifecycle implemented by participant-owned agents."""
@@ -118,6 +120,14 @@ def _valid_finding(value: Any) -> bool:
     )
 
 
+def _valid_ledger(value: Any) -> bool:
+    try:
+        canonical_ledger(value)
+    except (TypeError, ValueError, OverflowError):
+        return False
+    return True
+
+
 class AgentPolicyAdapter:
     """Adapt a participant agent to the kernel's existing policy interface."""
 
@@ -162,13 +172,17 @@ class AgentPolicyAdapter:
         if (
             not isinstance(decision, dict)
             or "action" not in decision
-            or not set(decision) <= {"action", "finding"}
+            or not set(decision) <= {"action", "finding", "ledger"}
             or not isinstance(decision["action"], dict)
             or not isinstance(decision["action"].get("type"), str)
             or (
                 "finding" in decision
                 and decision["finding"] is not None
                 and not _valid_finding(decision["finding"])
+            )
+            or (
+                "ledger" in decision
+                and not _valid_ledger(decision["ledger"])
             )
         ):
             self.contract_errors += 1
@@ -183,6 +197,8 @@ class AgentPolicyAdapter:
         }
         if finding is None:
             envelope.pop("finding")
+        if "ledger" in decision:
+            envelope["ledger"] = copy.deepcopy(decision["ledger"])
         return envelope
 
     def after_step(
@@ -240,6 +256,7 @@ __all__ = [
     "AgentContractError",
     "AgentFactory",
     "AgentPolicyAdapter",
+    "EVIDENCE_LEDGER_SCHEMA",
     "WorldZeroAgent",
     "agent_context",
     "load_agent_factory",

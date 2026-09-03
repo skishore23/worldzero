@@ -2,6 +2,13 @@
 
 This project follows semantic versioning for the public Python and CLI interfaces. Family behavior, calibration suites, scoring profiles, and persisted schemas carry independent versioned identities.
 
+## Unreleased
+
+- Added an optional bounded public evidence ledger to the Agent SDK. Custom
+  agents can now preserve concise hypothesis evidence in traces for the same
+  post-hoc audit used by the guided model path; behavior-first level scoring is
+  unchanged.
+
 ## 0.3.0 — 2026-09-01
 
 - Added the typed `LawFamily` SDK and deterministic exact-ID registry.

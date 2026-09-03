@@ -107,6 +107,7 @@
     "worldzero/cli.py",
     "worldzero/core.py",
     "worldzero/discovery_audit.py",
+    "worldzero/evidence_ledger.py",
     "worldzero/experiment.py",
     "worldzero/kernel.py",
     "worldzero/laws/__init__.py",

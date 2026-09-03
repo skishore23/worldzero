@@ -39,6 +39,19 @@ Level 3 mastery rate is the headline result. The complete level curve, null
 false-discovery rate, coverage, invalid actions, and resource accounting remain
 visible. WorldZero does not collapse them into a weighted composite.
 
+### Behavior score and hypothesis audit
+
+The level profile is behavior-first. An optional public evidence ledger never
+raises or lowers an episode's level. It lets a separate post-hoc audit check
+whether the agent recorded a concise hypothesis and prediction before acting,
+then linked later evidence and a verification plan to that intervention.
+
+Behavior-only agents remain fully valid benchmark participants. Agents that
+want the additional audit surface can return the bounded `ledger` documented in
+[the Agent SDK](AGENT_SDK.md#optional-public-evidence-ledger). Ledger text is
+trace-visible supporting evidence, not private chain-of-thought and not proof of
+causation by itself.
+
 ## Run a challenge
 
 ```bash

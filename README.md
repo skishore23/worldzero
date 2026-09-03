@@ -78,8 +78,10 @@ Null false discovery      5%  ← lower is better
 
 WorldZero does not choose your prompt, model, memory, tools, planner, or
 exploration strategy. It supplies the hidden worlds, public observations,
-primitive actions, budgets, matched controls, traces, and scoring. Start with
-[Build a WorldZero agent](docs/AGENT_SDK.md), then read the full
+primitive actions, budgets, matched controls, traces, and scoring. Agents may
+also publish an optional bounded hypothesis ledger for post-hoc audit; it is not
+required and does not change the behavior-first level score. Start with [Build
+a WorldZero agent](docs/AGENT_SDK.md), then read the full
 [benchmark contract](docs/BENCHMARK.md).
 
 ## What does it mean to solve a world?

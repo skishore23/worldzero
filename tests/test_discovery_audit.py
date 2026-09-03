@@ -5,6 +5,7 @@ import copy
 import pytest
 
 import worldzero.discovery_audit as discovery_audit
+from worldzero.agent_sdk import AgentPolicyAdapter, agent_context
 from worldzero.discovery_audit import audit_trace, structure_origin, summarize_audits
 from worldzero.laws import FamilyEvidence
 
@@ -132,6 +133,40 @@ def test_audit_does_not_treat_late_claims_as_a_pre_intervention_hypothesis():
     assert audit["stages"]["pre_intervention_hypothesis"] is False
     assert all(value for name, value in audit["stages"].items() if name != "pre_intervention_hypothesis")
     assert audit["automatic_complete"] is False
+
+
+def test_custom_agent_public_ledger_can_supply_a_pre_intervention_hypothesis():
+    trace = _guided_trace()
+    expected = trace["decisions"][0]["response"]
+
+    class Agent:
+        def reset(self, context):
+            pass
+
+        def act(self, observation):
+            return copy.deepcopy(expected)
+
+        def observe_result(self, result):
+            pass
+
+        def close(self):
+            pass
+
+    context = agent_context(
+        suite="worldzero:core-v1",
+        scoring_profile="worldzero:levels-v1",
+        episode_id="audit-integration",
+        agent_seed=1,
+        split="dev",
+        max_decisions=10,
+        lifespan=20.0,
+    )
+    adapter = AgentPolicyAdapter(Agent, context, name="fixture:evidence-agent")
+    trace["decisions"][0]["response"] = adapter.decide(
+        trace["decisions"][0]["observation"]
+    )
+
+    assert audit_trace(trace)["stages"]["pre_intervention_hypothesis"] is True
 
 
 def test_audit_requires_the_recorded_next_state_to_confirm_the_drop_assembly_order():
