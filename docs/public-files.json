@@ -97,6 +97,7 @@
     "tests/test_protocol.py",
     "tests/test_review_regressions.py",
     "tests/test_scoring.py",
+    "tests/test_scoring_contracts.py",
     "tests/test_trace_v4.py",
     "tests/test_util.py",
     "worldzero/__init__.py",
@@ -130,6 +131,7 @@
     "worldzero/protocol.py",
     "worldzero/release_hygiene.py",
     "worldzero/scoring.py",
+    "worldzero/scoring_contracts.py",
     "worldzero/server.py",
     "worldzero/util.py",
     "worldzero/viewer.py"

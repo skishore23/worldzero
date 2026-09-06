@@ -7,6 +7,7 @@ import copy
 from typing import Any
 
 from .laws.types import FamilyEvidence
+from .scoring_contracts import BenchmarkEvidence, InheritanceResult
 
 
 _PARTICIPANT_ORIGINS = frozenset({"model_placement", "model_drop"})
@@ -15,12 +16,20 @@ _FINDING_STATUSES = frozenset({
 })
 
 
-def _evidence(value: FamilyEvidence | Mapping[str, Any]) -> FamilyEvidence:
+def _evidence(value: BenchmarkEvidence | FamilyEvidence | Mapping[str, Any]) -> FamilyEvidence:
+    if isinstance(value, BenchmarkEvidence):
+        return value.as_family_evidence()
     if isinstance(value, FamilyEvidence):
-        return value
-    if not isinstance(value, Mapping):
-        raise TypeError("evidence must be FamilyEvidence or its persistence mapping")
-    return FamilyEvidence.from_persistence(value)  # type: ignore[arg-type]
+        family = value
+    elif isinstance(value, Mapping):
+        family = FamilyEvidence.from_persistence(value)
+    else:
+        raise TypeError("evidence must be a scoring record or its persistence mapping")
+    # Historical family records remain usable; benchmark records must satisfy
+    # the shared witness contract, including agreement with serialized flags.
+    if "causal_witness" in family.stage_evidence:
+        return BenchmarkEvidence.from_persistence(family.persistence_dict()).as_family_evidence()
+    return family
 
 
 def _finding_status(value: Mapping[str, Any]) -> str:
@@ -34,34 +43,21 @@ def _finding_status(value: Mapping[str, Any]) -> str:
     return str(value["status"])
 
 
-def _transfer_qualifies(value: Mapping[str, Any] | None) -> bool:
-    if not isinstance(value, Mapping):
+def _transfer_qualifies(value: InheritanceResult | Mapping[str, Any] | None) -> bool:
+    if value is None:
         return False
-    outcomes = value.get("results")
-    if not isinstance(outcomes, Mapping):
+    try:
+        record = value if isinstance(value, InheritanceResult) else InheritanceResult.from_persistence(value)
+    except (TypeError, ValueError):
         return False
-    retained = outcomes.get("retained")
-    controls = [outcomes.get("knockout"), outcomes.get("broken")]
-    return (
-        value.get("status") == "completed"
-        and value.get("eligible") is True
-        and isinstance(retained, Mapping)
-        and retained.get("status") == "completed"
-        and retained.get("survived") is True
-        and any(
-            isinstance(control, Mapping)
-            and control.get("status") == "completed"
-            and control.get("survived") is False
-            for control in controls
-        )
-    )
+    return record.transfer_qualifies
 
 
 def episode_level(
     episode: Mapping[str, Any],
-    evidence: FamilyEvidence | Mapping[str, Any],
+    evidence: BenchmarkEvidence | FamilyEvidence | Mapping[str, Any],
     finding: Mapping[str, Any],
-    inheritance: Mapping[str, Any] | None,
+    inheritance: InheritanceResult | Mapping[str, Any] | None,
 ) -> int | None:
     """Return the strongest cumulative level supported by one active episode."""
 

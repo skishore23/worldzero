@@ -44,6 +44,34 @@ Policies receive a JSON-roundtripped copy of local public state. Hidden paramete
 
 Controls include matched null, mechanism knockout, matter-preserving broken geometry, and retained state. The benchmark reports negative controls and both all-ancestor and eligible-only inheritance effects.
 
+## Scoring contracts
+
+`worldzero.scoring_contracts` owns the records shared by evidence producers,
+inheritance, and level scoring:
+
+- `CausalWitness` validates the ordered construction, observation, disruption,
+  reconstruction, recurrence, and optional benefit references. Public
+  confirmation and consumption may reference the same event.
+- `BenchmarkEvidence` derives verification and benefit flags from that witness.
+  Decoding refuses stored flags that contradict the record.
+- `BranchOutcome` and `InheritanceResult` validate the three successor branches,
+  completion, eligibility, and the survival contrast required for transfer.
+  Episode metadata is detached and preserved when the record is serialized.
+
+`causal_evidence` finds the supporting events and constructs these records.
+`experiment.inheritance` uses the shared transfer record to produce its scoring
+fields. `levels` decodes through the same records. The benchmark boundary
+requires witness-bearing evidence for every row, including failed cells, and
+validates inheritance before scoring. Thus a producer cannot silently drop a
+required field and receive a lower score instead of a contract error.
+
+Existing JSON field names and historical family evidence remain compatible.
+Standalone `episode_level` retains support for historical Boolean-only family
+records; modern benchmark runs do not use that compatibility path. These
+records validate structure and consistency, not the authenticity or scientific
+sufficiency of supplied events. Replay verifies the underlying trajectory;
+the causal evidence extractor establishes the event linkage.
+
 ## Persistence and replay
 
 Plugin-backed state-v3 snapshots and trace-v4 records freeze the exact descriptor, source and calibration fingerprints, channel order, hidden JSON instance, private state, scorer identity, observations, actions, transitions, accounting, and terminal digests. Replay resolves the same family and checks the trajectory exactly.

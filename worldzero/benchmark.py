@@ -16,6 +16,7 @@ from typing import Any
 
 from .agent_sdk import AgentFactory, agent_context, load_agent_factory, run_agent_episode
 from .causal_evidence import benchmark_evidence
+from .scoring_contracts import BenchmarkEvidence, InheritanceResult
 from .experiment import inheritance, make_policy
 from .kernel import Config, World
 from .laws import builtin_registry, calibration_suite_fingerprint
@@ -262,7 +263,7 @@ def _run_agent_cells(
                         "message": str(exc)[:300],
                     }
                     finding = {"status": "insufficient_evidence"}
-                    evidence = FamilyEvidence({}).persistence_dict()
+                    evidence = BenchmarkEvidence(FamilyEvidence({}), None).persistence_dict()
                     inherited = None
                     trace_reference = None
                 else:
@@ -307,6 +308,12 @@ def _run_agent_cells(
 
 
 def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any]) -> dict[str, Any]:
+    # Modern benchmark rows must never fall back to historical Boolean-only
+    # family evidence when a producer accidentally drops the witness field.
+    for row in rows:
+        BenchmarkEvidence.from_persistence(row["evidence"])
+        if row["inheritance"] is not None:
+            InheritanceResult.from_persistence(row["inheritance"])
     scoring_rows = [
         {key: value for key, value in row.items() if key != "trace"}
         for row in rows

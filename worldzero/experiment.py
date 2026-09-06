@@ -14,6 +14,7 @@ from .causal_scaffold import (
 from .kernel import Config, Law, World
 from .laws.registry import RegisteredFamily, calibration_suite_fingerprint, resolve_family
 from .laws.types import FamilyEvidence
+from .scoring_contracts import InheritanceResult
 from .llm import BudgetExceeded, LLMConfig, LLMPolicy
 from .policies import BlindManipulatorPolicy, ExperimenterPolicy, ForagerPolicy, RandomPolicy, ReplayPolicy
 from .util import canonical, derive_seed, digest, require_expected_sha256
@@ -852,15 +853,15 @@ def inheritance(completed: World, successor: str = "forager", *, energy: float |
         results[name] = result
         if capture: traces[name] = trace
     r,k,b = results["retained"],results["knockout"],results["broken"]
-    complete = all(v["status"]=="completed" for v in results.values())
+    transfer = InheritanceResult.from_outcomes(results, eligible=eligible)
+    complete = transfer.completed
     row = dict(seed=completed.seed,family_id=base._family.descriptor.family_id,
-               eligible=eligible,
+               **transfer.persistence_dict(),
                eligibility={
                    "assignment": "eligible" if eligible else "ineligible",
                    "terminal_function": terminal_function,
                    "standardized_evidence": standardized_evidence.persistence_dict(),
                },
-               status="completed" if complete else "censored",
                successor=successor,stock_normalized=normalize_stock,equal_stocks_at_birth=stocks_equal,
                spawn=list(base.home),initial_energy=base.config.initial_energy if energy is None else energy,
                idle_time=idle_time,passive_conversions=passive,
@@ -870,8 +871,7 @@ def inheritance(completed: World, successor: str = "forager", *, energy: float |
                retained_age=r["age"],knockout_age=k["age"],broken_age=b["age"],
                paired_survival=(int(r["survived"])-int(k["survived"])) if complete else None,
                paired_survival_geometry=(int(r["survived"])-int(b["survived"])) if complete else None,
-               paired_age=r["age"]-k["age"],paired_age_geometry=r["age"]-b["age"],
-               results=results)
+               paired_age=r["age"]-k["age"],paired_age_geometry=r["age"]-b["age"])
     return row,traces
 
 

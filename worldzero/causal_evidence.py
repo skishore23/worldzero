@@ -5,6 +5,9 @@ from __future__ import annotations
 from collections.abc import Callable, Mapping, Sequence
 from typing import Any
 
+from .laws.types import FamilyEvidence
+from .scoring_contracts import BenchmarkEvidence, CausalWitness
+
 
 def public_trace_events(trace: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     """Interleave recorded public observations with episode-local kernel events.
@@ -25,10 +28,10 @@ def public_trace_events(trace: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     return result
 
 
-def reconstruction_witness(
+def reconstruction_record(
     events: Sequence[Mapping[str, Any]], *,
     effect: Callable[[Mapping[str, Any]], bool], width: int, symbol: str,
-) -> dict[str, int] | None:
+) -> CausalWitness | None:
     """Link two publicly confirmed effects, a reconstruction, and optional use.
 
     Benefit must consume the actual recurring output/preserved resource, before
@@ -94,18 +97,25 @@ def reconstruction_witness(
                         "recurrence_observation": observation,
                     }
                     if benefit is not None:
-                        return {**candidate, "benefit": benefit}
-                    witness = witness or candidate
+                        return CausalWitness(**candidate, benefit=benefit)
+                    witness = witness or CausalWitness(**candidate)
     return witness
 
 
-def benchmark_evidence(trace: Mapping[str, Any]) -> dict[str, Any]:
-    """Apply the versioned level contract without rewriting historical traces."""
-    import copy
+def reconstruction_witness(
+    events: Sequence[Mapping[str, Any]], *,
+    effect: Callable[[Mapping[str, Any]], bool], width: int, symbol: str,
+) -> dict[str, int] | None:
+    """Compatibility JSON projection of the shared causal record."""
+    record = reconstruction_record(events, effect=effect, width=width, symbol=symbol)
+    return record.persistence_dict() if record else None
 
+
+def benchmark_evidence_record(trace: Mapping[str, Any]) -> BenchmarkEvidence:
+    """Build the shared scoring record from recorded trace contents."""
     family_id = trace["family_identity"]["descriptor"]["family_id"]
     inhibition = family_id == "worldzero:inhibition"
-    witness = reconstruction_witness(
+    witness = reconstruction_record(
         public_trace_events(trace), width=trace["initial"]["config"]["width"],
         symbol=trace["initial"]["symbols"][0 if inhibition else 1],
         effect=lambda event: (
@@ -113,11 +123,12 @@ def benchmark_evidence(trace: Mapping[str, Any]) -> dict[str, Any]:
             and event.get("event") == ("inhibited_proposal" if inhibition else "convert")
         ),
     )
-    evidence = copy.deepcopy(trace["family_evidence"])
-    evidence["discriminating_verification"] = witness is not None
-    evidence["linked_benefit"] = witness is not None and "benefit" in witness
-    evidence["stage_evidence"]["causal_witness"] = witness
-    return evidence
+    return BenchmarkEvidence(FamilyEvidence.from_persistence(trace["family_evidence"]), witness)
+
+
+def benchmark_evidence(trace: Mapping[str, Any]) -> dict[str, Any]:
+    """Keep the persisted benchmark shape while sharing its validation rules."""
+    return benchmark_evidence_record(trace).persistence_dict()
 
 
 def _successful_pick(event: Mapping[str, Any]) -> bool:
@@ -139,4 +150,5 @@ def discriminating_reconstruction(
 
 
 __all__ = ["benchmark_evidence", "discriminating_reconstruction",
-           "public_trace_events", "reconstruction_witness"]
+           "public_trace_events", "reconstruction_witness", "reconstruction_record",
+           "benchmark_evidence_record"]

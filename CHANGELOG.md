@@ -4,6 +4,9 @@ This project follows semantic versioning for the public Python and CLI interface
 
 ## Unreleased
 
+- Centralized causal witness and inheritance scoring contracts, with immutable
+  records, shared decoding, and rejection of contradictory benchmark evidence.
+
 - Corrected Level 5 inheritance decoding and introduced `levels-v2` scoring with
   event-linked public recurrence and post-reconstruction benefit requirements.
 - Froze benchmark implementation/environment identities, recorded agent source
