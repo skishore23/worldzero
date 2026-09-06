@@ -59,13 +59,13 @@
           "time"
         ]
       },
-      "identity_sha256": "1b45d262774bb84769b6ad60f400510e87c77ceed4d0d7a25fe62bab19787a42",
+      "identity_sha256": "08d1b60be6dc48b9b1bc5ea20729f39cf2ebc68764eb27c54e787f0594d3d548",
       "kind": "state",
       "schema_id": "worldzero-state-v2",
       "source_files": [
         {
           "path": "worldzero/kernel.py",
-          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+          "sha256": "1e836846a8a0ac57ccaa3dcae2b9b90b0b29b34ecc711ee55097d5b32581810d"
         },
         {
           "path": "tests/fixtures/legacy/state-v2.json",
@@ -211,13 +211,13 @@
           "time"
         ]
       },
-      "identity_sha256": "f4222205cfbfa555d068395abe17b7653fb875a513398c6b66ef98e563daefdc",
+      "identity_sha256": "192db6a221d27bfebc420dca2879a08227e5a4d184713ba02f065a4d99fecaaf",
       "kind": "state",
       "schema_id": "worldzero-state-v3",
       "source_files": [
         {
           "path": "worldzero/kernel.py",
-          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+          "sha256": "1e836846a8a0ac57ccaa3dcae2b9b90b0b29b34ecc711ee55097d5b32581810d"
         }
       ]
     },
@@ -369,7 +369,7 @@
           "states"
         ]
       },
-      "identity_sha256": "502914a8358a32a40e0a5cbd9811f44a783a1b7cb793709fe0c68ff3936c4cb0",
+      "identity_sha256": "e08009fab4b88785745d82737bfd5995a444ff970bcda312356dd03d64bfe058",
       "kind": "trace",
       "schema_id": "worldzero-trace-v4",
       "source_files": [
@@ -379,7 +379,7 @@
         },
         {
           "path": "worldzero/kernel.py",
-          "sha256": "9a5172e66b0ff4c7d1e67330c697348a36ad787b148c0ff3425306257fcc670d"
+          "sha256": "1e836846a8a0ac57ccaa3dcae2b9b90b0b29b34ecc711ee55097d5b32581810d"
         }
       ]
     }

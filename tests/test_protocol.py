@@ -297,6 +297,7 @@ def _one_decision_manifest(tmp_path):
         **manifest["conditions"]["pressure"],
         "max_decisions": 1,
     }
+    manifest["sha256"] = digest({key: value for key, value in manifest.items() if key != "sha256"})
     return manifest
 
 

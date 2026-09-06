@@ -21,6 +21,12 @@ worlds. Each active episode has a matched-null episode with the same family,
 configuration, and random seed. The manifest freezes family fingerprints,
 configuration, development/test splits, and scoring identity.
 
+New manifests use `worldzero:levels-v2` and freeze the complete WorldZero Python
+source digest, package version, Python version, and NumPy version. Recreate a
+manifest after changing this implementation or environment. Results record the
+agent factory module's source digest when available; dependencies and external
+model weights remain the participant's responsibility to pin.
+
 ## Levels
 
 Levels are cumulative. A run reports the percentage of active episodes reaching
@@ -38,6 +44,17 @@ at least each level.
 Level 3 mastery rate is the headline result. The complete level curve, null
 false-discovery rate, coverage, invalid actions, and resource accounting remain
 visible. WorldZero does not collapse them into a weighted composite.
+
+Level 3 requires public confirmation of both the original and recurring effect.
+Level 4 additionally requires consuming the recurring output or preserved
+resource at that effect's location, before it is destroyed or replaced. A
+consumption outcome can itself provide public confirmation. In inhibition
+worlds, the recorded rejected decay identifies the preserved resource. Each
+benchmark evidence record stores the qualifying chain under
+`stage_evidence.causal_witness`; references index the stream produced by
+`worldzero.causal_evidence.public_trace_events(trace)`. Historical trace-v4 family
+evidence remains unchanged; the versioned level scorer derives these stricter
+claims from the trace's recorded actions and observations.
 
 ### Behavior score and hypothesis audit
 
@@ -69,6 +86,11 @@ python -m worldzero benchmark run \
 The result is written to `benchmark-result.json`, with individual trace-v4
 records under `traces/`. Use development worlds to iterate. Freeze the agent
 before running `--split test --confirm-test`.
+
+The runner claims the output directory with `benchmark-run.json` before the
+first episode. Every run requires an empty output directory, including after an
+interruption. Keep incomplete evidence and select a new directory for the retry;
+benchmark runs do not currently support resume.
 
 ## Interpretation and limits
 

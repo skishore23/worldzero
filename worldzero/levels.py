@@ -27,6 +27,7 @@ def _finding_status(value: Mapping[str, Any]) -> str:
     if (
         not isinstance(value, Mapping)
         or set(value) != {"status"}
+        or not isinstance(value.get("status"), str)
         or value.get("status") not in _FINDING_STATUSES
     ):
         raise ValueError("finding must contain one valid status")
@@ -36,8 +37,11 @@ def _finding_status(value: Mapping[str, Any]) -> str:
 def _transfer_qualifies(value: Mapping[str, Any] | None) -> bool:
     if not isinstance(value, Mapping):
         return False
-    retained = value.get("retained")
-    controls = [value.get("knockout"), value.get("broken")]
+    outcomes = value.get("results")
+    if not isinstance(outcomes, Mapping):
+        return False
+    retained = outcomes.get("retained")
+    controls = [outcomes.get("knockout"), outcomes.get("broken")]
     return (
         value.get("status") == "completed"
         and value.get("eligible") is True
@@ -194,7 +198,13 @@ def score_level_profile(
     decisions = sum(int(row["episode"].get("decisions", 0)) for row in active)
     invalid = sum(int(row["episode"].get("invalid_actions", 0)) for row in active)
     model_usage: dict[str, Any]
-    if active and all(row["usage_available"] for row in active):
+    if active and all(
+        row["usage_available"]
+        and not row["episode"].get("missing_usage", 0)
+        and all(type(row["episode"].get(field)) is int
+                for field in ("input_tokens", "output_tokens"))
+        for row in active
+    ):
         model_usage = {
             "available": True,
             "calls": sum(int(row["episode"].get("model_calls", 0)) for row in active),

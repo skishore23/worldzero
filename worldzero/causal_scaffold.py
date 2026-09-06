@@ -261,7 +261,8 @@ def apply_causal_update(state: dict[str, Any], update: dict[str, Any], observati
 
     next_state = copy.deepcopy(state)
     next_state["phase"] = destination
-    next_state["phase_started"] = float(now)
+    if destination != phase:
+        next_state["phase_started"] = float(now)
     metadata = {"accepted": True, "error": None, "from_phase": phase, "to_phase": destination}
     identifiers = list(next_state.get("public_identifiers", []))
     for identifier in sorted(_local_identifiers(observation)):
@@ -584,12 +585,12 @@ class CausalScaffoldPolicy:
         return int(getattr(self._inner, "calls", 0))
 
     @property
-    def input_tokens(self) -> int:
-        return int(getattr(self._inner, "input_tokens", 0))
+    def input_tokens(self) -> int | None:
+        return getattr(self._inner, "input_tokens", 0)
 
     @property
-    def output_tokens(self) -> int:
-        return int(getattr(self._inner, "output_tokens", 0))
+    def output_tokens(self) -> int | None:
+        return getattr(self._inner, "output_tokens", 0)
 
     @property
     def usage_missing(self) -> int:

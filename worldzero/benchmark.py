@@ -7,12 +7,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from collections.abc import Callable, Mapping, Sequence
 import copy
+import hashlib
+import inspect
 import json
+import platform
 import random
 from typing import Any
 
 from .agent_sdk import AgentFactory, agent_context, load_agent_factory, run_agent_episode
-from .causal_evidence import discriminating_reconstruction
+from .causal_evidence import benchmark_evidence
 from .experiment import inheritance, make_policy
 from .kernel import Config, World
 from .laws import builtin_registry, calibration_suite_fingerprint
@@ -34,6 +37,31 @@ DEFAULT_BASELINES = (
 )
 
 
+def _implementation_identity() -> dict[str, Any]:
+    import numpy
+    from . import __version__
+
+    root = Path(__file__).parent
+    files = {
+        path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(root.rglob("*.py"))
+    }
+    return {"source_sha256": digest(files), "package_version": __version__,
+            "python_version": platform.python_version(), "numpy_version": numpy.__version__}
+
+
+def _agent_identity(reference: str) -> dict[str, Any]:
+    factory = _factory(reference)
+    try:
+        filename = inspect.getsourcefile(factory)
+    except TypeError:
+        filename = None
+    source = Path(filename) if filename else None
+    return {"reference": reference, "source_scope": "factory_module",
+            "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest()
+            if source is not None and source.is_file() else None}
+
+
 def _suite_record() -> dict[str, Any]:
     registry = builtin_registry()
     families = []
@@ -48,7 +76,8 @@ def _suite_record() -> dict[str, Any]:
         })
     return {
         "suite_id": "worldzero:core-v1",
-        "scoring_profile": "worldzero:levels-v1",
+        "scoring_profile": "worldzero:levels-v2",
+        "implementation": _implementation_identity(),
         "families": families,
         "condition": "pressure",
         "config": asdict(Config(metabolism=0.32)),
@@ -239,10 +268,7 @@ def _run_agent_cells(
                 else:
                     if trace is None or trace.get("schema") != "worldzero-trace-v4":
                         raise RuntimeError("Benchmark cells require a trace-v4 record")
-                    evidence = copy.deepcopy(trace["family_evidence"])
-                    evidence["discriminating_verification"] = discriminating_reconstruction(
-                        world.events, effect=_effect_selector(family_id),
-                    )
+                    evidence = benchmark_evidence(trace)
                     inherited = None
                     if (
                         arm == "active"
@@ -321,9 +347,22 @@ def run_benchmark(
 
     output = Path(output)
     destination = output / "benchmark-result.json"
-    if destination.exists():
-        raise FileExistsError(f"Benchmark result already exists: {destination}")
-    output.mkdir(parents=True, exist_ok=True)
+    if output.exists():
+        if any(output.iterdir()):
+            raise FileExistsError(f"Benchmark output is not empty; use a fresh directory: {output}")
+    else:
+        output.mkdir(parents=True)
+    agent_identity = {**_agent_identity(agent_reference), "version": agent_version,
+                      "trusted_in_process": True}
+    run_identity = {
+        "schema": "worldzero-benchmark-run-v1", "manifest_sha256": manifest["sha256"],
+        "implementation": _implementation_identity(), "split": split,
+        "agent": agent_identity, "baselines": list(baselines),
+    }
+    # O_EXCL is the ownership claim even when two callers see an empty directory.
+    with (output / "benchmark-run.json").open("x", encoding="utf-8") as handle:
+        json.dump(run_identity, handle, sort_keys=True, indent=2)
+        handle.write("\n")
     identity = _scoring_identity(manifest, manifest[f"{split}_seeds"])
     candidate_rows = _run_agent_cells(
         manifest=manifest,
@@ -354,11 +393,8 @@ def run_benchmark(
         "manifest_sha256": manifest["sha256"],
         "suite": copy.deepcopy(manifest["suite"]),
         "split": split,
-        "agent": {
-            "reference": agent_reference,
-            "version": agent_version,
-            "trusted_in_process": True,
-        },
+        "agent": agent_identity,
+        "implementation": run_identity["implementation"],
         "candidate": {
             "profile": _score_rows(candidate_rows, identity),
             "rows": candidate_rows,

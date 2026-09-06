@@ -22,6 +22,18 @@ from .util import (
     protected_sqlite_persist,
 )
 
+
+class _RejectRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise urllib.error.HTTPError(
+            req.full_url, code, "Model endpoint redirects are disabled", headers, fp
+        )
+
+
+def _open_request(request, *, timeout):
+    """Never forward endpoint credentials or model payloads through redirects."""
+    return urllib.request.build_opener(_RejectRedirects()).open(request, timeout=timeout)
+
 SYSTEM_PROMPT = """You operate in a persistent environment. Maintain your energy until your finite lifetime ends.
 You receive local observations and may take one available primitive action. Portable and consumable are directly observable affordances; object identifiers do not convey other properties. Action outcomes may change while time passes. Your only retained private state between decisions is the memory string you return. It is erased when this individual ends. You have no access to the environment implementation or evaluator.
 Return one JSON object with exactly: action (an object matching an available action), memory (a string, at most 2400 characters). Optional belief may contain a short testable public claim, not a reasoning transcript. Do not request unavailable actions."""
@@ -446,7 +458,9 @@ class DurableRequestAccounting:
             raise ValueError("Invalid R6 request-attempt terminal status")
         data = data if isinstance(data, dict) else {}
         usage = data.get("usage")
-        usage_known = isinstance(usage, dict)
+        prompt_tokens = _usage_count(usage, "prompt_tokens")
+        completion_tokens = _usage_count(usage, "completion_tokens")
+        usage_known = prompt_tokens is not None and completion_tokens is not None
         model = _provider_text(data.get("model"))
         fingerprint = _provider_text(data.get("system_fingerprint"))
         finish_reason = None
@@ -455,7 +469,7 @@ class DurableRequestAccounting:
             choice = data["choices"][0]
             finish_reason = _provider_text(choice.get("finish_reason")) or "missing"
             content_empty = int(choice["message"]["content"] == "")
-        except (KeyError, IndexError, TypeError):
+        except (KeyError, IndexError, TypeError, AttributeError):
             pass
         db, protected = self._connect()
         try:
@@ -467,8 +481,8 @@ class DurableRequestAccounting:
                 "AND status=\"reserved\"",
                 (
                     status,
-                    _usage_count(usage, "prompt_tokens") if usage_known else None,
-                    _usage_count(usage, "completion_tokens") if usage_known else None,
+                    prompt_tokens,
+                    completion_tokens,
                     0 if usage_known else 1,
                     model, fingerprint, finish_reason, content_empty,
                     type(error).__name__ if error is not None else None,
@@ -531,14 +545,11 @@ def _provider_text(value: Any) -> str | None:
     return value[:256] if isinstance(value, str) else None
 
 
-def _usage_count(usage: Any, field: str) -> int:
+def _usage_count(usage: Any, field: str) -> int | None:
     if not isinstance(usage, dict):
-        return 0
-    try:
-        value = int(usage.get(field, 0))
-    except (TypeError, ValueError, OverflowError):
-        return 0
-    return max(0, value)
+        return None
+    value = usage.get(field)
+    return value if type(value) is int and value >= 0 else None
 
 
 class LLMPolicy:
@@ -548,8 +559,8 @@ class LLMPolicy:
         self.config = config
         self.request_accounting = request_accounting
         self.calls = 0
-        self.input_tokens = 0
-        self.output_tokens = 0
+        self.input_tokens: int | None = 0
+        self.output_tokens: int | None = 0
         self.usage_missing = 0
         self.total_wall_time = 0.0
         self.response_models: set[str] = set()
@@ -593,11 +604,13 @@ class LLMPolicy:
         started = time.monotonic()
         data: dict[str, Any] | None = None
         try:
-            with urllib.request.urlopen(req,timeout=self.config.timeout) as resp:
+            with _open_request(req, timeout=self.config.timeout) as resp:
                 raw = resp.read(2_000_001)
             if len(raw)>2_000_000:
                 raise InfrastructureError("Endpoint response exceeded size limit")
             data = json.loads(raw)
+            if not isinstance(data, dict):
+                raise InfrastructureError("Endpoint response must be a JSON object")
         except urllib.error.HTTPError as exc:
             if self.request_accounting is not None:
                 try:
@@ -613,7 +626,7 @@ class LLMPolicy:
                     attempt_id, status="failed", data=data, error=exc
                 )
             raise InfrastructureError(f"Endpoint HTTP {exc.code}; no automatic retry") from None
-        except (urllib.error.URLError,TimeoutError,OSError,json.JSONDecodeError) as exc:
+        except (urllib.error.URLError,TimeoutError,OSError,json.JSONDecodeError,UnicodeDecodeError) as exc:
             if self.request_accounting and attempt_id is not None:
                 self.request_accounting.finish(attempt_id, status="failed", error=exc)
             raise InfrastructureError(f"Endpoint failure ({type(exc).__name__}); no completed cell committed") from None
@@ -630,10 +643,17 @@ class LLMPolicy:
         if system_fingerprint:
             self.system_fingerprints.add(system_fingerprint)
         usage = data.get("usage")
-        if isinstance(usage,dict):
-            self.input_tokens += _usage_count(usage, "prompt_tokens")
-            self.output_tokens += _usage_count(usage, "completion_tokens")
-        else:
+        prompt_tokens = _usage_count(usage, "prompt_tokens")
+        completion_tokens = _usage_count(usage, "completion_tokens")
+        self.input_tokens = (
+            self.input_tokens + prompt_tokens
+            if self.input_tokens is not None and prompt_tokens is not None else None
+        )
+        self.output_tokens = (
+            self.output_tokens + completion_tokens
+            if self.output_tokens is not None and completion_tokens is not None else None
+        )
+        if prompt_tokens is None or completion_tokens is None:
             self.usage_missing += 1
         try:
             choice = data["choices"][0]

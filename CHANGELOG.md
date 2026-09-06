@@ -4,6 +4,19 @@ This project follows semantic versioning for the public Python and CLI interface
 
 ## Unreleased
 
+- Corrected Level 5 inheritance decoding and introduced `levels-v2` scoring with
+  event-linked public recurrence and post-reconstruction benefit requirements.
+- Froze benchmark implementation/environment identities, recorded agent source
+  provenance, and refused nonempty output directories after interrupted runs.
+- Applied matched-null controls for exact families and bound mechanical
+  evaluation to the recorded manifest, family identity, and control assignment.
+- Reconciled regime proposals, private-state deadlines, batch resource
+  transitions, and inventory invariants with snapshot restoration.
+- Disabled model endpoint redirects, preserved unknown token usage, finalized
+  malformed provider responses, and counted malformed findings as invalid input.
+- Preserved verification history across waits. Fixed fresh-venv build setup and
+  documented Linux/macOS support and WSL requirements for Windows.
+
 - Added an optional bounded public evidence ledger to the Agent SDK. Custom
   agents can now preserve concise hypothesis evidence in traces for the same
   post-hoc audit used by the guided model path; behavior-first level scoring is

@@ -30,13 +30,14 @@ example with any system you choose: an LLM, planner, learned policy, program
 search, model ensemble, or no model at all. Improve the percentage of active
 worlds reaching Level 3 while keeping false discoveries in null worlds low.
 
-Clone and install WorldZero (Python 3.10 or newer):
+Clone and install WorldZero (Python 3.10 or newer, Linux or macOS; use WSL on Windows):
 
 ```bash
 git clone https://github.com/skishore23/worldzero.git
 cd worldzero
 python -m venv .venv
-source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
+source .venv/bin/activate
+python -m pip install 'setuptools>=68' wheel
 python -m pip install --no-build-isolation -e '.[test]'
 ```
 

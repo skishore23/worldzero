@@ -95,6 +95,7 @@
     "tests/test_llm.py",
     "tests/test_policies.py",
     "tests/test_protocol.py",
+    "tests/test_review_regressions.py",
     "tests/test_scoring.py",
     "tests/test_trace_v4.py",
     "tests/test_util.py",
