@@ -153,3 +153,12 @@ def test_publication_can_correct_renderer_but_not_execution_or_statistics():
 def test_publication_rejects_a_corrupted_source_identity():
     with pytest.raises(ValueError, match="Invalid source identity"):
         validate_sources({"files": {}, "sha256": "wrong"}, {"files": {}, "sha256": digest({})})
+
+
+def test_historical_study_cli_keeps_its_original_scoring_version(tmp_path, monkeypatch):
+    import json
+    from scripts.verification_study import main
+    target = tmp_path / "manifest.json"
+    monkeypatch.setattr("sys.argv", ["study", "create", "--output", str(target)])
+    main()
+    assert json.loads(target.read_text())["suite"]["scoring_profile"] == "worldzero:levels-v2"

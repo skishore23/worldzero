@@ -476,8 +476,8 @@
     }
   },
   "cleanup": {
-    "public_manifest_sha256": "ea90a9ae298f7d62ac509fe8a2cc3610f1388959e8766c0d5e434a1221cc88c1",
-    "public_file_count": 156,
+    "public_manifest_sha256": "13cd51294c12fbaf126575c7a9f6bf8254a21f39f68574c54679b938b4f68bfb",
+    "public_file_count": 161,
     "archive_manifest_sha256": "4e0ecfefdef1c265b26c0f5b39c8355c8ca09006e0057037b50d527d8de7afbd",
     "archive_source_identities_sha256": "2e83d93a815475db2c28bef6b133fe4282845980867214ee11478193a37a3194",
     "recovery_path": ".local-archive/worldzero-pre-open-source-0.3.0-20260901",

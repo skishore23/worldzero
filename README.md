@@ -37,6 +37,12 @@ Across 24 active worlds, search-and-verify produced reconstruction evidence in
 than the verifier: 14 versus 11 worlds. The experiment shows why survival,
 recorded verification, and the combined mastery score need separate reporting.
 
+The study also exposed a scoring issue: later mechanism decay erased credit for
+an earlier verified reconstruction. The corrected `levels-v3` scorer preserves
+that credit. A [comparison on the same 192 trajectories](evidence/verification-rescore/README.md)
+raises the verifier's Level 4 count from 8/24 to 10/24; the original v2 experiment
+and all behavior measurements remain unchanged.
+
 These are transparent hand-authored controls, not model-discovery results.
 The optional [verification agent](examples/verification_agent.py) demonstrates
 one strategy; the Agent Challenge still leaves your agent design to you.

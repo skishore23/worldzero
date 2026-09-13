@@ -22,7 +22,7 @@ from worldzero.causal_evidence import benchmark_evidence, public_trace_events
 from worldzero.kernel import Config, World
 from worldzero.laws import builtin_registry
 from worldzero.laws.types import ControlKind
-from worldzero.levels import episode_level
+from worldzero.levels import LEGACY_SCORING_PROFILE, episode_level
 from worldzero.protocol import write_trace
 from worldzero.util import atomic_json, derive_seed, digest
 
@@ -67,7 +67,8 @@ def run_cell(job):
     row = {
         "policy": policy, "family_id": family_id, "seed": seed, "arm": arm,
         "episode": episode, "finding": finding,
-        "level": episode_level(episode, evidence, finding, None) if arm == "active" else None,
+        "level": episode_level(episode, evidence, finding, None, scoring_profile=LEGACY_SCORING_PROFILE)
+        if arm == "active" else None,
         "verified_behavior": witness is not None,
         "linked_benefit": evidence["linked_benefit"],
         "verification_time": verification_time,
@@ -155,6 +156,8 @@ def run(args):
     if any(output.iterdir()):
         raise FileExistsError("Choose an empty output directory; partial studies are preserved.")
     manifest = load_benchmark_manifest(args.manifest)
+    if manifest["suite"]["scoring_profile"] != LEGACY_SCORING_PROFILE:
+        raise ValueError("This historical calibration study requires levels-v2; use the benchmark runner for newer profiles")
     frozen = {
         "schema": "worldzero-verification-study-v1", "split": args.split,
         "manifest": manifest, "source": source_identity(), "policies": list(POLICIES),
@@ -198,7 +201,8 @@ def main():
     execute.add_argument("--workers", type=int, choices=range(1, 5), default=2)
     args = parser.parse_args()
     if args.command == "create":
-        create_benchmark_manifest(args.output, seed=args.seed, dev_count=args.dev_count, test_count=args.test_count)
+        create_benchmark_manifest(args.output, seed=args.seed, dev_count=args.dev_count, test_count=args.test_count,
+                                  scoring_profile=LEGACY_SCORING_PROFILE)
     else:
         run(args)
 

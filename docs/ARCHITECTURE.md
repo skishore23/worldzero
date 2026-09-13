@@ -66,6 +66,10 @@ validates inheritance before scoring. Thus a producer cannot silently drop a
 required field and receive a lower score instead of a contract error.
 
 Existing JSON field names and historical family evidence remain compatible.
+New manifests select `levels-v3`, which uses the validated witness to establish
+historical reconstruction even after terminal mechanism loss. The scorer keeps
+family terminal-state fields intact. Explicit `levels-v2` scoring preserves the
+older terminal-retention gate; standalone scoring helpers retain that default.
 Standalone `episode_level` retains support for historical Boolean-only family
 records; modern benchmark runs do not use that compatibility path. These
 records validate structure and consistency, not the authenticity or scientific

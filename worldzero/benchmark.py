@@ -21,7 +21,7 @@ from .experiment import inheritance, make_policy
 from .kernel import Config, World
 from .laws import builtin_registry, calibration_suite_fingerprint
 from .laws.types import ControlKind, FamilyEvidence
-from .levels import score_level_profile
+from .levels import CURRENT_SCORING_PROFILE, score_level_profile, validate_scoring_profile
 from .protocol import write_trace
 from .util import anchored_read_bytes, atomic_json, derive_seed, digest
 
@@ -63,7 +63,8 @@ def _agent_identity(reference: str) -> dict[str, Any]:
             if source is not None and source.is_file() else None}
 
 
-def _suite_record() -> dict[str, Any]:
+def _suite_record(scoring_profile: str = CURRENT_SCORING_PROFILE) -> dict[str, Any]:
+    validate_scoring_profile(scoring_profile)
     registry = builtin_registry()
     families = []
     for family_id in CORE_V1_FAMILIES:
@@ -77,7 +78,7 @@ def _suite_record() -> dict[str, Any]:
         })
     return {
         "suite_id": "worldzero:core-v1",
-        "scoring_profile": "worldzero:levels-v2",
+        "scoring_profile": scoring_profile,
         "implementation": _implementation_identity(),
         "families": families,
         "condition": "pressure",
@@ -91,6 +92,7 @@ def create_benchmark_manifest(
     seed: int = 20260902,
     dev_count: int = 8,
     test_count: int = 32,
+    scoring_profile: str = CURRENT_SCORING_PROFILE,
 ) -> dict[str, Any]:
     """Create a tamper-evident local manifest for the frozen core-v1 suite."""
 
@@ -111,7 +113,7 @@ def create_benchmark_manifest(
         "generator_seed": seed,
         "dev_seeds": seeds[:dev_count],
         "test_seeds": seeds[dev_count:],
-        "suite": _suite_record(),
+        "suite": _suite_record(scoring_profile),
         "notes": [
             "Local test seeds are not secret after the manifest is opened.",
             "Custom Python agents are trusted in-process code.",
@@ -143,7 +145,8 @@ def load_benchmark_manifest(path: Path) -> dict[str, Any]:
             raise ValueError(f"Benchmark manifest {split} is invalid")
     if set(value["dev_seeds"]) & set(value["test_seeds"]):
         raise ValueError("Benchmark split seeds must be disjoint")
-    if value.get("suite") != _suite_record():
+    suite = value.get("suite")
+    if not isinstance(suite, Mapping) or suite != _suite_record(suite.get("scoring_profile")):
         raise ValueError("Benchmark suite identity does not match core-v1")
     return value
 
@@ -307,7 +310,8 @@ def _run_agent_cells(
     return rows
 
 
-def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any]) -> dict[str, Any]:
+def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any], *,
+                scoring_profile: str = CURRENT_SCORING_PROFILE) -> dict[str, Any]:
     # Modern benchmark rows must never fall back to historical Boolean-only
     # family evidence when a producer accidentally drops the witness field.
     for row in rows:
@@ -318,7 +322,7 @@ def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any]) 
         {key: value for key, value in row.items() if key != "trace"}
         for row in rows
     ]
-    return score_level_profile(scoring_rows, identity)
+    return score_level_profile(scoring_rows, identity, scoring_profile=scoring_profile)
 
 
 def run_benchmark(
@@ -345,7 +349,8 @@ def run_benchmark(
     body = {key: value for key, value in manifest.items() if key != "sha256"}
     if manifest.get("sha256") != digest(body):
         raise ValueError("Benchmark manifest hash mismatch")
-    if manifest.get("suite") != _suite_record():
+    suite = manifest.get("suite")
+    if not isinstance(suite, Mapping) or suite != _suite_record(suite.get("scoring_profile")):
         raise ValueError("Benchmark suite identity does not match core-v1")
     if not isinstance(baselines, Sequence) or isinstance(baselines, (str, bytes)):
         raise TypeError("baselines must be a sequence")
@@ -371,6 +376,7 @@ def run_benchmark(
         json.dump(run_identity, handle, sort_keys=True, indent=2)
         handle.write("\n")
     identity = _scoring_identity(manifest, manifest[f"{split}_seeds"])
+    scoring_profile = manifest["suite"]["scoring_profile"]
     candidate_rows = _run_agent_cells(
         manifest=manifest,
         output=output,
@@ -392,7 +398,7 @@ def run_benchmark(
             progress=progress,
         )
         baseline_results[reference] = {
-            "profile": _score_rows(rows, identity),
+            "profile": _score_rows(rows, identity, scoring_profile=scoring_profile),
             "rows": rows,
         }
     result = {
@@ -403,7 +409,7 @@ def run_benchmark(
         "agent": agent_identity,
         "implementation": run_identity["implementation"],
         "candidate": {
-            "profile": _score_rows(candidate_rows, identity),
+            "profile": _score_rows(candidate_rows, identity, scoring_profile=scoring_profile),
             "rows": candidate_rows,
         },
         "baselines": baseline_results,

@@ -21,7 +21,7 @@ worlds. Each active episode has a matched-null episode with the same family,
 configuration, and random seed. The manifest freezes family fingerprints,
 configuration, development/test splits, and scoring identity.
 
-New manifests use `worldzero:levels-v2` and freeze the complete WorldZero Python
+New manifests use `worldzero:levels-v3` and freeze the complete WorldZero Python
 source digest, package version, Python version, and NumPy version. Recreate a
 manifest after changing this implementation or environment. Results record the
 agent factory module's source digest when available; dependencies and external
@@ -46,13 +46,23 @@ false-discovery rate, coverage, invalid actions, and resource accounting remain
 visible. WorldZero does not collapse them into a weighted composite.
 
 Level 3 requires public confirmation of both the original and recurring effect.
-It also requires the family evidence flag `retained_or_reconstructed`. In the
-current built-in families, this flag reflects functionality at the end of the
-episode. A surviving agent can therefore have an earlier reconstruction witness
-and a supported finding but remain at Level 2 after its mechanism stops working.
-The [verification study](../evidence/verification-study/README.md) reports the
-witness independently and documents this distinction; its scores use the
-unchanged `levels-v2` implementation.
+Under `levels-v3`, the validated reconstruction witness preserves that historical
+credit even if the mechanism later decays. Terminal functionality remains in
+the family evidence and controlled successor outcomes remain required for Level 5.
+The historical `levels-v2` profile additionally requires the terminal
+`retained_or_reconstructed` flag. The original
+[verification study](../evidence/verification-study/README.md) keeps its v2 scores;
+a separate [scoring comparison](../evidence/verification-rescore/README.md)
+documents the correction on exactly the same trajectories.
+
+Standalone `episode_level` and `score_level_profile` calls keep their v2 default
+for compatibility. Pass `scoring_profile` explicitly to select v3, which requires
+witness-bearing `BenchmarkEvidence` or its persistence form. The benchmark runner
+passes its manifest's profile to candidate and baseline scoring. To create a v2
+manifest with the current implementation, pass `scoring_profile="worldzero:levels-v2"`
+to `create_benchmark_manifest`; existing frozen manifests still require their
+original source and environment.
+
 Level 4 additionally requires consuming the recurring output or preserved
 resource at that effect's location, before it is destroyed or replaced. A
 consumption outcome can itself provide public confirmation. In inhibition

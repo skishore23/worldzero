@@ -4,6 +4,11 @@ This project follows semantic versioning for the public Python and CLI interface
 
 ## Unreleased
 
+- Made `levels-v3` the default for new benchmark manifests, preserving credit for
+  witnessed reconstruction after terminal mechanism decay. Kept explicit v2
+  scoring and published a separate comparison of all 192 original study traces:
+  two verifier episodes change from Level 2 to Level 4, with behavior unchanged.
+
 - Added a reproducible scripted verification study comparing four observation-only
   policies under the unchanged core-v1 pressure budgets and levels-v2 scorer,
   with matched nulls, separate survival/verification results, and replayable evidence.
