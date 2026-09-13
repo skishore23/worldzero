@@ -1,0 +1,22 @@
+{
+  "files": {
+    "README.md": "9442b89c6af4cd77f739a749878eb74439db633f193f9ba858df8d912c72981f",
+    "comparison.svg": "9fb46084b9914df657d2b35758b998ecc22e780abc14d5e5a86ad5778ac6dcf3",
+    "example-witness.json": "9040d718b3299be683629ad3ca8f85d2180f7bd647bd51d9fc682b1c20daba56",
+    "index.html": "26ea2791e76edf450d26d64e7f5b810942581bb1b7e5989fd0e3820909135ceb",
+    "protocol.json": "6921b6b61783f3f0e6468e5fbddef52891cf5adbb87ca7447819960f2235f92f",
+    "renderer-at-run.py.gz": "7503792d4415bfd077aafa380bd7e2968a0634548990f7b0292a1beb5db58a2c",
+    "results.json": "2dc63e8072d9bfebc2a6740323310e28a3667bbffb065ecb6ac065c50f531f14",
+    "traces/blind-worldzero-catalysis-active/408557419.json.gz": "fc5857bf22e626917185569cd39268704595ea15277f1289e761a400377fa172",
+    "traces/blind-worldzero-catalysis-null/408557419.json.gz": "514035448d58830c7359b0403f39a89412b0d1bc84b27978eb30b91961a0d715",
+    "traces/forager-worldzero-catalysis-active/408557419.json.gz": "cf8db9a77edcd2cdfc1b7a1742d16eddfe4390040079b352bb8801ebbc639c0b",
+    "traces/forager-worldzero-catalysis-null/408557419.json.gz": "ed8052a08e677d705a10f571cac7cefbd8239c3dbd63522554f7ac1bb3f33d29",
+    "traces/retain-worldzero-catalysis-active/408557419.json.gz": "bd752c5836713c233155a235ee7edc13aa4579f62d90857ade1026dbc97fcec5",
+    "traces/retain-worldzero-catalysis-null/408557419.json.gz": "7a943ce5699bdf029611d52d07277516083095e4d988b3250780ac2b5497151b",
+    "traces/verify-worldzero-catalysis-active/1792432103.json.gz": "478c6b1ea89bb7840ff661a35e32b5658ad52d2d2b07f19a0e036190f6cc03b1",
+    "traces/verify-worldzero-catalysis-active/408557419.json.gz": "321288d13016824222e0e30826e96a14fa2c813ff5f94f7fb3fa5fe5dff2781c",
+    "traces/verify-worldzero-catalysis-null/408557419.json.gz": "7a943ce5699bdf029611d52d07277516083095e4d988b3250780ac2b5497151b",
+    "traces/verify-worldzero-delayed-transformation-active/1792432103.json.gz": "8b4da6e1031500ca9ef9491e2a850552f8d8864a0efdb95addea0c0968992183"
+  },
+  "schema": "worldzero-study-export-v1"
+}

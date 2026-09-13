@@ -46,6 +46,13 @@ false-discovery rate, coverage, invalid actions, and resource accounting remain
 visible. WorldZero does not collapse them into a weighted composite.
 
 Level 3 requires public confirmation of both the original and recurring effect.
+It also requires the family evidence flag `retained_or_reconstructed`. In the
+current built-in families, this flag reflects functionality at the end of the
+episode. A surviving agent can therefore have an earlier reconstruction witness
+and a supported finding but remain at Level 2 after its mechanism stops working.
+The [verification study](../evidence/verification-study/README.md) reports the
+witness independently and documents this distinction; its scores use the
+unchanged `levels-v2` implementation.
 Level 4 additionally requires consuming the recurring output or preserved
 resource at that effect's location, before it is destroyed or replaced. A
 consumption outcome can itself provide public confirmation. In inhibition

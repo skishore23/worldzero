@@ -4,6 +4,10 @@ This project follows semantic versioning for the public Python and CLI interface
 
 ## Unreleased
 
+- Added a reproducible scripted verification study comparing four observation-only
+  policies under the unchanged core-v1 pressure budgets and levels-v2 scorer,
+  with matched nulls, separate survival/verification results, and replayable evidence.
+
 - Centralized causal witness and inheritance scoring contracts, with immutable
   records, shared decoding, and rejection of contradictory benchmark evidence.
 

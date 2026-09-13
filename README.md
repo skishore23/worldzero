@@ -23,6 +23,26 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 | **Test a raw model** | [Connect a model endpoint](#test-a-model-endpoint) | A reference-agent run using WorldZero's standard prompt and action loop. |
 | **Build a hidden world** | [Create a law-family plugin](#build-a-hidden-world) | A validated experimental mechanism that reuses WorldZero's kernel, controls, replay, and scoring. |
 
+## A first experiment: finding versus verifying
+
+What changes when an agent takes a useful arrangement apart and rebuilds it?
+Our [scripted calibration experiment](evidence/verification-study/README.md)
+compares search-and-retain, search-and-verify, blind manipulation, and foraging
+on the same active and matched-null worlds. It reports survival separately from
+recorded verification, with all outcomes, uncertainty intervals, frozen source
+identities, and eight exactly replayed illustrative traces.
+
+Across 24 active worlds, search-and-verify produced reconstruction evidence in
+12, while search-and-retain produced none. Yet the forager survived more often
+than the verifier: 14 versus 11 worlds. The experiment shows why survival,
+recorded verification, and the combined mastery score need separate reporting.
+
+These are transparent hand-authored controls, not model-discovery results.
+The optional [verification agent](examples/verification_agent.py) demonstrates
+one strategy; the Agent Challenge still leaves your agent design to you.
+
+![Scripted calibration results by hidden-law family](evidence/verification-study/comparison.svg)
+
 ## Start the Agent Challenge
 
 **Your job is to build the agent.** Replace the deliberately strategy-free
