@@ -116,6 +116,7 @@ def _valid_finding(value: Any) -> bool:
     return (
         isinstance(value, Mapping)
         and set(value) == {"status"}
+        and isinstance(value["status"], str)
         and value["status"] in _FINDING_STATUSES
     )
 

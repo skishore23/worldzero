@@ -2,6 +2,10 @@
 
 WorldZero is an alpha research instrument. The latest released minor version receives bug and security fixes. Help is provided on a best-effort basis through repository issues and discussions; there is no service-level commitment.
 
+Supported hosts are Linux and macOS with Python 3.10 or newer. Windows users
+must use WSL. Native Windows is not supported: protected file operations require
+POSIX directory descriptors and `fcntl`.
+
 ## Versioned surfaces
 
 - The Python package and CLI follow semantic versioning.

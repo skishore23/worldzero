@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import sys
 
 import pytest
 
@@ -62,14 +63,16 @@ def write_agent_module(tmp_path):
     )
 
 
+@pytest.mark.parametrize("scoring_profile", ["worldzero:levels-v2", "worldzero:levels-v3"])
 def test_runner_uses_fresh_agents_matched_arms_and_writes_level_result(
-    tmp_path, monkeypatch,
+    tmp_path, monkeypatch, scoring_profile,
 ):
     manifest_path = tmp_path / "benchmark.json"
     manifest = create_benchmark_manifest(
-        manifest_path, seed=72, dev_count=1, test_count=1,
+        manifest_path, seed=72, dev_count=1, test_count=1, scoring_profile=scoring_profile,
     )
     write_agent_module(tmp_path)
+    monkeypatch.delitem(sys.modules, "challenge_agent", raising=False)
     monkeypatch.syspath_prepend(str(tmp_path))
     output = tmp_path / "run"
 
@@ -84,6 +87,8 @@ def test_runner_uses_fresh_agents_matched_arms_and_writes_level_result(
     participant = importlib.import_module("challenge_agent")
 
     assert result["schema"] == "worldzero-benchmark-result-v1"
+    assert result["candidate"]["profile"]["scoring_profile"] == scoring_profile
+    assert all(context["scoring_profile"] == scoring_profile for context in participant.contexts)
     assert result["candidate"]["profile"]["coverage"]["active"] == 3
     assert result["candidate"]["profile"]["coverage"]["null"] == 3
     assert result["candidate"]["profile"]["rankable"] is True

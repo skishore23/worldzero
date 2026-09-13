@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorldZero · Finding an effect, checking an effect</title>
+<style>body{margin:0;background:#f7f6f2;color:#182b2e;font:17px/1.65 system-ui,sans-serif}
+main{max-width:1120px;margin:auto;padding:64px 28px}.eyebrow{font:13px monospace;letter-spacing:.1em;color:#177e89}
+h1{font-size:clamp(36px,5vw,62px);line-height:1.12;max-width:850px;letter-spacing:-.045em}
+.lead{font-size:23px;max-width:850px}.result{background:#e3eeeb;padding:24px 30px;border-left:4px solid #177e89;margin:36px 0}
+img{width:100%;background:white}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:15px 10px;text-align:left;border-bottom:1px solid #d8dedb}
+.scroll{overflow:auto}a{color:#177e89}.muted{color:#596b6e}code{font-size:13px}footer{margin-top:45px;border-top:1px solid #d8dedb;padding-top:20px}</style>
+<main><div class="eyebrow">WORLDZERO / SCRIPTED CALIBRATION / 192 EPISODES</div>
+<h1>Finding an effect is not the same as checking it.</h1>
+<p class="lead">Four agents enter unfamiliar worlds. One forages. One moves objects blindly.
+Two search for useful arrangements—but only one deliberately takes its discovery apart and rebuilds it.</p>
+<div class="result"><strong>+50.0 percentage points in recorded verification</strong><br>
+Search + verify versus search + retain. Paired seed-cluster 95% bootstrap interval:
++25.0 to +66.7 points.</div>
+<p class="muted">Hand-authored policies, public observations, matched active/null worlds.
+This calibrates behavioral scoring; it is not a demonstration of LLM discovery.</p>
+<img src="comparison.svg" alt="Per-family rates of survival, recorded verification, and Level 3 mastery, with Wilson uncertainty intervals">
+<h2>All outcomes count</h2><div class="scroll"><table><thead><tr><th>Agent</th><th>Survival</th>
+<th>Verification</th><th>Level 3</th><th>Level 4</th><th>Null claims</th></tr></thead><tbody><tr><th>Search + verify</th><td>11/24 (45.8%)</td><td>12/24 (50.0%)</td><td>8/24 (33.3%)</td><td>8/24 (33.3%)</td><td>0/24 (0.0%)</td></tr><tr><th>Search + retain</th><td>13/24 (54.2%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td></tr><tr><th>Blind manipulation</th><td>9/24 (37.5%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td></tr><tr><th>Forager</th><td>14/24 (58.3%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td><td>0/24 (0.0%)</td></tr></tbody></table></div>
+<p>Verification counts the event-linked reconstruction witness even if the agent later dies.
+Level 3 also requires survival, a supported finding, and the family's terminal retention flag. Zero null claims by an abstaining baseline
+do not demonstrate that it can identify null worlds.</p>
+<h2>The boundary matters</h2><p>These search policies look for a resource changing identity.
+That strategy can detect transformation but does not identify inhibition, where a resource merely persists.
+The study retains every family and seed, including that blind spot.</p>
+<h2>A verified mechanism can still lose its score</h2><p>2 surviving verifier episodes had
+reconstruction evidence and claimed support, but remained at Level 2 because the mechanism no longer worked
+at the end. The report documents this terminal retention requirement without changing the scorer.</p>
+<p>10 traces were replayed exactly: eight matched illustrations plus 2 scoring diagnostics. The full outcome table, source hashes,
+methods, limitations, and reproduction commands are available below.</p>
+<footer><a href="README.md">Read the complete experiment</a> · <a href="results.json">All outcomes</a> ·
+<a href="protocol.json">Frozen protocol</a> · <a href="comparison.svg" download>Download figure</a></footer></main></html>

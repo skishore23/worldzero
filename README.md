@@ -23,6 +23,32 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 | **Test a raw model** | [Connect a model endpoint](#test-a-model-endpoint) | A reference-agent run using WorldZero's standard prompt and action loop. |
 | **Build a hidden world** | [Create a law-family plugin](#build-a-hidden-world) | A validated experimental mechanism that reuses WorldZero's kernel, controls, replay, and scoring. |
 
+## A first experiment: finding versus verifying
+
+What changes when an agent takes a useful arrangement apart and rebuilds it?
+Our [scripted calibration experiment](evidence/verification-study/README.md)
+compares search-and-retain, search-and-verify, blind manipulation, and foraging
+on the same active and matched-null worlds. It reports survival separately from
+recorded verification, with all outcomes, uncertainty intervals, frozen source
+identities, and eight exactly replayed illustrative traces.
+
+Across 24 active worlds, search-and-verify produced reconstruction evidence in
+12, while search-and-retain produced none. Yet the forager survived more often
+than the verifier: 14 versus 11 worlds. The experiment shows why survival,
+recorded verification, and the combined mastery score need separate reporting.
+
+The study also exposed a scoring issue: later mechanism decay erased credit for
+an earlier verified reconstruction. The corrected `levels-v3` scorer preserves
+that credit. A [comparison on the same 192 trajectories](evidence/verification-rescore/README.md)
+raises the verifier's Level 4 count from 8/24 to 10/24; the original v2 experiment
+and all behavior measurements remain unchanged.
+
+These are transparent hand-authored controls, not model-discovery results.
+The optional [verification agent](examples/verification_agent.py) demonstrates
+one strategy; the Agent Challenge still leaves your agent design to you.
+
+![Scripted calibration results by hidden-law family](evidence/verification-study/comparison.svg)
+
 ## Start the Agent Challenge
 
 **Your job is to build the agent.** Replace the deliberately strategy-free
@@ -30,13 +56,14 @@ example with any system you choose: an LLM, planner, learned policy, program
 search, model ensemble, or no model at all. Improve the percentage of active
 worlds reaching Level 3 while keeping false discoveries in null worlds low.
 
-Clone and install WorldZero (Python 3.10 or newer):
+Clone and install WorldZero (Python 3.10 or newer, Linux or macOS; use WSL on Windows):
 
 ```bash
 git clone https://github.com/skishore23/worldzero.git
 cd worldzero
 python -m venv .venv
-source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
+source .venv/bin/activate
+python -m pip install 'setuptools>=68' wheel
 python -m pip install --no-build-isolation -e '.[test]'
 ```
 

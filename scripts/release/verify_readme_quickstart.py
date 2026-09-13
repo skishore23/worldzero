@@ -53,6 +53,7 @@ def _normalized_readme(text: str) -> str:
 def _required_readme_commands() -> tuple[str, ...]:
     commands = [
         "python -m venv .venv",
+        "python -m pip install 'setuptools>=68' wheel",
         "python -m pip install --no-build-isolation -e '.[test]'",
         "python -m worldzero laws list",
         *(f"python -m worldzero laws inspect {family_id}" for family_id in FAMILY_IDS),
@@ -141,20 +142,31 @@ def main() -> int:
         venv = work / ".venv"
         _copy_public(root, source)
         env = os.environ.copy()
+        wheelhouse = env.get("WORLDZERO_WHEELHOUSE")
+        if not wheelhouse or not Path(wheelhouse).is_dir():
+            raise RuntimeError("Set WORLDZERO_WHEELHOUSE to a prepared dependency wheel directory")
+        env.pop("PYTHONPATH", None)
+        env.pop("PYTHONHOME", None)
         env.update({
             "PIP_NO_INDEX": "1",
+            "PIP_FIND_LINKS": str(Path(wheelhouse).resolve()),
             "PIP_DISABLE_PIP_VERSION_CHECK": "1",
             "PYTHONDONTWRITEBYTECODE": "1",
         })
         _run_check(
             checks,
             name="fresh_clean_environment",
-            argv=["python", "-m", "venv", "--system-site-packages", ".venv"],
+            argv=["python", "-m", "venv", ".venv"],
             cwd=work,
             python=Path(sys.executable),
             env=env,
         )
         python = venv / "bin/python"
+        _run_check(
+            checks, name="bootstrap_build_tools",
+            argv=["python", "-m", "pip", "install", "setuptools>=68", "wheel"],
+            cwd=source, python=python, env=env,
+        )
         _run_check(
             checks,
             name="editable_source_install",
@@ -329,7 +341,7 @@ def main() -> int:
         )
 
     print(json.dumps({
-        "schema": "worldzero-readme-quickstart-v1",
+        "schema": "worldzero-readme-quickstart-v2",
         "checks": checks,
         "clean_public_allowlist_copy": True,
         "fresh_virtual_environment": True,

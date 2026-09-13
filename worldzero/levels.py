@@ -7,63 +7,81 @@ import copy
 from typing import Any
 
 from .laws.types import FamilyEvidence
+from .scoring_contracts import BenchmarkEvidence, InheritanceResult
 
 
 _PARTICIPANT_ORIGINS = frozenset({"model_placement", "model_drop"})
 _FINDING_STATUSES = frozenset({
     "supported", "no_mechanism", "insufficient_evidence",
 })
+LEGACY_SCORING_PROFILE = "worldzero:levels-v2"
+CURRENT_SCORING_PROFILE = "worldzero:levels-v3"
+SCORING_PROFILES = frozenset({LEGACY_SCORING_PROFILE, CURRENT_SCORING_PROFILE})
 
 
-def _evidence(value: FamilyEvidence | Mapping[str, Any]) -> FamilyEvidence:
+def validate_scoring_profile(value: str) -> None:
+    if not isinstance(value, str) or value not in SCORING_PROFILES:
+        raise ValueError("Unsupported level scoring profile")
+
+
+def _evidence(value: BenchmarkEvidence | FamilyEvidence | Mapping[str, Any]) -> FamilyEvidence:
+    if isinstance(value, BenchmarkEvidence):
+        return value.as_family_evidence()
     if isinstance(value, FamilyEvidence):
-        return value
-    if not isinstance(value, Mapping):
-        raise TypeError("evidence must be FamilyEvidence or its persistence mapping")
-    return FamilyEvidence.from_persistence(value)  # type: ignore[arg-type]
+        family = value
+    elif isinstance(value, Mapping):
+        family = FamilyEvidence.from_persistence(value)
+    else:
+        raise TypeError("evidence must be a scoring record or its persistence mapping")
+    # Historical family records remain usable; benchmark records must satisfy
+    # the shared witness contract, including agreement with serialized flags.
+    if "causal_witness" in family.stage_evidence:
+        return BenchmarkEvidence.from_persistence(family.persistence_dict()).as_family_evidence()
+    return family
 
 
 def _finding_status(value: Mapping[str, Any]) -> str:
     if (
         not isinstance(value, Mapping)
         or set(value) != {"status"}
+        or not isinstance(value.get("status"), str)
         or value.get("status") not in _FINDING_STATUSES
     ):
         raise ValueError("finding must contain one valid status")
     return str(value["status"])
 
 
-def _transfer_qualifies(value: Mapping[str, Any] | None) -> bool:
-    if not isinstance(value, Mapping):
+def _transfer_qualifies(value: InheritanceResult | Mapping[str, Any] | None) -> bool:
+    if value is None:
         return False
-    retained = value.get("retained")
-    controls = [value.get("knockout"), value.get("broken")]
-    return (
-        value.get("status") == "completed"
-        and value.get("eligible") is True
-        and isinstance(retained, Mapping)
-        and retained.get("status") == "completed"
-        and retained.get("survived") is True
-        and any(
-            isinstance(control, Mapping)
-            and control.get("status") == "completed"
-            and control.get("survived") is False
-            for control in controls
-        )
-    )
+    try:
+        record = value if isinstance(value, InheritanceResult) else InheritanceResult.from_persistence(value)
+    except (TypeError, ValueError):
+        return False
+    return record.transfer_qualifies
 
 
 def episode_level(
     episode: Mapping[str, Any],
-    evidence: FamilyEvidence | Mapping[str, Any],
+    evidence: BenchmarkEvidence | FamilyEvidence | Mapping[str, Any],
     finding: Mapping[str, Any],
-    inheritance: Mapping[str, Any] | None,
+    inheritance: InheritanceResult | Mapping[str, Any] | None,
+    *,
+    scoring_profile: str = LEGACY_SCORING_PROFILE,
 ) -> int | None:
-    """Return the strongest cumulative level supported by one active episode."""
+    """Score one episode; omitted profile preserves historical v2 API behavior.
 
+    New benchmark manifests explicitly select v3. Its validated reconstruction
+    witness establishes historical reconstruction regardless of terminal decay.
+    Family terminal-state evidence is preserved for auditing and inheritance.
+    """
+
+    validate_scoring_profile(scoring_profile)
     if not isinstance(episode, Mapping):
         raise TypeError("episode must be a mapping")
     observed = _evidence(evidence)
+    if scoring_profile == CURRENT_SCORING_PROFILE and "causal_witness" not in observed.stage_evidence:
+        raise ValueError("levels-v3 requires witness-bearing benchmark evidence")
     finding_status = _finding_status(finding)
     if episode.get("status") != "completed" or episode.get("survived") is not True:
         return None
@@ -82,7 +100,7 @@ def episode_level(
     level = 2
     if not (
         observed.discriminating_verification
-        and observed.retained_or_reconstructed
+        and (scoring_profile == CURRENT_SCORING_PROFILE or observed.retained_or_reconstructed)
         and finding_status == "supported"
     ):
         return level
@@ -109,9 +127,11 @@ def _level_curve(levels: Sequence[int | None], denominator: int) -> dict[str, di
 
 def score_level_profile(
     rows: Sequence[Mapping[str, Any]], suite_identity: Mapping[str, Any],
+    *, scoring_profile: str = LEGACY_SCORING_PROFILE,
 ) -> dict[str, Any]:
     """Score complete active/null rows without collapsing levels into one scalar."""
 
+    validate_scoring_profile(scoring_profile)
     if not isinstance(rows, Sequence) or isinstance(rows, (str, bytes)):
         raise TypeError("rows must be a sequence")
     required_suite = {"suite_id", "expected_active", "expected_null"}
@@ -152,6 +172,7 @@ def score_level_profile(
     active_levels = [
         episode_level(
             row["episode"], row["evidence"], row["finding"], row["inheritance"],
+            scoring_profile=scoring_profile,
         )
         for row in active
     ]
@@ -181,6 +202,7 @@ def score_level_profile(
         family_levels = [
             episode_level(
                 row["episode"], row["evidence"], row["finding"], row["inheritance"],
+                scoring_profile=scoring_profile,
             )
             for row in family_rows
         ]
@@ -194,7 +216,13 @@ def score_level_profile(
     decisions = sum(int(row["episode"].get("decisions", 0)) for row in active)
     invalid = sum(int(row["episode"].get("invalid_actions", 0)) for row in active)
     model_usage: dict[str, Any]
-    if active and all(row["usage_available"] for row in active):
+    if active and all(
+        row["usage_available"]
+        and not row["episode"].get("missing_usage", 0)
+        and all(type(row["episode"].get(field)) is int
+                for field in ("input_tokens", "output_tokens"))
+        for row in active
+    ):
         model_usage = {
             "available": True,
             "calls": sum(int(row["episode"].get("model_calls", 0)) for row in active),
@@ -206,6 +234,7 @@ def score_level_profile(
 
     return {
         "schema": "worldzero-level-profile-v1",
+        "scoring_profile": scoring_profile,
         "suite": copy.deepcopy(dict(suite_identity)),
         "rankable": rankable,
         "coverage": {
@@ -235,4 +264,5 @@ def score_level_profile(
     }
 
 
-__all__ = ["episode_level", "score_level_profile"]
+__all__ = ["episode_level", "score_level_profile", "CURRENT_SCORING_PROFILE",
+           "LEGACY_SCORING_PROFILE", "SCORING_PROFILES", "validate_scoring_profile"]

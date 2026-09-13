@@ -7,17 +7,21 @@ from datetime import datetime, timezone
 from pathlib import Path
 from collections.abc import Callable, Mapping, Sequence
 import copy
+import hashlib
+import inspect
 import json
+import platform
 import random
 from typing import Any
 
 from .agent_sdk import AgentFactory, agent_context, load_agent_factory, run_agent_episode
-from .causal_evidence import discriminating_reconstruction
+from .causal_evidence import benchmark_evidence
+from .scoring_contracts import BenchmarkEvidence, InheritanceResult
 from .experiment import inheritance, make_policy
 from .kernel import Config, World
 from .laws import builtin_registry, calibration_suite_fingerprint
 from .laws.types import ControlKind, FamilyEvidence
-from .levels import score_level_profile
+from .levels import CURRENT_SCORING_PROFILE, score_level_profile, validate_scoring_profile
 from .protocol import write_trace
 from .util import anchored_read_bytes, atomic_json, derive_seed, digest
 
@@ -34,7 +38,33 @@ DEFAULT_BASELINES = (
 )
 
 
-def _suite_record() -> dict[str, Any]:
+def _implementation_identity() -> dict[str, Any]:
+    import numpy
+    from . import __version__
+
+    root = Path(__file__).parent
+    files = {
+        path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(root.rglob("*.py"))
+    }
+    return {"source_sha256": digest(files), "package_version": __version__,
+            "python_version": platform.python_version(), "numpy_version": numpy.__version__}
+
+
+def _agent_identity(reference: str) -> dict[str, Any]:
+    factory = _factory(reference)
+    try:
+        filename = inspect.getsourcefile(factory)
+    except TypeError:
+        filename = None
+    source = Path(filename) if filename else None
+    return {"reference": reference, "source_scope": "factory_module",
+            "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest()
+            if source is not None and source.is_file() else None}
+
+
+def _suite_record(scoring_profile: str = CURRENT_SCORING_PROFILE) -> dict[str, Any]:
+    validate_scoring_profile(scoring_profile)
     registry = builtin_registry()
     families = []
     for family_id in CORE_V1_FAMILIES:
@@ -48,7 +78,8 @@ def _suite_record() -> dict[str, Any]:
         })
     return {
         "suite_id": "worldzero:core-v1",
-        "scoring_profile": "worldzero:levels-v1",
+        "scoring_profile": scoring_profile,
+        "implementation": _implementation_identity(),
         "families": families,
         "condition": "pressure",
         "config": asdict(Config(metabolism=0.32)),
@@ -61,6 +92,7 @@ def create_benchmark_manifest(
     seed: int = 20260902,
     dev_count: int = 8,
     test_count: int = 32,
+    scoring_profile: str = CURRENT_SCORING_PROFILE,
 ) -> dict[str, Any]:
     """Create a tamper-evident local manifest for the frozen core-v1 suite."""
 
@@ -81,7 +113,7 @@ def create_benchmark_manifest(
         "generator_seed": seed,
         "dev_seeds": seeds[:dev_count],
         "test_seeds": seeds[dev_count:],
-        "suite": _suite_record(),
+        "suite": _suite_record(scoring_profile),
         "notes": [
             "Local test seeds are not secret after the manifest is opened.",
             "Custom Python agents are trusted in-process code.",
@@ -113,7 +145,8 @@ def load_benchmark_manifest(path: Path) -> dict[str, Any]:
             raise ValueError(f"Benchmark manifest {split} is invalid")
     if set(value["dev_seeds"]) & set(value["test_seeds"]):
         raise ValueError("Benchmark split seeds must be disjoint")
-    if value.get("suite") != _suite_record():
+    suite = value.get("suite")
+    if not isinstance(suite, Mapping) or suite != _suite_record(suite.get("scoring_profile")):
         raise ValueError("Benchmark suite identity does not match core-v1")
     return value
 
@@ -233,16 +266,13 @@ def _run_agent_cells(
                         "message": str(exc)[:300],
                     }
                     finding = {"status": "insufficient_evidence"}
-                    evidence = FamilyEvidence({}).persistence_dict()
+                    evidence = BenchmarkEvidence(FamilyEvidence({}), None).persistence_dict()
                     inherited = None
                     trace_reference = None
                 else:
                     if trace is None or trace.get("schema") != "worldzero-trace-v4":
                         raise RuntimeError("Benchmark cells require a trace-v4 record")
-                    evidence = copy.deepcopy(trace["family_evidence"])
-                    evidence["discriminating_verification"] = discriminating_reconstruction(
-                        world.events, effect=_effect_selector(family_id),
-                    )
+                    evidence = benchmark_evidence(trace)
                     inherited = None
                     if (
                         arm == "active"
@@ -280,12 +310,19 @@ def _run_agent_cells(
     return rows
 
 
-def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any]) -> dict[str, Any]:
+def _score_rows(rows: Sequence[Mapping[str, Any]], identity: Mapping[str, Any], *,
+                scoring_profile: str = CURRENT_SCORING_PROFILE) -> dict[str, Any]:
+    # Modern benchmark rows must never fall back to historical Boolean-only
+    # family evidence when a producer accidentally drops the witness field.
+    for row in rows:
+        BenchmarkEvidence.from_persistence(row["evidence"])
+        if row["inheritance"] is not None:
+            InheritanceResult.from_persistence(row["inheritance"])
     scoring_rows = [
         {key: value for key, value in row.items() if key != "trace"}
         for row in rows
     ]
-    return score_level_profile(scoring_rows, identity)
+    return score_level_profile(scoring_rows, identity, scoring_profile=scoring_profile)
 
 
 def run_benchmark(
@@ -312,7 +349,8 @@ def run_benchmark(
     body = {key: value for key, value in manifest.items() if key != "sha256"}
     if manifest.get("sha256") != digest(body):
         raise ValueError("Benchmark manifest hash mismatch")
-    if manifest.get("suite") != _suite_record():
+    suite = manifest.get("suite")
+    if not isinstance(suite, Mapping) or suite != _suite_record(suite.get("scoring_profile")):
         raise ValueError("Benchmark suite identity does not match core-v1")
     if not isinstance(baselines, Sequence) or isinstance(baselines, (str, bytes)):
         raise TypeError("baselines must be a sequence")
@@ -321,10 +359,24 @@ def run_benchmark(
 
     output = Path(output)
     destination = output / "benchmark-result.json"
-    if destination.exists():
-        raise FileExistsError(f"Benchmark result already exists: {destination}")
-    output.mkdir(parents=True, exist_ok=True)
+    if output.exists():
+        if any(output.iterdir()):
+            raise FileExistsError(f"Benchmark output is not empty; use a fresh directory: {output}")
+    else:
+        output.mkdir(parents=True)
+    agent_identity = {**_agent_identity(agent_reference), "version": agent_version,
+                      "trusted_in_process": True}
+    run_identity = {
+        "schema": "worldzero-benchmark-run-v1", "manifest_sha256": manifest["sha256"],
+        "implementation": _implementation_identity(), "split": split,
+        "agent": agent_identity, "baselines": list(baselines),
+    }
+    # O_EXCL is the ownership claim even when two callers see an empty directory.
+    with (output / "benchmark-run.json").open("x", encoding="utf-8") as handle:
+        json.dump(run_identity, handle, sort_keys=True, indent=2)
+        handle.write("\n")
     identity = _scoring_identity(manifest, manifest[f"{split}_seeds"])
+    scoring_profile = manifest["suite"]["scoring_profile"]
     candidate_rows = _run_agent_cells(
         manifest=manifest,
         output=output,
@@ -346,7 +398,7 @@ def run_benchmark(
             progress=progress,
         )
         baseline_results[reference] = {
-            "profile": _score_rows(rows, identity),
+            "profile": _score_rows(rows, identity, scoring_profile=scoring_profile),
             "rows": rows,
         }
     result = {
@@ -354,13 +406,10 @@ def run_benchmark(
         "manifest_sha256": manifest["sha256"],
         "suite": copy.deepcopy(manifest["suite"]),
         "split": split,
-        "agent": {
-            "reference": agent_reference,
-            "version": agent_version,
-            "trusted_in_process": True,
-        },
+        "agent": agent_identity,
+        "implementation": run_identity["implementation"],
         "candidate": {
-            "profile": _score_rows(candidate_rows, identity),
+            "profile": _score_rows(candidate_rows, identity, scoring_profile=scoring_profile),
             "rows": candidate_rows,
         },
         "baselines": baseline_results,

@@ -31,6 +31,8 @@ def endpoint():
         'finish_reason': None,
         'usage': {'prompt_tokens': 12, 'completion_tokens': 5},
         'system_fingerprint': None,
+        'redirect': None,
+        'redirected': [],
     }
     class Handler(BaseHTTPRequestHandler):
         def do_POST(self):
@@ -46,12 +48,34 @@ def endpoint():
                 'usage': state['usage'],
             }
             encoded=json.dumps(data).encode()
-            self.send_response(state['status']);self.send_header('Content-Type','application/json');self.end_headers();self.wfile.write(encoded)
+            self.send_response(state['status'])
+            self.send_header('Content-Type','application/json')
+            if state['redirect']:
+                self.send_header('Location', state['redirect'])
+            self.end_headers()
+            self.wfile.write(encoded)
+        def do_GET(self):
+            state['redirected'].append(dict(self.headers))
+            self.send_response(200)
+            self.end_headers()
         def log_message(self,*args):pass
     server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
     yield f'http://127.0.0.1:{server.server_port}/v1',state
     server.shutdown();server.server_close();thread.join()
+
+
+def test_real_http_redirect_is_rejected_and_accounted(endpoint, tmp_path):
+    url, state = endpoint
+    state.update(status=302, redirect=url + '/redirect-target')
+    ledger = tmp_path / 'requests.sqlite'
+    accounting = DurableRequestAccounting(ledger, run_identity='redirect', arm='active',
+                                         seed=1, cell_ceiling=1, paired_ceiling=2)
+    policy = LLMPolicy(LLMConfig('mock', url), request_accounting=accounting)
+    with pytest.raises(InfrastructureError, match='HTTP 302'):
+        policy.decide(World(5).observe())
+    assert len(state['seen']) == 1 and state['redirected'] == []
+    assert load_request_attempts(ledger)[0]['status'] == 'failed'
 
 
 def test_model_plumbing_and_usage(endpoint):
@@ -372,7 +396,7 @@ def test_r6_request_attempt_is_reserved_before_transport_and_survives_new_policy
         calls.append((args, kwargs))
         raise TimeoutError("fixture timeout")
 
-    monkeypatch.setattr("worldzero.llm.urllib.request.urlopen", timeout)
+    monkeypatch.setattr("worldzero.llm._open_request", timeout)
     ledger = tmp_path / "request_attempts.sqlite"
     config = LLMConfig("fixture", "http://127.0.0.1:8000/v1", max_calls=99)
     for _ in range(2):
@@ -418,7 +442,7 @@ def test_r6_reserved_crash_attempt_counts_and_paired_ceiling_is_cross_arm(
         called = True
         raise AssertionError("budget gate must precede transport")
 
-    monkeypatch.setattr("worldzero.llm.urllib.request.urlopen", forbidden_transport)
+    monkeypatch.setattr("worldzero.llm._open_request", forbidden_transport)
     third = DurableRequestAccounting(
         ledger, run_identity="paired", arm="null", seed=2,
         cell_ceiling=2, paired_ceiling=2,
@@ -451,7 +475,7 @@ def test_r6_failed_response_persists_available_provider_usage(tmp_path, monkeypa
             }).encode()
 
     monkeypatch.setattr(
-        "worldzero.llm.urllib.request.urlopen", lambda *args, **kwargs: Response()
+        "worldzero.llm._open_request", lambda *args, **kwargs: Response()
     )
     ledger = tmp_path / "request_attempts.sqlite"
     accounting = DurableRequestAccounting(
@@ -570,7 +594,7 @@ def test_legacy_http_error_never_reads_or_decodes_response_body(monkeypatch, bod
     def fail(*args, **kwargs):
         raise error
 
-    monkeypatch.setattr("worldzero.llm.urllib.request.urlopen", fail)
+    monkeypatch.setattr("worldzero.llm._open_request", fail)
     with pytest.raises(InfrastructureError, match="HTTP 500"):
         LLMPolicy(
             LLMConfig("fixture", "http://127.0.0.1:8000/v1")
@@ -595,7 +619,7 @@ def test_accounted_http_error_diagnostic_parse_is_defensive(
         "http://127.0.0.1:8000/v1", 502, "fixture", {}, Body()
     )
     monkeypatch.setattr(
-        "worldzero.llm.urllib.request.urlopen",
+        "worldzero.llm._open_request",
         lambda *args, **kwargs: (_ for _ in ()).throw(error),
     )
     accounting = DurableRequestAccounting(

@@ -7,6 +7,7 @@ This checklist reproduces WorldZero's public release gates without calling a mod
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+python -m pip install 'setuptools>=68' wheel
 python -m pip install --no-build-isolation -e '.[test]'
 python -m pytest -q
 python -m worldzero check-math --samples 768
@@ -63,3 +64,13 @@ WorldZero is a benchmark and plugin SDK. A passing release gate verifies softwar
 Community plugins are trusted in-process Python and are experimental unless their exact implementation and calibration identities are admitted to the bundled official registry. Review third-party code before installing it.
 
 No paid model run and no historical evidence rewrite is part of this release process. See [Scientific design](SCIENCE.md), [Architecture](ARCHITECTURE.md), and [Contributing a law family](CONTRIBUTING_LAWS.md).
+
+The README smoke verifier uses a fresh venv without system packages. Prepare
+its offline dependencies first (this preparation needs package-index access):
+
+```bash
+python -m pip download --dest /tmp/worldzero-wheels 'setuptools>=68' wheel 'numpy>=1.26,<3' pytest pytest-cov tomli
+WORLDZERO_WHEELHOUSE=/tmp/worldzero-wheels python scripts/release/verify_readme_quickstart.py
+```
+
+The verifier itself uses only that wheel directory, with package indexes disabled.

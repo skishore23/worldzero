@@ -1,0 +1,204 @@
+{
+  "analysis": "matched seeds; paired seed-cluster bootstrap (10000 draws); family Wilson intervals",
+  "manifest": {
+    "created": "2026-09-13T08:32:46.269991+00:00",
+    "dev_seeds": [
+      206062345,
+      1336958856
+    ],
+    "generator_seed": 20260913,
+    "notes": [
+      "Local test seeds are not secret after the manifest is opened.",
+      "Custom Python agents are trusted in-process code.",
+      "Only environment decisions and simulated time are enforced for arbitrary agents."
+    ],
+    "schema": "worldzero-benchmark-manifest-v1",
+    "sha256": "a010bab681c33e4621b611161c3d5c212c5e3a68e160885834d8fe450bf3f565",
+    "suite": {
+      "condition": "pressure",
+      "config": {
+        "cognition_energy": 0.06,
+        "cognition_time": 0.2,
+        "consume_time": 0.25,
+        "conversion_rate": 0.45,
+        "default_wait": 2.0,
+        "height": 9,
+        "initial_energy": 22.0,
+        "initial_resource_fraction": 0.32,
+        "lean_source_multiplier": 0.6,
+        "lifespan": 160.0,
+        "manipulate_time": 0.6,
+        "max_decisions": 500,
+        "max_wait": 8.0,
+        "metabolism": 0.32,
+        "module_decay": 0.0001,
+        "move_time": 0.8,
+        "private_memory_chars": 2400,
+        "radius": 3,
+        "raw_decay": 0.008,
+        "raw_energy": 0.8,
+        "regime_rate": 0.004,
+        "rich_decay": 0.016,
+        "rich_energy": 6.0,
+        "source_rate": 0.012,
+        "width": 13
+      },
+      "families": [
+        {
+          "calibration_suite_sha256": "2dc085b1aeeec38b2957545cf4f57137ae3b7bb56f6c4ef9efb29b73d0e29a8e",
+          "descriptor": {
+            "api_version": "1.0",
+            "capabilities": [
+              "geometry_control",
+              "resource_transition"
+            ],
+            "display_name": "Catalysis",
+            "documentation_url": null,
+            "family_id": "worldzero:catalysis",
+            "family_version": "1.0.0",
+            "observation_schema": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "package": "worldzero-research",
+            "package_version": "0.3.0"
+          },
+          "family_id": "worldzero:catalysis",
+          "fingerprint": "b141777ab4c6402ab2eca34ffbaa0592dbae6303f74b1439782821b1fabe6fdf",
+          "official": true
+        },
+        {
+          "calibration_suite_sha256": "627eccc149657006ec4a4971804fb9b7c80589d4799c907ec6752d3a2f089b08",
+          "descriptor": {
+            "api_version": "1.0",
+            "capabilities": [
+              "event_evidence",
+              "geometry_control",
+              "proposal_filter",
+              "resource_preservation"
+            ],
+            "display_name": "Inhibition",
+            "documentation_url": null,
+            "family_id": "worldzero:inhibition",
+            "family_version": "1.0.0",
+            "observation_schema": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "package": "worldzero-research",
+            "package_version": "0.3.0"
+          },
+          "family_id": "worldzero:inhibition",
+          "fingerprint": "3cb77085467468c136168f249b71249a62bc323ff6dd1d53f6fb662c96af06b9",
+          "official": true
+        },
+        {
+          "calibration_suite_sha256": "f52fa6cb1041e5259079b8848fbc32159c38ebbd256ce18bd3dcd8c8dd244923",
+          "descriptor": {
+            "api_version": "1.0",
+            "capabilities": [
+              "geometry_control",
+              "private_state_transition",
+              "resource_transition"
+            ],
+            "display_name": "Delayed transformation",
+            "documentation_url": null,
+            "family_id": "worldzero:delayed-transformation",
+            "family_version": "1.0.0",
+            "observation_schema": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            },
+            "package": "worldzero-research",
+            "package_version": "0.3.0"
+          },
+          "family_id": "worldzero:delayed-transformation",
+          "fingerprint": "8b802b4c5165dd62d3b9bd59dedb64915c8c0de7977fa7ea94eb4a921fb42454",
+          "official": true
+        }
+      ],
+      "implementation": {
+        "numpy_version": "1.26.4",
+        "package_version": "0.3.0",
+        "python_version": "3.12.8",
+        "source_sha256": "1409b0c6af02a629aedccaec82c85f14b155f4fe071085c5bc479d4a34c6ec19"
+      },
+      "scoring_profile": "worldzero:levels-v2",
+      "suite_id": "worldzero:core-v1"
+    },
+    "test_seeds": [
+      1941480143,
+      1686070620,
+      408557419,
+      1948553709,
+      500779372,
+      1748588939,
+      1920697708,
+      1792432103
+    ]
+  },
+  "policies": [
+    "verify",
+    "retain",
+    "blind",
+    "forager"
+  ],
+  "policy_prior": "adjacent pairs and resource identity changes; preservation is an intentional blind spot",
+  "primary_endpoint": "verify minus retain rate of recorded reconstruction witnesses, all active families",
+  "schema": "worldzero-verification-study-v1",
+  "secondary_endpoints": [
+    "survival",
+    "Level 3",
+    "Level 4",
+    "null claims",
+    "time to witness",
+    "consumption"
+  ],
+  "source": {
+    "files": {
+      "examples/verification_agent.py": "76f6c5780688e2b2b86f1607b3baa7d8033dbb20ba9b5e4b365dbe5ebea1218b",
+      "scripts/verification_report.py": "88abe0783ace3bbcbc556f2f2fbc47dfc32ef3753940a6992da19384029935ef",
+      "scripts/verification_study.py": "371d65694a99bb56b0e89b43aef2c7f4f740d296f99ac7952cf96cde29e9b1a4",
+      "worldzero/__init__.py": "edf6101aa635650aea975cacd4965f6e8163e4c577cb9f972f2880d21403a7d6",
+      "worldzero/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+      "worldzero/agent_sdk.py": "0bcfec313913b72ebfca48deecc445d17bcb4f9c906745a6f2d677419fbe0412",
+      "worldzero/benchmark.py": "4e29998a8c75a0e86b4714ead14a1d4ebfb7be684b43472a11caa5b2a9014e24",
+      "worldzero/causal_evidence.py": "eb5afbb9bf4c21222d44fe21a7b6d449982c755a76c5e2dad941ead659c9b8d2",
+      "worldzero/causal_scaffold.py": "a7cccae0b6083fe8d32a1ccd6a8a63bc322e27fe26fa42c5d9b94d988af8f7a8",
+      "worldzero/cli.py": "42d10d418e03940bd818e318adce616640d3e9135d04dfc884da0b3e6c6674c6",
+      "worldzero/core.py": "72fcead3e1c437e6dbdd317bb395db9a9658b1d0afc8ed82abe8f2865eca6cb7",
+      "worldzero/discovery_audit.py": "2cb6467816d28539adce3cedc4b83c3cde1092982fa1fbc936b67374ed6f4e28",
+      "worldzero/evidence_ledger.py": "c085dbf399fd901f3917cc83c78e29932f1eacb0d15cfbe3d6a407346d3b2e5a",
+      "worldzero/experiment.py": "068bbf0533ac9b9f51e8cf94a85a0d17bf0d22f07d3b3f79a010ef6f180df4a1",
+      "worldzero/kernel.py": "1e836846a8a0ac57ccaa3dcae2b9b90b0b29b34ecc711ee55097d5b32581810d",
+      "worldzero/laws/__init__.py": "46b24a1b1f8efb6c757528129299390deb6b8d11093500e805cd0d545c04faaa",
+      "worldzero/laws/base.py": "0efaecdcb631ab0042311886b2b2560d91ac227dabb590ec53516a3eb870288b",
+      "worldzero/laws/builtin/__init__.py": "45fed763e51ad2b934591ccc8f8693c00d337781aa521a6b9b76958702c3d7d1",
+      "worldzero/laws/builtin/catalysis.py": "ebd17c6c5adb27cd502001ad753d8fbb36cfc46531ee3cee3bc9577e4f004ca2",
+      "worldzero/laws/builtin/delayed_transformation.py": "16e4bd7d6c89db8e59ee16cf9ceb062e16549fca4178244bcc1c013162d43bd5",
+      "worldzero/laws/builtin/inhibition.py": "addf49a47e38ffd2ae7a80a3114e589f478e41067dd8fc6ad9c494095ba24ac3",
+      "worldzero/laws/builtin/null.py": "78884f95835fbd122df1faf95dc0d94132e08f76b1ce6c1179c570c69857a747",
+      "worldzero/laws/official_registry.json": "bb86d418364ef1cc31421b52396c49fed583c8c2f6d6f45f4358fc6e86135fae",
+      "worldzero/laws/registry.py": "31f7987001b814efb34dbf16c746c285b7d009b6135982fb3b33eda72265600d",
+      "worldzero/laws/testing.py": "29a63adc109c2b3a937bcd22c84fa90258d04082418e296fcee337c6bf2a3835",
+      "worldzero/laws/types.py": "3cb446ea8dc3dfa178f3d4e914f1ebf6543d7e1a9e6a1787394856e089d7cd95",
+      "worldzero/levels.py": "26441072efe31d2dab5fd027915e5443e04d3f8be2d709b4a99cbf40494e16a8",
+      "worldzero/llm.py": "a81ef83731df6ecc0c490e8836717d4428345caeef7e25fe8938e8da3c9d8a89",
+      "worldzero/mathcheck.py": "89157ac506ebff5d3da24bd2259719e09c55d8cd587044ba36bd685572d1423f",
+      "worldzero/policies.py": "1a0940f863aaf8c2ea255821d6fb0d3ee61896b8725121d126b9ae5663624620",
+      "worldzero/protocol.py": "1af77b55dcf4d0574acd5e4a5d0913184126a03ff5b30f7184ac052a5260c548",
+      "worldzero/release_hygiene.py": "fea00b8f219848578c5f6831e933999d5828d0892c0d08b01e87218d8a7ad128",
+      "worldzero/scoring.py": "d71984cb37b88249af3c388fec9715d835753609720724f71570bb1a891bf6f0",
+      "worldzero/scoring_contracts.py": "6571286c978d021c0a9e267077162ecdb652c6d383025333fedd07ac9a4be197",
+      "worldzero/server.py": "cb8c1d5a680909228636f3f5b0746092add57f9a6ddab02b671974ed191d0c84",
+      "worldzero/util.py": "4b393c3031b790b4001686e27f278d54f40abd0401208bb9f715bd7ab67d4270",
+      "worldzero/viewer.py": "c3c86cd1e05eb0579ceec16d663ea4ae8ef59ec2af6ced8f8370fe0956bd7b8f"
+    },
+    "sha256": "4a5e1888555a944d976797fb124f9c616460d47e8e5bc2f9e7a0d24f23b0c777"
+  },
+  "split": "test",
+  "transfer": "not evaluated; this study covers Levels 0\u20134 only"
+}

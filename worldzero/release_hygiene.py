@@ -281,6 +281,27 @@ _README_QUICKSTART_COMMANDS = {
     "experimental_demo_capture": ["python", "-m", "worldzero", "demo", "--seeds", "1", "--law-family", "example_org:preserver", "--experimental-family", "--output", "worldzero-example-demo"],
     "experimental_exact_replay": ["python", "-m", "worldzero", "replay", "worldzero-example-demo/traces/pressure-experimenter/1452232541.json.gz"],
 }
+# Retained v1 release captures remain verifiable; v2 uses an isolated venv.
+_README_QUICKSTART_COMMANDS_V2 = {}
+for _name, _argv in _README_QUICKSTART_COMMANDS.items():
+    _README_QUICKSTART_COMMANDS_V2[_name] = (
+        ["python", "-m", "venv", ".venv"] if _name == "fresh_clean_environment" else _argv
+    )
+    if _name == "fresh_clean_environment":
+        _README_QUICKSTART_COMMANDS_V2["bootstrap_build_tools"] = [
+            "python", "-m", "pip", "install", "setuptools>=68", "wheel",
+        ]
+    if _name == "builtin_exact_replay":
+        _README_QUICKSTART_COMMANDS_V2["agent_challenge_manifest"] = [
+            "python", "-m", "worldzero", "benchmark", "create-manifest", "--output",
+            "benchmark.json", "--dev-count", "1", "--test-count", "1",
+        ]
+        _README_QUICKSTART_COMMANDS_V2["custom_agent_challenge"] = [
+            "python", "-m", "worldzero", "benchmark", "run", "--manifest", "benchmark.json",
+            "--agent", "examples.custom_agent:create_agent", "--agent-version", "0.1.0",
+            "--split", "dev", "--no-baselines", "--output", "runs/custom-agent",
+        ]
+
 _README_SMOKE_GROUPS = {
     "source_install": (
         "readme_command_manifest", "fresh_clean_environment", "editable_source_install",
@@ -422,6 +443,9 @@ def _parse_release_output(parser: str, stdout: str, errors: list[str], path: str
                 return None
             return len(checks), 0, 0
         if parser == "readme_quickstart":
+            commands = (_README_QUICKSTART_COMMANDS_V2
+                        if result.get("schema") == "worldzero-readme-quickstart-v2"
+                        else _README_QUICKSTART_COMMANDS)
             expected_fields = {
                 "schema", "checks", "clean_public_allowlist_copy",
                 "fresh_virtual_environment", "pip_no_index", "external_network_used",
@@ -429,7 +453,7 @@ def _parse_release_output(parser: str, stdout: str, errors: list[str], path: str
             }
             checks = result.get("checks")
             if (set(result) != expected_fields
-                    or result.get("schema") != "worldzero-readme-quickstart-v1"
+                    or result.get("schema") not in {"worldzero-readme-quickstart-v1", "worldzero-readme-quickstart-v2"}
                     or result.get("clean_public_allowlist_copy") is not True
                     or result.get("fresh_virtual_environment") is not True
                     or result.get("pip_no_index") is not True
@@ -438,7 +462,7 @@ def _parse_release_output(parser: str, stdout: str, errors: list[str], path: str
                     or result.get("paid_requests") != 0
                     or result.get("passed") is not True
                     or type(checks) is not list
-                    or len(checks) != len(_README_QUICKSTART_COMMANDS)):
+                    or len(checks) != len(commands)):
                 errors.append(f"{path} README quick-start result is not closed and passing")
                 return None
             names: list[str] = []
@@ -452,15 +476,15 @@ def _parse_release_output(parser: str, stdout: str, errors: list[str], path: str
                 name = check.get("name")
                 names.append(name if type(name) is str else "")
                 expected_exit = 2 if name == "example_official_refusal" else 0
-                if (name not in _README_QUICKSTART_COMMANDS
-                        or check.get("argv") != _README_QUICKSTART_COMMANDS.get(name)
+                if (name not in commands
+                        or check.get("argv") != commands.get(name)
                         or check.get("expected_exit_code") != expected_exit
                         or check.get("exit_code") != expected_exit
                         or check.get("passed") is not True):
                     errors.append(f"{path} README check {index} contradicts its exact command")
                     return None
                 _duration(check.get("duration_seconds"), f"{path}.checks[{index}].duration_seconds", errors)
-            if names != list(_README_QUICKSTART_COMMANDS):
+            if names != list(commands):
                 errors.append(f"{path} README check order/names are not exact")
                 return None
             return len(checks), 0, 0

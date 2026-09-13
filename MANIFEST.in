@@ -6,11 +6,16 @@ recursive-include .github *.yml *.yaml
 recursive-include worldzero *.py *.json *.html
 recursive-include docs *.md
 recursive-include evidence/reference *.md *.json *.gz
+recursive-include evidence/verification-study *.md *.json *.gz *.svg *.html
+recursive-include evidence/verification-rescore *.md *.json
 include evidence/release/schema-identities.json
 recursive-include examples *.sh
 include examples/custom_agent.py
+include examples/verification_agent.py
 recursive-include examples/community_law_plugin *.py *.toml
+prune examples/community_law_plugin/build
 recursive-include scripts/release *.py
+include scripts/verification_study.py scripts/verification_report.py scripts/verification_rescore.py
 recursive-include tests *.py *.json *.gz
 prune .local-archive
 prune .release-checkpoints

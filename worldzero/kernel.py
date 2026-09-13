@@ -1156,6 +1156,8 @@ class World:
         return other
 
     def snapshot(self) -> dict[str,Any]:
+        # Synchronization may append history: settle it before copying any fields.
+        derived = self._derive_family() if not self._legacy_mode else None
         legacy = dict(schema=self.schema, seed=self.seed, config=asdict(self.config), law=asdict(self.law),
                     symbols=self.symbols, home=list(self.home), fertile=self.fertile.astype(int).tolist(),
                     resources=self.resources.tolist(), modules=[list(p) if p is not None else None for p in self.modules],
@@ -1171,7 +1173,6 @@ class World:
         legacy["law"]["pair"] = list(legacy["law"]["pair"])
         if legacy["agent"] is not None:
             legacy["agent"]["position"] = list(legacy["agent"]["position"])
-        derived = self._derive_family()
         legacy["module_states"] = copy.deepcopy(self._module_states)
         legacy["family"] = {
             "channels": self._serialized_channels(),
@@ -1632,7 +1633,8 @@ class World:
         elif channel == "module_decay":
             valid_target = 0 <= target < 3
         elif channel == "regime":
-            valid_target = target == 0
+            # The unused target still consumes the historic cell-domain draw.
+            valid_target = 0 <= target < cell_count
         else:
             specification = next(
                 spec for spec in self._family_channels if spec.channel_id == channel
@@ -1882,8 +1884,8 @@ class World:
             w._pending = tuple(s["pending"]) if s["pending"] else None
         w.proposal_count = s["proposals"]
         if schema == cls.plugin_schema:
-            if s["conversions"] > s["proposals"]:
-                raise ValueError("Plugin snapshot conversion counter exceeds proposals")
+            # A proposal may contain several resource replacements. Each accepted
+            # RAW -> RICH operation contributes one conversion, not one proposal.
             assert expected_genesis is not None
             cls._validate_state_v3_events(s, expected_genesis=expected_genesis)
             audit = cls._validated_state_v3_audit(s["audit"])
@@ -2061,6 +2063,8 @@ class World:
                         raise ValueError("resource preservation does not match expected current value")
                 elif isinstance(operation, ModulePositionChange):
                     index = operation.module_index
+                    if self.agent is not None and self.agent.inventory == index:
+                        raise ValueError("module position transition targets agent inventory")
                     if modules[index] != operation.expected_position:
                         raise ValueError("module position does not match expected current position")
                     replacement = operation.replacement_position

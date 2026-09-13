@@ -43,9 +43,11 @@ def inheritance(*, qualifies=True):
         "status": "completed",
         "censor_reason": None,
         "eligible": True,
-        "retained": outcome(True),
-        "knockout": outcome(not qualifies),
-        "broken": outcome(True),
+        "results": {
+            "retained": outcome(True),
+            "knockout": outcome(not qualifies),
+            "broken": outcome(True),
+        },
     }
 
 

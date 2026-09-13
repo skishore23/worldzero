@@ -5,7 +5,7 @@
     "version": "0.3.0",
     "law_api_version": "1.0",
     "release_id": "0.3.0-20260901",
-    "status": "release_ready"
+    "status": "verification_complete_pending_independent_review"
   },
   "generated_at_utc": "2026-09-02T06:49:51Z",
   "environment": {
@@ -61,6 +61,11 @@
         "from": "task_7",
         "to": "task_8",
         "reason": "Task 8 adds only the detached verification record, release checklist, closed-record hygiene checks, and manifest entries required to verify the final public release."
+      },
+      {
+        "from": "0.3.0-release",
+        "to": "unreleased-review-fixes",
+        "reason": "P1/P2 scoring, protocol, transport, snapshot, and onboarding fixes supersede the original release review. Retained command logs describe the historical release; independent review and new release captures are required before publishing these changes."
       }
     ],
     "unexplained_rows": []
@@ -372,29 +377,29 @@
   "schemas": {
     "manifest": {
       "path": "evidence/release/schema-identities.json",
-      "sha256": "8b9ee9d1ece5acef42ea1e6b87626b7d5b9ab019110ff77eff305cf46c6df9db",
+      "sha256": "bc42b7a5786fb43c262e9160ced6c071a48dea184dbc70180c3cdd59900a1e72",
       "bytes": 9964
     },
     "contracts": [
       {
         "schema_id": "worldzero-state-v2",
-        "identity_sha256": "1b45d262774bb84769b6ad60f400510e87c77ceed4d0d7a25fe62bab19787a42"
+        "identity_sha256": "08d1b60be6dc48b9b1bc5ea20729f39cf2ebc68764eb27c54e787f0594d3d548"
       },
       {
         "schema_id": "worldzero-state-v3",
-        "identity_sha256": "f4222205cfbfa555d068395abe17b7653fb875a513398c6b66ef98e563daefdc"
+        "identity_sha256": "192db6a221d27bfebc420dca2879a08227e5a4d184713ba02f065a4d99fecaaf"
       },
       {
         "schema_id": "worldzero-trace-v2",
-        "identity_sha256": "4e6503382a0239d498db15169d28c763e77ba56d391527dcd0262152e4264af8"
+        "identity_sha256": "d508076ad3c52ebfaac755efcad8d523037ab4e59ecc5071f52dc2cb8300aaad"
       },
       {
         "schema_id": "worldzero-trace-v3",
-        "identity_sha256": "af07b753f31b01c8cafb9b9b89adf4319e34145d2022545185cdcbf380664638"
+        "identity_sha256": "f164811016599ebaa932c5f4fc7160d98fa1d866f4744688126ee5b102de997d"
       },
       {
         "schema_id": "worldzero-trace-v4",
-        "identity_sha256": "502914a8358a32a40e0a5cbd9811f44a783a1b7cb793709fe0c68ff3936c4cb0"
+        "identity_sha256": "8491379bbbf07ae3fb5159d4efa92bdca2c4c916ccff3074069d02e682870b1a"
       }
     ]
   },
@@ -471,8 +476,8 @@
     }
   },
   "cleanup": {
-    "public_manifest_sha256": "8f4a246e8a29b0ad792761265e20d383b639827950b9b11edc7e1d9010b5519d",
-    "public_file_count": 131,
+    "public_manifest_sha256": "13cd51294c12fbaf126575c7a9f6bf8254a21f39f68574c54679b938b4f68bfb",
+    "public_file_count": 161,
     "archive_manifest_sha256": "4e0ecfefdef1c265b26c0f5b39c8355c8ca09006e0057037b50d527d8de7afbd",
     "archive_source_identities_sha256": "2e83d93a815475db2c28bef6b133fe4282845980867214ee11478193a37a3194",
     "recovery_path": ".local-archive/worldzero-pre-open-source-0.3.0-20260901",
@@ -497,13 +502,13 @@
     "official_refusal": true
   },
   "reviewer": {
-    "status": "complete",
-    "spec": "PASS",
-    "quality": "PASS",
+    "status": "pending",
+    "spec": "PENDING",
+    "quality": "PENDING",
     "critical": 0,
     "important": 0,
     "minor": 0,
-    "report_sha256": "479cb905dc6ff87d0daf9844aa5ccab1335e0cceeb7d62ee2cfd1ec5793d2861"
+    "report_sha256": null
   },
-  "open_source_ready": true
+  "open_source_ready": false
 }

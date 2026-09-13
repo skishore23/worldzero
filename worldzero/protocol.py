@@ -295,6 +295,10 @@ def execute(manifest: dict[str,Any], *, output: Path, name: str, split: str="dev
             raise ValueError(
                 "control_assignment requires an exact registered law family"
             )
+    if registered_family is not None and condition == "null":
+        if control_assignment == "active":
+            raise ValueError("null condition conflicts with active control_assignment")
+        control_assignment = "matched_null"
     accounting_identity: dict[str, Any] | None = None
     if request_accounting is not None:
         required = {"path", "run_identity", "arm", "cell_ceiling", "paired_ceiling"}
@@ -622,8 +626,16 @@ def evaluate(output: Path, candidate: str, baseline: str, manifest: dict[str,Any
         cs,bs=store.specification(candidate),store.specification(baseline)
         for key in ("protocol_sha256","source_sha256","seeds","split","condition","config"):
             if cs[key]!=bs[key]: raise ValueError(f"Unmatched comparison: {key}")
+        if cs["protocol_sha256"] != manifest.get("sha256") or manifest.get("sha256") != digest(
+            {key: value for key, value in manifest.items() if key != "sha256"}
+        ):
+            raise ValueError("Evaluation manifest does not match the recorded protocol")
         if effective_law_family(cs)!=effective_law_family(bs):
             raise ValueError("Unmatched comparison: law_family")
+        if cs.get("control_assignment", "active") != bs.get("control_assignment", "active"):
+            raise ValueError("Unmatched comparison: control_assignment")
+        if cs.get("family_identity") != bs.get("family_identity"):
+            raise ValueError("Unmatched comparison: family_identity")
         cr,br=store.rows(candidate),store.rows(baseline)
     finally: store.close()
     expected=set(cs["seeds"])

@@ -1,0 +1,3790 @@
+{
+  "changed_episodes": [
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 2,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1792432103.json.gz",
+        "sha256": "5b4486f78359bc59ba2f75bb0a618a1524f0467bd3deb1da742fd1e6a4f529d1"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 2,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1792432103.json.gz",
+        "sha256": "4c722e333cd488bfc9cb56389ae2a90be95cafd9e4bddcbdff58e6e239402764"
+      },
+      "verified_behavior": true
+    }
+  ],
+  "episodes": 192,
+  "kind": "post_hoc_scoring_comparison",
+  "limitations": [
+    "No new episodes or independent holdout evaluation.",
+    "All canonical trace digests and original v2 scores were rechecked; this command does not rerun physics replay.",
+    "Survival is still required; transfer was not evaluated in the original study."
+  ],
+  "new_profile": "worldzero:levels-v3",
+  "numpy": "1.26.4",
+  "old_profile": "worldzero:levels-v2",
+  "original_results_sha256": "2dc63e8072d9bfebc2a6740323310e28a3667bbffb065ecb6ac065c50f531f14",
+  "python": "3.12.8",
+  "rows": [
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1941480143.json.gz",
+        "sha256": "1ac8c30b45c6a6efe15cc4670eb91b8e8f29cf4bf7b7310ba81e92132a9fc8cc"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1941480143.json.gz",
+        "sha256": "1ac8c30b45c6a6efe15cc4670eb91b8e8f29cf4bf7b7310ba81e92132a9fc8cc"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1941480143.json.gz",
+        "sha256": "48610863a685a84f522a8d898c1f41dd9e3a12c95cd3327ec1d7fd6d1b0d77bf"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1941480143.json.gz",
+        "sha256": "5276d066f932bc08a520f3a4eba68b076d62b392669fa789e79f6c8c2eb67bff"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1941480143.json.gz",
+        "sha256": "2973ba71c3c53377afca94be9cfb10583f987437452db7ed7db6051ff09a0c7c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1941480143.json.gz",
+        "sha256": "2973ba71c3c53377afca94be9cfb10583f987437452db7ed7db6051ff09a0c7c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1941480143.json.gz",
+        "sha256": "eb64a1e4e9d8faf4cbb5d7edc4107ba08b9e78d5363cdd63e4dc5c487fc5283a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1941480143.json.gz",
+        "sha256": "0a067cecd55d32bfd86cff8a489e0a7ac4cf72eb4bb4804027a8d095560252b2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1941480143.json.gz",
+        "sha256": "d083af7d0b478ada576fcc515e5faa7242344b31737de103b30406ebad1011e4"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1941480143.json.gz",
+        "sha256": "d083af7d0b478ada576fcc515e5faa7242344b31737de103b30406ebad1011e4"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1941480143.json.gz",
+        "sha256": "ead50b62873ae29ab6d70988606056a3bfc9ed6ade01433d4363b1e18f578d25"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1941480143.json.gz",
+        "sha256": "776d78ed92d3b755a417808dd7de31f3d57bcb7c7af992334f152255bb49ab47"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1941480143.json.gz",
+        "sha256": "d683dee588ce035c366428e896d03bbbfe7a402f9949c23091250ca6385717d2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1941480143.json.gz",
+        "sha256": "d683dee588ce035c366428e896d03bbbfe7a402f9949c23091250ca6385717d2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1941480143.json.gz",
+        "sha256": "f3432270d0bd07b84b53a0c6edc8a45a633325c445c39d9f4c892a190f6848a9"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1941480143.json.gz",
+        "sha256": "2c24b22810233d036ba9289d6e39aa83102ad6fa3473a2b2c3f5e9d1f6026e27"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1941480143.json.gz",
+        "sha256": "964924742736fcba9d27a642a59f8eb1bd62a0e2c701388689478208445a04b6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1941480143.json.gz",
+        "sha256": "964924742736fcba9d27a642a59f8eb1bd62a0e2c701388689478208445a04b6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1941480143.json.gz",
+        "sha256": "90b4611e249b46b2b7aec2d7216221f62af733e43e229542bc4e8d8cc35f273d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1941480143.json.gz",
+        "sha256": "a735ab41aca51fa58de4fb2fe49a5625e3d784fedda787f05772925108e07f85"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1941480143.json.gz",
+        "sha256": "63b5a3c444a984f7cdee0ec9558227d6f0ec2d40acd8182c800ab7746cd20ee2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1941480143.json.gz",
+        "sha256": "63b5a3c444a984f7cdee0ec9558227d6f0ec2d40acd8182c800ab7746cd20ee2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1941480143.json.gz",
+        "sha256": "1695857cfc142f990fa052ceef670ce4a42ccd7a04e86a74546055f863d1e920"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1941480143,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1941480143.json.gz",
+        "sha256": "c042edd593c4b774d890ebb9da5b9299e933bfa0e48d47c662219c45ee064427"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1686070620.json.gz",
+        "sha256": "d5f850e351d86c672a1488666b3456648a973716cec3172806c22c3a93d44d6a"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1686070620.json.gz",
+        "sha256": "fc8256e91774de32bed1f9141b819d823beca1107345bc76a5e453c5103f358c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1686070620.json.gz",
+        "sha256": "4127eaae9fefe621d90625682228f07c2cb3420555170762d59f7320504fe306"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1686070620.json.gz",
+        "sha256": "59559f63cf6d7a262273cc73c3d3de1d3f8e7895846b73fccbb230c23c47947f"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1686070620.json.gz",
+        "sha256": "c5ca72eedb5119913b116ccb78417d5ee3942737f3ea19b1c4a2e2a0443cab41"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1686070620.json.gz",
+        "sha256": "c5ca72eedb5119913b116ccb78417d5ee3942737f3ea19b1c4a2e2a0443cab41"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1686070620.json.gz",
+        "sha256": "3f93ead816445a2c751dd2048c6283d7fabf24cf37f79871f2a3e7437cb0e517"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1686070620.json.gz",
+        "sha256": "8d20ccd445934cb75b8ad9c36ebe3e1e27652e5a0a2c374e2d0dd8941d81a8c7"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1686070620.json.gz",
+        "sha256": "5cfbbb808e8ed8721850d78f16701e933f2f19197dcc0b7e3133731352064d0e"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1686070620.json.gz",
+        "sha256": "5cfbbb808e8ed8721850d78f16701e933f2f19197dcc0b7e3133731352064d0e"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1686070620.json.gz",
+        "sha256": "3cdd8bd5eed7986ae7644f3279bf24750436edb2d9c733b82757d42e9e84a271"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1686070620.json.gz",
+        "sha256": "a9cd3038c6717a4c617e70d5bfa43b19e5d54f2caf0b251b79f20fc1ba5cb2c0"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1686070620.json.gz",
+        "sha256": "0b095aee70d1d54dcf22e25edae97b67ab416d8c77579a6fbbd90c5c51a6012d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1686070620.json.gz",
+        "sha256": "0b095aee70d1d54dcf22e25edae97b67ab416d8c77579a6fbbd90c5c51a6012d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1686070620.json.gz",
+        "sha256": "57b655b6930b9fb7ebc8a0c56f4b58b728aa7aef5c041be75d7bcdb05ff2c14b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1686070620.json.gz",
+        "sha256": "58f2115e6f74a577ef2bde3503a30baed5c2f02fab246410f16ad20c7595bf85"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1686070620.json.gz",
+        "sha256": "446560c15a2be7f0da6bec35a1795a821d1c9b21fbef3e8253d853ea3eb2311c"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1686070620.json.gz",
+        "sha256": "7200a947a1c927bbd15f1a7cf2e500580e5c686bd1b6734e57de96548c4ac94a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1686070620.json.gz",
+        "sha256": "0d58546596e129bb1f4a84f8360e18ecb98c1dcbc68ab8bcd5f4b8a24834407b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1686070620.json.gz",
+        "sha256": "406930cfbb86f19bb0913ad5e095472bedaee1769f288520ff75c3289d1ea8db"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1686070620.json.gz",
+        "sha256": "0e58ee269c8806b0cc62ee55df205dfa4af5666d08de2db7328351ea133de539"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1686070620.json.gz",
+        "sha256": "0e58ee269c8806b0cc62ee55df205dfa4af5666d08de2db7328351ea133de539"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1686070620.json.gz",
+        "sha256": "728fe23971559abad480dd29b013b5996f42e4a6235d55dcad445e31dfc12ed6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1686070620,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1686070620.json.gz",
+        "sha256": "91a46b077871b76cc7079debe0204f9d1f07596a5ae833d4d96cee414c17008d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/408557419.json.gz",
+        "sha256": "9463636dcd784b6afd0eb77844db1a6c2802d89d81eb5cbd81da6d6bc4d329be"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/408557419.json.gz",
+        "sha256": "8d37cfa0e00f1a0b963512d5ba7b99b0d7c995ac0d92ca3aa58537d81d41801c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/408557419.json.gz",
+        "sha256": "fffeb2afe8e7e1519dfeebae11cc971269760065b2729454b08f757551b404f6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/408557419.json.gz",
+        "sha256": "70d683110e87d5d3ec05f6304235946520357e0bbcc7bd1a0d53ed23de083c0c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/408557419.json.gz",
+        "sha256": "e1e6241a0b32c1b96633632530faec7d01566ecd2570b1f05f4de05182e7b30c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/408557419.json.gz",
+        "sha256": "e1e6241a0b32c1b96633632530faec7d01566ecd2570b1f05f4de05182e7b30c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/408557419.json.gz",
+        "sha256": "c6e83e79385445f7a572f2103e2c0c5cdf2e64bc0ff8e66efe025619401a38eb"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/408557419.json.gz",
+        "sha256": "99f850a0e3c68b63431f923041911675937b975639d8af21e9ae68b86dd6158c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/408557419.json.gz",
+        "sha256": "68c42b1af111c6268562dd74be9d2c7b07ca9810f99e08cdaa5195ef13d8ad5b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/408557419.json.gz",
+        "sha256": "68c42b1af111c6268562dd74be9d2c7b07ca9810f99e08cdaa5195ef13d8ad5b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/408557419.json.gz",
+        "sha256": "93228674724ad2e6cfcbb17f7d1ea717a0613edf6782576800fade7fa54e1614"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/408557419.json.gz",
+        "sha256": "618a16a44ac1858b28bc0a120b271aee1b12bf0721bfcdaa7be196fa532008b6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/408557419.json.gz",
+        "sha256": "f2b52a7f4e46031591d83faed7d5839981d24985c2b371474447da4cde745236"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/408557419.json.gz",
+        "sha256": "f2b52a7f4e46031591d83faed7d5839981d24985c2b371474447da4cde745236"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/408557419.json.gz",
+        "sha256": "d0fc21069de8d9e76d7a8782a247fc8c53c8e59b961837d98d2777e05def5202"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/408557419.json.gz",
+        "sha256": "0fec5b49e92accb5b9c34eef73e5805d5c0ad84bf81912f12871a35d10aad143"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/408557419.json.gz",
+        "sha256": "5618cdcc003b82ae7c11d27aa04794d0630815d5986a12b6c6daa3c3c6770dd4"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/408557419.json.gz",
+        "sha256": "705c8d4334a834404a31e0368ffaa8e7921b852a0222c33f47151565681ad09e"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/408557419.json.gz",
+        "sha256": "d495cc922eab893ba86c8ff94681c4caba52575f1f0caccb334e5ba72dac6d16"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/408557419.json.gz",
+        "sha256": "58709ced61bf14f85ad84ce4eed1381c6b6ef47df653eafdfe36f80adb4a8325"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/408557419.json.gz",
+        "sha256": "860df5d3d64473955e202ee27377aded1ea69f86144c7c8ab2344c61059e0b1a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/408557419.json.gz",
+        "sha256": "860df5d3d64473955e202ee27377aded1ea69f86144c7c8ab2344c61059e0b1a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/408557419.json.gz",
+        "sha256": "64af6e134e75278ac86552265eb22875494d5aea1820aeb9f4ef26479ddd2b89"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 408557419,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/408557419.json.gz",
+        "sha256": "698c033874a73b465a600cb602d66753729fad571b541e65bc8420ab89247b67"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1948553709.json.gz",
+        "sha256": "d0915be913b00f4d3a29d4d3d111c12d97ac8d89b00573db7a3e6697009942d1"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1948553709.json.gz",
+        "sha256": "d0915be913b00f4d3a29d4d3d111c12d97ac8d89b00573db7a3e6697009942d1"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1948553709.json.gz",
+        "sha256": "13f0b795fc0fef71b4823889a26e692ca17d743e6b079f5b2b59cf197dafcac2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1948553709.json.gz",
+        "sha256": "08e50d0c8e0e34feca9856a5dc7abe881ecce1b58075f2ea93e13f33c5b5479a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1948553709.json.gz",
+        "sha256": "800ab70f9d177219deb521faf206f91b564c9cec04b084c87c9a01c2f74ffc72"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1948553709.json.gz",
+        "sha256": "800ab70f9d177219deb521faf206f91b564c9cec04b084c87c9a01c2f74ffc72"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1948553709.json.gz",
+        "sha256": "0a88ba296e2e3fa2bb1b77d18ef3aeb8217e0d9d30a4b161a07a4f5235ea92be"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1948553709.json.gz",
+        "sha256": "23b54da3a703d9ff042227284ab50e99487f7806ded6b2adc1579dd6768c37ae"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1948553709.json.gz",
+        "sha256": "366fd7066c966fa7499a0a01cc838f3c896f595c466a6f20c430716f1172d0b0"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1948553709.json.gz",
+        "sha256": "366fd7066c966fa7499a0a01cc838f3c896f595c466a6f20c430716f1172d0b0"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1948553709.json.gz",
+        "sha256": "d2773140f0b87519a36c072868cc2c9a873c551a66ecd95bb4df752430f0b34f"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1948553709.json.gz",
+        "sha256": "d91afad569b75a84b6d032df8a64c7f8e3445d690b9de097e9f2f084f3e328e2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1948553709.json.gz",
+        "sha256": "89ea0c90b73868fbd408d8f7abaeeeb0b7f24885f41b8e5edbc347fd3acfde46"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1948553709.json.gz",
+        "sha256": "89ea0c90b73868fbd408d8f7abaeeeb0b7f24885f41b8e5edbc347fd3acfde46"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1948553709.json.gz",
+        "sha256": "adc6f121dc633b292f18ac4a48f5c7ad8336c8606690cbbfe97cfb66271b3102"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1948553709.json.gz",
+        "sha256": "ceedd3bfb64cd0ff2b7e878c3c4c63712ffb7d524ac6fc62e6f7982dca009597"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1948553709.json.gz",
+        "sha256": "d838ecd1b82a4d515586f70d0bace94ffc7fbe5f09f7bac32f0a876a62150002"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1948553709.json.gz",
+        "sha256": "d838ecd1b82a4d515586f70d0bace94ffc7fbe5f09f7bac32f0a876a62150002"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1948553709.json.gz",
+        "sha256": "2ecae1ed0ab7fcd833c5e5c89d914bf0316e1cc020bc233709819c1d41f6b95d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1948553709.json.gz",
+        "sha256": "bec1b9a1a1a9b099839488a956f4d12e555d9054543b2aac8a13f5e459695dae"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1948553709.json.gz",
+        "sha256": "f6e384cd8ea3a176f0784f8d557be207b3613ac0023535fa774e72dac3149c84"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1948553709.json.gz",
+        "sha256": "f6e384cd8ea3a176f0784f8d557be207b3613ac0023535fa774e72dac3149c84"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1948553709,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1948553709.json.gz",
+        "sha256": "c3758e4faf987ac75faf88047ff47ab2f970a26e4f13314cda71c76756ff7429"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1948553709,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1948553709.json.gz",
+        "sha256": "f10109e08739bb512b3c57e03865e7c32475022b210d2b4b7f5a911545176d62"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/500779372.json.gz",
+        "sha256": "99433930e1b179dbf98a1446faeef6d755799e5f8c012c109d966ee8196debf0"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/500779372.json.gz",
+        "sha256": "450125586cfe41cf1295502121b793f50c4585cbfd9a5bec47f27ddb2dc682cf"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/500779372.json.gz",
+        "sha256": "4879cca988115d94bf693442488cf5d75cb471fa118513afb3a12da8a5e400e8"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/500779372.json.gz",
+        "sha256": "0f580d518d90a1cba3e9a2ab790de816f9b04462a9769ab2935a56dcc71d2143"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/500779372.json.gz",
+        "sha256": "4bbc3ef7be6744bcb94ae4e550b84b67a91be34f1f9585d0d3dc0d9ab95ba556"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/500779372.json.gz",
+        "sha256": "4bbc3ef7be6744bcb94ae4e550b84b67a91be34f1f9585d0d3dc0d9ab95ba556"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/500779372.json.gz",
+        "sha256": "cdd8d154af8397a0726f962c350ba7bc7b572f05c1e180b7c184fc66e94bd22b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/500779372.json.gz",
+        "sha256": "b96aea0199e0f5dd15188d7961286c8db6c70a004e89f36cde81d1a746c1e545"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/500779372.json.gz",
+        "sha256": "af7240fe391a298e9fe8326d11f9f15802eeea079a8af1df3c661db6cf6bf764"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/500779372.json.gz",
+        "sha256": "af7240fe391a298e9fe8326d11f9f15802eeea079a8af1df3c661db6cf6bf764"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/500779372.json.gz",
+        "sha256": "8a19e85177e7890a3a44af8425afe50f7248292c2a573cbfa80109cd13536196"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/500779372.json.gz",
+        "sha256": "78b8b52e1d59a724e16930a4901f175b1a617151543b2e6da1be9ad22379ad8a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/500779372.json.gz",
+        "sha256": "47adceb5c2a9b02e4d68e8e7706134f6b6b8996f1782181286a96d378abc09fd"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/500779372.json.gz",
+        "sha256": "47adceb5c2a9b02e4d68e8e7706134f6b6b8996f1782181286a96d378abc09fd"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/500779372.json.gz",
+        "sha256": "57e89b3face3de1d4fa21c5526c5eabcc8e86da6e45c97127ffe2e9fda9083eb"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/500779372.json.gz",
+        "sha256": "8dcf0c06fc7c711c5120782739a0e22993684bb4ecfc0223eb109d0ff55e6202"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/500779372.json.gz",
+        "sha256": "4f2b14091e33e6c5ae8a3ec1cc2929005595267e64a024d9ca8d65c51d7497af"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/500779372.json.gz",
+        "sha256": "c5a2bac546fb2624f145da43b4817f3502c885f0477d8ec9a3959bd47b40569c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/500779372.json.gz",
+        "sha256": "e7a9afadec3368bbcdfcdd28519e91ac36e7ebaeda25667eabb8bfbee0654b42"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/500779372.json.gz",
+        "sha256": "6015e5c35bf08c54e067536993dd77452b99e6238108286e5a5bbeb4b282056c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/500779372.json.gz",
+        "sha256": "11ebac295943c78dc7c5065b919458db1311542b9ad270982f75ce55ba563975"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/500779372.json.gz",
+        "sha256": "11ebac295943c78dc7c5065b919458db1311542b9ad270982f75ce55ba563975"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 500779372,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/500779372.json.gz",
+        "sha256": "ede6a0505f850efd158c8f09cf26e4a59008c04a6d1df07a008f78a6ae5f6928"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 500779372,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/500779372.json.gz",
+        "sha256": "cee473e9de4ba24f8a7916d2a27f6ac992c73b76f3fdf3101dc98f1ffa595853"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1748588939.json.gz",
+        "sha256": "466352bbb055a642720010e89f4307cdc08573022c2fe695cf27a4295f1d6b4b"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1748588939.json.gz",
+        "sha256": "042e46e27821b70d8940d862ca3e6eb37343d6f21432d8165bceaa8e8d5bfce6"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1748588939.json.gz",
+        "sha256": "bca2f1006dd66a3c92c69f321e1c133ce562ed4f69172d2be49906fb90fd20a2"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1748588939.json.gz",
+        "sha256": "b9e0f93b4228550b3b3444153d5cf18a2fb0bd5c5d7b1bf39a3f3070585826d0"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1748588939.json.gz",
+        "sha256": "37c6b8da735b22d79e28b92339b0419f75bcddb8153a2aecb5ce55b9aec6f9e5"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1748588939.json.gz",
+        "sha256": "37c6b8da735b22d79e28b92339b0419f75bcddb8153a2aecb5ce55b9aec6f9e5"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1748588939.json.gz",
+        "sha256": "3b1c5781db6891ed97d28122ee2b6816eaebb35fe876f87df8c69e8c6ecceb1d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1748588939.json.gz",
+        "sha256": "007976d4aeb2a7a0c3b017e4228a9551bfa62a3bccfdacb9ad25d05bde46daa4"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1748588939.json.gz",
+        "sha256": "d59e38b195c0c97e15ef5cc037cf5f9e0b0b6970d1d64121117a03d318f4ae68"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1748588939.json.gz",
+        "sha256": "d59e38b195c0c97e15ef5cc037cf5f9e0b0b6970d1d64121117a03d318f4ae68"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1748588939.json.gz",
+        "sha256": "a9a3692ffd599182caec4a5769d2578ee56062ea5d0d90e2df8b649de3f9ceb8"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1748588939.json.gz",
+        "sha256": "3611576e6322aa64fa8523d5f2db13c98aae3a5b9368ee2a0ef55778d6741907"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1748588939.json.gz",
+        "sha256": "4ea0dd30b46892df41517395c8bba19ce0ce1df45df0176811d8e70fb5e62de5"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1748588939.json.gz",
+        "sha256": "4ea0dd30b46892df41517395c8bba19ce0ce1df45df0176811d8e70fb5e62de5"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1748588939.json.gz",
+        "sha256": "ec901311cfe67b078bf229f071434a20a173ed1622fb746dfeaf02148fa3f643"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1748588939.json.gz",
+        "sha256": "eed4200539173cafcd9d71b2233d7971619e190489480996d599473a20362969"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1748588939.json.gz",
+        "sha256": "7da47eb37ffc9f4a6fecfd0cad646a2c94741b8928ac4723f120dc91bd454671"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1748588939.json.gz",
+        "sha256": "af1c1db7c90252f710daf2b75610ac56224847ab18762bc04b8fe70ebe809cde"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1748588939.json.gz",
+        "sha256": "a8c8cc5fc6b6f1be7bc2084cfbc51a90a0eacd7e023cf8003d2576dc4ad14bab"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1748588939.json.gz",
+        "sha256": "43afb97c3749edfd54939a4bdcd546c28b1200a1636020347c0b88387636a993"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1748588939.json.gz",
+        "sha256": "847f2d0cb805547f8cf5b1415d543fa08a162685cfae5f79ac6eb7f3b58dc362"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1748588939,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1748588939.json.gz",
+        "sha256": "847f2d0cb805547f8cf5b1415d543fa08a162685cfae5f79ac6eb7f3b58dc362"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1748588939.json.gz",
+        "sha256": "765cc1ea3a387b5364de3d313d1d602c7fce10540403a01db1c0bee143222ac8"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1748588939,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1748588939.json.gz",
+        "sha256": "4770d51de373f817659560f4a55db0fa5e9e75b9006ad13cf02038a7bb1d618b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1920697708.json.gz",
+        "sha256": "361d3789553af8bfc7ca52b85856739caeef2d382050aec50470419f636e4194"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1920697708.json.gz",
+        "sha256": "75caeab1bad1ae4776bfb48fb2df5820d8fcdaeefbf8e7888600b4f573c78567"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1920697708.json.gz",
+        "sha256": "30bbe81b37f9f7969615179fd7593f995a497853c569a8ed346b6a7fbb58a3ce"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1920697708.json.gz",
+        "sha256": "1f9e928747379341540769191394175f52b99fdd5618ead44c87dcfe4c73166e"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1920697708.json.gz",
+        "sha256": "970bfa4696f7b297a3380572280240cbedcffa9f958e5cef7dce584c1a246155"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1920697708.json.gz",
+        "sha256": "970bfa4696f7b297a3380572280240cbedcffa9f958e5cef7dce584c1a246155"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1920697708.json.gz",
+        "sha256": "ab33259fc002e3b9a2f000245ace1bf6d4c38e3c9a2da494fd0edfabc8346dbc"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1920697708.json.gz",
+        "sha256": "538efdca398a140fcab054f0a2b5b154573c5a347a6e4aab2581abf1f7b8c790"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1920697708.json.gz",
+        "sha256": "25b47cc672a493ea5b0456f73a990cbf04fa1721b4e5ea6ca93adba9c7980a4b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1920697708.json.gz",
+        "sha256": "25b47cc672a493ea5b0456f73a990cbf04fa1721b4e5ea6ca93adba9c7980a4b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1920697708.json.gz",
+        "sha256": "8753b06dbb270b0e39b4b0f5ae3ad1e59a2175b30fd717a0b7624a7217b53726"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1920697708.json.gz",
+        "sha256": "aeb8750a4bc0766e4e57bfba5f16485b8462d0eedbc2feead0802f58c420559b"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1920697708.json.gz",
+        "sha256": "4859d1c2e8332ae37c306d4bc06d6721a2dd7c073481bdf28639541b3eae7f72"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1920697708.json.gz",
+        "sha256": "4859d1c2e8332ae37c306d4bc06d6721a2dd7c073481bdf28639541b3eae7f72"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1920697708.json.gz",
+        "sha256": "f84994c714dcfd999d5708520a0d95fe3239e463fccfd3a5a22833a3751c0d7f"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1920697708.json.gz",
+        "sha256": "1560eeea243c4b5a85925d96442ac5643a35c4ba66b957bf43eb32619c00f2ae"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 4,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1920697708.json.gz",
+        "sha256": "edc9cdfe6f808489d0005c6aafeec01e9d64663e5a30b22c6c79c5e216fdb186"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": true,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1920697708.json.gz",
+        "sha256": "ad310cc6f2a45c5f287584f32b97e82b8b0f3dbc68b56ef0b3d43ce70b8862a9"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1920697708.json.gz",
+        "sha256": "53ecff4fc000f525dc92c9eb6cfbb7730fd9d6a97dbe64c15f3ff900b8e33786"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1920697708.json.gz",
+        "sha256": "777198d7edbaa96fe9f3176ca14e0d4444ffac5ea0258a66060da34d18ae4e3a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1920697708.json.gz",
+        "sha256": "0cec118b823d63e1afe045359f8974c831131a81a257b54f036d65acf78052c7"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1920697708,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1920697708.json.gz",
+        "sha256": "0cec118b823d63e1afe045359f8974c831131a81a257b54f036d65acf78052c7"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1920697708.json.gz",
+        "sha256": "8237697b6f7f79be713527ae09194f14949ca83ca492bcd6457da0653e89809a"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1920697708,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1920697708.json.gz",
+        "sha256": "1d0e4d2fe0463b87ccc80b73990e9b932311bc5fb8c31eafcbbb9ae6b8fe216e"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 2,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-active/1792432103.json.gz",
+        "sha256": "5b4486f78359bc59ba2f75bb0a618a1524f0467bd3deb1da742fd1e6a4f529d1"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-active/1792432103.json.gz",
+        "sha256": "9c9fd050d11a898ae2ca4b216437901b5d907c1e8951fc1edd90dd9e7ab21b47"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-active/1792432103.json.gz",
+        "sha256": "d1f1a48a4472332433ef35731d9dae50a173a9fa66daf0fc5abf98560a737f79"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-active/1792432103.json.gz",
+        "sha256": "52a5ad0c0cf73ebdf4b0f39c2647e3c89058e9c71e3c48190e9dca8d7a426899"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-catalysis-null/1792432103.json.gz",
+        "sha256": "c27bf75fc305e606639224ed87a6d15e898c909a60f5e18635690e8e315d3f55"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-catalysis-null/1792432103.json.gz",
+        "sha256": "c27bf75fc305e606639224ed87a6d15e898c909a60f5e18635690e8e315d3f55"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-catalysis-null/1792432103.json.gz",
+        "sha256": "b904b3a42fbae3a2449b10c33ba43dd6dd68869bc0797355e41f4fdafbce3cea"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:catalysis",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-catalysis-null/1792432103.json.gz",
+        "sha256": "4fc13711d5137afa2c6e1254ef42370a8244ed60450bf05a39ee00c30fa6cddf"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-active/1792432103.json.gz",
+        "sha256": "9999cab355708688df9f15dc88ce0a7fb798e7a79dfb117c2fcde43b1eb96055"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-active/1792432103.json.gz",
+        "sha256": "9999cab355708688df9f15dc88ce0a7fb798e7a79dfb117c2fcde43b1eb96055"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-active/1792432103.json.gz",
+        "sha256": "dd75e5940203f931038fa9f4828748e480b6c52a143cf43d6fdd9b031d9dea2c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-active/1792432103.json.gz",
+        "sha256": "ea876713a4e5dceb3f4eca7fdf32347e1b13777af7dcc7a9195be0854f6a098d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-inhibition-null/1792432103.json.gz",
+        "sha256": "fba90b62bc954cdebba0220f8627c47ea619c25e33a8b5a68ef807276442dd4d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-inhibition-null/1792432103.json.gz",
+        "sha256": "fba90b62bc954cdebba0220f8627c47ea619c25e33a8b5a68ef807276442dd4d"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-inhibition-null/1792432103.json.gz",
+        "sha256": "a9434d0a4a9c29f337c6977af3f9267b6dddadb9d9152e135fe693e54d20f674"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:inhibition",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": false,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-inhibition-null/1792432103.json.gz",
+        "sha256": "b8f5c07e1249e9f16e13566b7d6112d92b9b86dd897bdf1155b3d7b24c20f661"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": true,
+      "new_level": 4,
+      "old_level": 2,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-active/1792432103.json.gz",
+        "sha256": "4c722e333cd488bfc9cb56389ae2a90be95cafd9e4bddcbdff58e6e239402764"
+      },
+      "verified_behavior": true
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "supported"
+      },
+      "linked_benefit": false,
+      "new_level": 2,
+      "old_level": 2,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-active/1792432103.json.gz",
+        "sha256": "daefa4b52563b1b3db1a40861d3b86253c3237e3d8ad5e981c6586a7cde36039"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-active/1792432103.json.gz",
+        "sha256": "8420cae2df7ae491a8889a101f262afff9aaa549c4f458ebbe1a279be5c92c5c"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "active",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": 0,
+      "old_level": 0,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-active/1792432103.json.gz",
+        "sha256": "33d9d799eeca5cdd6ab7caa1a5f9660f2f2cc5969adca5902fbbca23a2c96529"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "verify",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/verify-worldzero-delayed-transformation-null/1792432103.json.gz",
+        "sha256": "c60cc8b653f674f0eabf097f53f40fba1445343a584972a7833061e18dfd2a32"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "retain",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/retain-worldzero-delayed-transformation-null/1792432103.json.gz",
+        "sha256": "c60cc8b653f674f0eabf097f53f40fba1445343a584972a7833061e18dfd2a32"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "blind",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/blind-worldzero-delayed-transformation-null/1792432103.json.gz",
+        "sha256": "98a0dad9516ca4ca66ecc2224880aab9598abe4918b67e0117b68f88c004d518"
+      },
+      "verified_behavior": false
+    },
+    {
+      "arm": "null",
+      "family_id": "worldzero:delayed-transformation",
+      "finding": {
+        "status": "insufficient_evidence"
+      },
+      "linked_benefit": false,
+      "new_level": null,
+      "old_level": null,
+      "policy": "forager",
+      "seed": 1792432103,
+      "survived": true,
+      "terminal_retention": false,
+      "trace": {
+        "path": "traces/forager-worldzero-delayed-transformation-null/1792432103.json.gz",
+        "sha256": "2236d9fb4b38604d45654287d37dd14b9608eaa30b6f6ff781759efb5cd65092"
+      },
+      "verified_behavior": false
+    }
+  ],
+  "schema": "worldzero-verification-rescore-v1",
+  "source_files": {
+    "scripts/verification_rescore.py": "b824946fc0d556566f232880708fa62e82d99f151df986e024d045c65b603ddf",
+    "worldzero/causal_evidence.py": "eb5afbb9bf4c21222d44fe21a7b6d449982c755a76c5e2dad941ead659c9b8d2",
+    "worldzero/laws/types.py": "3cb446ea8dc3dfa178f3d4e914f1ebf6543d7e1a9e6a1787394856e089d7cd95",
+    "worldzero/levels.py": "89d858a96d7331fad2db9ca05c4674fc2e8bd4c0ae014567e7c5a3f06ba091bb",
+    "worldzero/scoring_contracts.py": "6571286c978d021c0a9e267077162ecdb652c6d383025333fedd07ac9a4be197"
+  },
+  "summary": {
+    "blind": {
+      "active_episodes": 24,
+      "new": {
+        "0": 9,
+        "1": 1,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "old": {
+        "0": 9,
+        "1": 1,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "survived": 9,
+      "verified_behavior": 0
+    },
+    "forager": {
+      "active_episodes": 24,
+      "new": {
+        "0": 14,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "old": {
+        "0": 14,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "survived": 14,
+      "verified_behavior": 0
+    },
+    "retain": {
+      "active_episodes": 24,
+      "new": {
+        "0": 13,
+        "1": 13,
+        "2": 13,
+        "3": 0,
+        "4": 0
+      },
+      "old": {
+        "0": 13,
+        "1": 13,
+        "2": 13,
+        "3": 0,
+        "4": 0
+      },
+      "survived": 13,
+      "verified_behavior": 0
+    },
+    "verify": {
+      "active_episodes": 24,
+      "new": {
+        "0": 11,
+        "1": 11,
+        "2": 11,
+        "3": 10,
+        "4": 10
+      },
+      "old": {
+        "0": 11,
+        "1": 11,
+        "2": 11,
+        "3": 8,
+        "4": 8
+      },
+      "survived": 11,
+      "verified_behavior": 12
+    }
+  }
+}

@@ -659,7 +659,7 @@ def test_state_v3_restore_rejects_impossible_agent_records(case) -> None:
         ("cell_target_negative", [0.5, "raw_decay", -1, 0.5]),
         ("family_target", [0.5, "convert", 117, 0.5]),
         ("module_target", [0.5, "module_decay", 3, 0.5]),
-        ("global_target", [0.5, "regime", 1, 0.5]),
+        ("regime_target", [0.5, "regime", 117, 0.5]),
         ("target_bool", [0.5, "raw_decay", True, 0.5]),
         ("uniform_one", [0.5, "raw_decay", 0, 1.0]),
         ("uniform_negative", [0.5, "raw_decay", 0, -0.1]),
