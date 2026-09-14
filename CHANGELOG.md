@@ -4,6 +4,9 @@ This project follows semantic versioning for the public Python and CLI interface
 
 ## Unreleased
 
+- Added a static browser field observatory with authenticated recorded trajectories,
+  chapter navigation, synchronized strategy comparison, and an observer-only rule reveal.
+
 - Made `levels-v3` the default for new benchmark manifests, preserving credit for
   witnessed reconstruction after terminal mechanism decay. Kept explicit v2
   scoring and published a separate comparison of all 192 original study traces:

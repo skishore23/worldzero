@@ -16,6 +16,11 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 
 ## What can I do with it?
 
+Try the [browser field observatory](demo/README.md): a recorded experiment with
+chapter navigation, an evidence ledger, and synchronized strategy comparison.
+Run `python -m http.server 8771 --bind 127.0.0.1 --directory demo` from this
+checkout, then open <http://127.0.0.1:8771>.
+
 | Goal | Start here | What you get |
 | --- | --- | --- |
 | **Watch an experiment** | [Run the local reference demo](#watch-a-reference-experiment) | A visual replay showing an agent, a hidden mechanism, and matched controls. |
