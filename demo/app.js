@@ -11,39 +11,39 @@
   const chapters = [
     {
       time: 0,
-      title: "Look around.<br><em>Stay alive.</em>",
+      title: "Explore.<br><em>Gather evidence.</em>",
       description:
-        "The orange marker is the agent. It can move, carry blocks, eat, or wait. It has not been told which blocks work together.",
+        "The orange marker is the agent. It can move, carry blocks, collect energy, or wait. It has not been told which blocks work together.",
     },
     {
       time: w.construction,
       title: "Put the blocks<br><em>together.</em>",
       description:
-        "The blocks are now arranged so they can change nearby food. Watch for richer food to appear. Seeing it once is only a clue.",
+        "The blocks are now arranged so they can upgrade nearby resources. Watch for an upgraded resource to appear. One observation is not enough to verify the rule.",
     },
     {
       time: w.disruption,
       title: "Take it<br><em>apart.</em>",
       description:
-        "The agent has seen food change. Now it moves a block away. Taking the arrangement apart is a way to test whether the blocks caused the change.",
+        "The agent has observed a resource upgrade. Now it moves a block away. Taking the arrangement apart is a way to test whether the blocks caused the change.",
     },
     {
       time: w.reconstruction,
       title: "Put it back.<br><em>Try again.</em>",
       description:
-        "The agent puts the block back. Will the food change again? Watch until it does, and the agent sees the change.",
+        "The agent puts the block back. Will the resource upgrade occur again? Watch until it does, and the agent sees the change.",
     },
     {
       time: w.benefit,
-      title: "Eat what<br><em>you helped make.</em>",
+      title: "Collect energy.<br><em>Measure the benefit.</em>",
       description:
-        "The agent eats richer food produced after rebuilding the arrangement. Its energy rises: the discovery has helped it stay alive.",
+        "The agent collects an upgraded resource produced after rebuilding the arrangement. Its energy budget increases: the verified effect has provided a measurable benefit.",
     },
     {
       time: 160,
       title: "It worked.<br><em>Then worked again.</em>",
       description:
-        "The program rebuilt the arrangement, saw the food change again, ate it, and survived. Now compare it with a program that keeps what it finds.",
+        "The program rebuilt the arrangement, observed another resource upgrade, collected the energy, and reached the time limit. Now compare it with a program that keeps what it finds.",
     },
   ];
   let time = 0,
@@ -125,7 +125,7 @@
       $("chapter-title").innerHTML =
         policy === "retain"
           ? chapter === 5
-            ? "Alive,<br><em>but untested.</em>"
+            ? "Run complete.<br><em>Rule unverified.</em>"
             : "Keep what<br><em>works.</em>"
           : chapters[chapter].title;
       $("chapter-description").textContent =
@@ -161,7 +161,7 @@
     $("energy-fill").style.width =
       Math.min(100, Math.max(0, (frame.energy / 30) * 100)) + "%";
     $("action").textContent =
-      `${{ MOVE: "MOVING", PICK: "PICKING UP A BLOCK", DROP: "PLACING A BLOCK", CONSUME: "EATING", WAIT: "WAITING", OBSERVE: "LOOKING AROUND" }[frame.action.type] || frame.action.type}${frame.action.direction ? " " + { N: "NORTH", E: "EAST", S: "SOUTH", W: "WEST" }[frame.action.direction] : ""} · STEP ${index.toString().padStart(3, "0")}`;
+      `${{ MOVE: "MOVING", PICK: "PICKING UP A BLOCK", DROP: "PLACING A BLOCK", CONSUME: "COLLECTING ENERGY", WAIT: "WAITING", OBSERVE: "LOOKING AROUND" }[frame.action.type] || frame.action.type}${frame.action.direction ? " " + { N: "NORTH", E: "EAST", S: "SOUTH", W: "WEST" }[frame.action.direction] : ""} · STEP ${index.toString().padStart(3, "0")}`;
     $("time").textContent = "T + " + time.toFixed(2).padStart(6, "0");
     $("timeline").value = time;
     $("timeline").setAttribute(
@@ -181,14 +181,14 @@
     $("evidence-footnote").textContent =
       policy === "retain"
         ? time >= 160
-          ? "It survived, but did not demonstrate the take-apart-and-rebuild test. Its benchmark score is Level 2."
-          : "This checklist tracks the complete rebuilding test. Blank marks do not mean this program never arranged blocks or saw food change."
+          ? "It reached the time limit, but did not demonstrate the take-apart-and-rebuild test. Its benchmark score is Level 2."
+          : "This checklist tracks the complete rebuilding test. Blank marks do not mean this program never arranged blocks or observed a resource upgrade."
         : time >= 160
-          ? "It repeated the effect, ate the richer food, and survived. Its benchmark score is Level 4."
+          ? "It repeated the effect, collected the upgraded resource, and reached the time limit. Its benchmark score is Level 4."
           : time >= w.benefit
-            ? "The richer food gave it energy. It still needs to survive until the experiment ends."
+            ? "The upgraded resource replenished its energy budget. The run continues until the time limit or energy exhaustion."
             : time >= w.recurrence_observation
-              ? "It rebuilt the arrangement and saw the food change again. Next: can it use that food?"
+              ? "It rebuilt the arrangement and observed another resource upgrade. Next: can it collect the energy?"
               : "Watch this checklist fill in as the program tests the arrangement.";
     $("play-icon").textContent = playing ? "Ⅱ" : time >= 160 ? "↺" : "▶";
     $("chamber-play").textContent = playing ? "Ⅱ" : time >= 160 ? "↺" : "▶";
@@ -281,12 +281,12 @@
         : "HOW TO READ THIS EXPERIMENT";
     $("dialog-title").textContent =
       kind === "rule"
-        ? "Two blocks can change the food."
+        ? "Two blocks can upgrade a resource."
         : "What is WorldZero?";
     $("dialog-body").innerHTML =
       kind === "rule"
-        ? `<div class="rule-diagram">PLACE BLOCKS B AND C NEXT TO EACH OTHER<br>↓<br>NEARBY FOOD CAN BECOME RICHER FOOD</div><p>Richer food gives the agent more energy. It is never told which blocks matter or how to arrange them.</p><p>In this example, it finds a useful arrangement, takes it apart, puts it back, and sees the food change again. Then it eats that food. The recorded actions let us check that this sequence really happened.</p><p>You see labels and colors added to explain the recording. The agent receives nearby observations instead of this illustrated overview. “Show what the agent can see” limits the map to that nearby area.</p><p><a href="${data.runs[policy].trace_url}">Inspect the original recording data ↗</a></p>`
-        : `<p>WorldZero is an open-source research benchmark for testing whether AI agents can discover, verify, and use hidden rules in simulated worlds. It provides repeatable tests, recorded actions, and scores for comparing agents. Finding something useful once could be luck; rebuilding an arrangement and observing its effect again provides stronger evidence.</p><p><strong>The orange marker is an agent:</strong> a program that decides where to move and what to do. The green blocks can be carried. Food supplies energy, which the agent needs to stay alive.</p><p><strong>Food and lifetime:</strong> food is a simulated resource that restores energy. Richer food gives more energy. Time and actions use energy. This run lasts up to 160 simulated seconds; running out of energy ends it early. Survival means reaching the time limit with energy left.</p><p><strong>The challenge:</strong> find a useful arrangement without being told the hidden rule. Taking it apart and rebuilding it helps test whether the arrangement produces the same effect again.</p><p><strong>Your role:</strong> press Play, skip to a chapter, or compare two strategies. You control the recording, not the program’s decisions. Both programs started in the same world.</p><p>This demo replays simple, hand-written programs. It is not a live AI model thinking. The map shows saved states after actions, and the checklist follows the testing strategy’s recorded evidence.</p><p>This is one successful example from a 192-run study. Other runs were less successful, and some worlds had no useful rule. The full results include those too.</p><p><a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md">See the full results ↗</a> · <a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-rescore/README.md">How the scores are calculated ↗</a></p>`;
+        ? `<div class="rule-diagram">PLACE BLOCKS B AND C NEXT TO EACH OTHER<br>↓<br>NEARBY RESOURCES CAN BE UPGRADED</div><p>An upgraded resource provides more energy when collected. It is never told which blocks matter or how to arrange them.</p><p>In this example, it finds a useful arrangement, takes it apart, puts it back, and observes another resource upgrade. Then it collects that resource to replenish its energy budget. The recorded actions let us check that this sequence really happened.</p><p>You see labels and colors added to explain the recording. The agent receives nearby observations instead of this illustrated overview. “Show what the agent can see” limits the map to that nearby area.</p><p><a href="${data.runs[policy].trace_url}">Inspect the original recording data ↗</a></p>`
+        : `<p>WorldZero is an open-source research benchmark for testing whether AI agents can discover, verify, and use hidden rules in simulated worlds. It provides repeatable tests, recorded actions, and scores for comparing agents. Finding something useful once could be luck; rebuilding an arrangement and observing its effect again provides stronger evidence.</p><p><strong>The orange marker is an agent:</strong> a program that decides where to move and what to do. The green blocks can be carried. Resources supply energy, which the agent needs to continue the evaluation run.</p><p><strong>Energy budget and evaluation run:</strong> time and actions spend energy. Collecting resources replenishes the budget; upgraded resources provide more energy. This run lasts up to 160 simulated seconds. If the energy budget reaches zero, the run ends early. Reaching the time limit and verifying the rule are measured separately.</p><p><strong>The challenge:</strong> find a useful arrangement without being told the hidden rule. Taking it apart and rebuilding it helps test whether the arrangement produces the same effect again.</p><p><strong>Your role:</strong> press Play, skip to a chapter, or compare two strategies. You control the recording, not the program’s decisions. Both programs started in the same world.</p><p>This demo replays simple, hand-written programs. It is not a live AI model thinking. The map shows saved states after actions, and the checklist follows the testing strategy’s recorded evidence.</p><p>This is one successful example from a 192-run study. Other runs were less successful, and some worlds had no useful rule. The full results include those too.</p><p><a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md">See the full results ↗</a> · <a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-rescore/README.md">How the scores are calculated ↗</a></p>`;
     dialog.showModal();
   }
   $("reveal").addEventListener("click", () => showDialog("rule"));

@@ -50,3 +50,12 @@ Scores are only reported at episode completion. These are selected scripted
 examples, not model-discovery results or a representative sample of the study.
 
 The original experimental files remain unchanged.
+
+## Display terminology
+
+The demo uses benchmark terminology: **resource**, **upgraded resource**,
+**collect energy**, **energy budget**, and **evaluation run**. These are display
+labels for the existing simulation concepts. In the source recordings, the
+collection action is `CONSUME`; the `survived` outcome means the agent reached
+the time limit with energy remaining. That outcome is separate from verification.
+The labels do not change the recorded actions, scoring, or termination rules.

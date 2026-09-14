@@ -75,48 +75,50 @@
         </div>
         <p class="primer-intro">
           This recording follows a simple, hand-written program through one
-          test. “Food,” “energy,” and “life” are simulated resources and limits
-          inside the experiment.
+          evaluation run. The agent must discover and verify a hidden rule
+          within a limited time and energy budget.
         </p>
         <dl class="world-basics">
           <div>
             <dt><span class="mono">01</span> The agent</dt>
             <dd>
               The orange marker is a program that chooses its next action. It
-              can move, carry a block, eat, or wait. It sees only nearby
-              squares.
+              can move, carry a block, collect energy, or wait. It observes only
+              nearby grid cells.
             </dd>
           </div>
           <div>
             <dt><span class="mono">02</span> The blocks</dt>
             <dd>
               The green blocks can be moved around. In this test, a particular
-              arrangement can change nearby food. The agent is not told which
-              blocks matter or how to arrange them.
+              arrangement can upgrade nearby energy resources. The agent is not
+              told which blocks matter or how to arrange them.
             </dd>
           </div>
           <div>
-            <dt><span class="mono">03</span> Food &amp; energy</dt>
+            <dt><span class="mono">03</span> Energy budget</dt>
             <dd>
-              Food is a resource that restores energy when eaten. Richer food
-              gives more energy. Time and actions use energy, so the agent
-              cannot experiment forever without eating.
+              Time and actions spend energy. Collecting a resource replenishes
+              that budget. Upgraded resources provide more energy per
+              collection, allowing the agent to continue testing.
             </dd>
           </div>
           <div>
-            <dt><span class="mono">04</span> One lifetime</dt>
+            <dt><span class="mono">04</span> Evaluation run</dt>
             <dd>
-              A lifetime is one run, lasting up to 160 simulated seconds here.
-              Running out of energy ends it early. “Surviving” means reaching
-              the time limit with energy left.
+              Each run has a time limit: 160 simulated seconds in this example.
+              If the energy budget reaches zero, the run ends early. Reaching
+              the time limit does not by itself demonstrate a verified
+              discovery.
             </dd>
           </div>
         </dl>
         <p class="primer-goal">
           <strong>What counts as progress?</strong> Find a useful arrangement,
           test it by rebuilding it, observe its effect again, and use the
-          result. Survival and verification are measured separately. You control
-          the replay; the recorded program chose its own actions.
+          result. Reaching the time limit and verifying the rule are measured
+          separately. You control the replay; the recorded program chose its own
+          actions.
         </p>
       </section>
       <section
@@ -134,14 +136,14 @@
         <div class="workbench">
           <aside class="chapter-panel">
             <p class="eyebrow mono">FOLLOW THE EXPERIMENT</p>
-            <h2 id="chapter-title">Look around.<br /><em>Stay alive.</em></h2>
+            <h2 id="chapter-title">Explore.<br /><em>Gather evidence.</em></h2>
             <p
               class="chapter-description"
               id="chapter-description"
               aria-live="polite"
             >
-              The orange marker is the agent. It can move, carry blocks, eat, or
-              wait. It has not been told which blocks work together.
+              The orange marker is the agent. It can move, carry blocks, collect
+              energy, or wait. It has not been told which blocks work together.
             </p>
             <div class="chapter-readout">
               <span class="mono" id="chapter-index">01 / 06</span
@@ -195,8 +197,8 @@
             <div class="world-legend mono">
               <span><i class="legend-agent"></i> PROGRAM</span
               ><span><i class="legend-module"></i> BLOCK</span
-              ><span><i class="legend-resource"></i> FOOD</span
-              ><span><i class="legend-rich"></i> RICHER FOOD</span>
+              ><span><i class="legend-resource"></i> RESOURCE</span
+              ><span><i class="legend-rich"></i> UPGRADED RESOURCE</span>
             </div>
             <button id="reveal" class="reveal-button">
               <span class="reveal-icon">⊕</span> Reveal the hidden rule
@@ -216,7 +218,7 @@
               </li>
               <li data-stage="first_observation">
                 <span class="evidence-symbol">○</span>
-                <div>Notice<span>See the food change</span></div>
+                <div>Notice<span>Observe a resource upgrade</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
               <li data-stage="disruption">
@@ -231,13 +233,13 @@
               </li>
               <li data-stage="benefit">
                 <span class="evidence-symbol">○</span>
-                <div>Use it<span>Eat the richer food</span></div>
+                <div>Collect<span>Gain energy from the result</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
             </ol>
             <div class="energy-readout">
               <div class="mono">
-                ENERGY TO STAY ALIVE <span id="energy">22.0</span>
+                ENERGY REMAINING <span id="energy">22.0</span>
               </div>
               <div class="energy-meter"><div id="energy-fill"></div></div>
               <p id="action" class="mono">LOOKING AROUND / START</p>
@@ -257,7 +259,7 @@
           <div class="scrubber">
             <div class="scrubber-label mono">
               <span id="time">T + 000.00</span
-              ><span>160 SECONDS INSIDE THE WORLD</span>
+              ><span>160 SIMULATED SECONDS</span>
             </div>
             <input
               id="timeline"
@@ -283,7 +285,7 @@
           ><button data-chapter="3">
             <span class="mono">04</span> Rebuild <span>↗</span></button
           ><button data-chapter="4">
-            <span class="mono">05</span> Eat <span>↗</span></button
+            <span class="mono">05</span> Collect <span>↗</span></button
           ><button data-chapter="5">
             <span class="mono">06</span> Result <span>↗</span>
           </button>

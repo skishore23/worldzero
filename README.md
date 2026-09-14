@@ -8,7 +8,7 @@ WorldZero is an open-source research benchmark for testing whether AI agents can
 
 The challenge is simple:
 
-> Before its finite lifetime ends, can the agent discover whether a useful, repeatable mechanism exists, demonstrate control over it, and use or preserve what it learned?
+> Within a limited evaluation run, can the agent discover whether a useful, repeatable mechanism exists, demonstrate control over it, and use or preserve what it learned?
 
 Some worlds contain a mechanism and some are matched null worlds. The agent must learn through interaction rather than being told which world it entered or how its objects work.
 
