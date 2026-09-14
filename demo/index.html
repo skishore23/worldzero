@@ -27,9 +27,9 @@
       >
       <nav aria-label="Main navigation">
         <button class="text-button" data-dialog="about">
-          The experiment <span>↗</span></button
+          How it works <span>↗</span></button
         ><a class="source-link" href="https://github.com/skishore23/worldzero"
-          >Source ↗</a
+          >View code ↗</a
         ><a
           class="build-link"
           href="https://github.com/skishore23/worldzero/blob/main/docs/AGENT_SDK.md"
@@ -41,21 +41,19 @@
       <section class="intro" aria-labelledby="title">
         <div>
           <p class="eyebrow mono">
-            <span class="tiny-cross">✳</span> AN UNFAMILIAR WORLD. A FINITE
-            LIFETIME.
+            <span class="tiny-cross">✳</span> CAN A PROGRAM WORK OUT HOW THIS
+            WORLD WORKS?
           </p>
-          <h1 id="title">
-            Nothing is given.<br />Everything is <em>discovered.</em>
-          </h1>
+          <h1 id="title">A tiny world.<br />A <em>hidden rule.</em></h1>
         </div>
         <div class="intro-note">
-          <span class="note-index mono">[ THE QUESTION ]</span>
+          <span class="note-index mono">[ WHAT YOU’RE WATCHING ]</span>
           <p>
-            Can an agent find a hidden rule,<br />take it apart, and make it
-            happen again?
+            An agent is a program that chooses what to do. Here, it moves blocks
+            and eats food to stay alive. Can it find what makes the food change?
           </p>
           <span class="recorded mono"
-            ><i></i> RECORDED EXPERIMENT · NO MODEL CALLS</span
+            ><i></i> RECORDED EXAMPLE · SCRIPTED PROGRAM</span
           >
         </div>
       </section>
@@ -66,61 +64,60 @@
       >
         <div class="instrument-top mono">
           <span
-            ><i class="status-dot"></i> SPECIMEN 001
-            <span class="muted">/ HIDDEN MECHANISM</span></span
-          ><span class="seed">SEED <b>408557419</b></span
-          ><span>9 × 13 CELLS <span class="muted">/ FINITE WORLD</span></span>
+            ><i class="status-dot"></i> EXPERIMENT 01
+            <span class="muted">/ A RULE TO DISCOVER</span></span
+          ><span class="seed">WORLD ID <b>408557419</b></span
+          ><span>117 SQUARES <span class="muted">/ ONE SMALL WORLD</span></span>
         </div>
         <div class="workbench">
           <aside class="chapter-panel">
-            <p class="eyebrow mono">THE DISCOVERY SEQUENCE</p>
-            <h2 id="chapter-title">First,<br /><em>look around.</em></h2>
+            <p class="eyebrow mono">FOLLOW THE EXPERIMENT</p>
+            <h2 id="chapter-title">Look around.<br /><em>Stay alive.</em></h2>
             <p
               class="chapter-description"
               id="chapter-description"
               aria-live="polite"
             >
-              Objects, resources, and no explanation. The agent must learn by
-              acting.
+              The orange marker is the agent. It can move, carry blocks, eat, or
+              wait. It has not been told which blocks work together.
             </p>
             <div class="chapter-readout">
               <span class="mono" id="chapter-index">01 / 06</span
               ><span class="chapter-line"></span
-              ><span class="mono">FIELD NOTES</span>
+              ><span class="mono">WHAT’S HAPPENING</span>
             </div>
             <div class="strategy-select">
-              <label class="mono" for="strategy">OBSERVED STRATEGY</label
+              <label class="mono" for="strategy">CHOOSE A STRATEGY</label
               ><select id="strategy">
-                <option value="verify">Search + verify</option>
-                <option value="retain">Search + retain</option></select
+                <option value="verify">Find it, then test it</option>
+                <option value="retain">Find it, then keep it</option></select
               ><button id="compare" aria-pressed="false">
-                Compare the two <span>⇄</span>
+                Watch both strategies <span>⇄</span>
               </button>
             </div>
             <p class="side-note">
-              A scripted agent.<br />A real trajectory.<br />Every action on
-              record.
+              You control playback.<br />The program chooses its moves.
             </p>
           </aside>
           <div class="chamber" id="chamber">
             <div class="chamber-meta mono">
-              <span id="view-label">OBSERVER VIEW</span
+              <span id="view-label">YOU SEE THE WHOLE WORLD</span
               ><button id="view-toggle" aria-pressed="false">
-                Agent’s field of view <span>◉</span>
+                Show what the agent can see <span>◉</span>
               </button>
             </div>
             <div class="scene-wrap">
               <button
                 id="chamber-play"
                 class="chamber-play"
-                aria-label="Begin observation in the world"
+                aria-label="Play the experiment in the world"
               >
                 ▶
               </button>
               <div class="orbit orbit-one"></div>
               <div class="orbit orbit-two"></div>
-              <span class="axis north mono">N / −R</span
-              ><span class="axis east mono">+C / E</span
+              <span class="axis north mono">N</span
+              ><span class="axis east mono">E</span
               ><span class="cross cross-a">+</span
               ><span class="cross cross-b">+</span>
               <div
@@ -130,14 +127,14 @@
                 aria-label="Recorded world"
               ></div>
               <span class="specimen-label mono" id="specimen-label"
-                >FIG. 01 — SEARCH + VERIFY</span
+                >FIND IT, THEN TEST IT</span
               >
             </div>
             <div class="world-legend mono">
-              <span><i class="legend-agent"></i> AGENT</span
-              ><span><i class="legend-module"></i> MODULE</span
-              ><span><i class="legend-resource"></i> RESOURCE</span
-              ><span><i class="legend-rich"></i> TRANSFORMED</span>
+              <span><i class="legend-agent"></i> PROGRAM</span
+              ><span><i class="legend-module"></i> BLOCK</span
+              ><span><i class="legend-resource"></i> FOOD</span
+              ><span><i class="legend-rich"></i> RICHER FOOD</span>
             </div>
             <button id="reveal" class="reveal-button">
               <span class="reveal-icon">⊕</span> Reveal the hidden rule
@@ -145,58 +142,60 @@
             </button>
           </div>
           <aside class="evidence-panel">
-            <div class="evidence-title mono">THE EVIDENCE <span>↙</span></div>
-            <p class="evidence-subtitle">An effect is only the beginning.</p>
+            <div class="evidence-title mono">
+              WHAT HAS IT SHOWN? <span>↙</span>
+            </div>
+            <p class="evidence-subtitle">Could it happen again?</p>
             <ol class="evidence-list">
               <li data-stage="construction">
                 <span class="evidence-symbol">○</span>
-                <div>Construct<span>Make an arrangement</span></div>
+                <div>Arrange<span>Put the blocks together</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
               <li data-stage="first_observation">
                 <span class="evidence-symbol">○</span>
-                <div>Observe<span>Notice a consequence</span></div>
+                <div>Notice<span>See the food change</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
               <li data-stage="disruption">
                 <span class="evidence-symbol">○</span>
-                <div>Disrupt<span>Remove a suspected cause</span></div>
+                <div>Take apart<span>Move a block away</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
               <li data-stage="recurrence_observation">
                 <span class="evidence-symbol">○</span>
-                <div>Verify<span>Rebuild. Observe it recur.</span></div>
+                <div>Repeat<span>Rebuild. See it work again.</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
               <li data-stage="benefit">
                 <span class="evidence-symbol">○</span>
-                <div>Use<span>Benefit from the mechanism</span></div>
+                <div>Use it<span>Eat the richer food</span></div>
                 <span class="evidence-time mono">—</span>
               </li>
             </ol>
             <div class="energy-readout">
               <div class="mono">
-                ENERGY RESERVE <span id="energy">22.0</span>
+                ENERGY TO STAY ALIVE <span id="energy">22.0</span>
               </div>
               <div class="energy-meter"><div id="energy-fill"></div></div>
-              <p id="action" class="mono">OBSERVE / START OF RECORD</p>
+              <p id="action" class="mono">LOOKING AROUND / START</p>
             </div>
             <p class="evidence-footnote" id="evidence-footnote">
-              Evidence appears as the recorded sequence unfolds.
+              Watch this checklist fill in as the program tests the arrangement.
             </p>
           </aside>
         </div>
         <div class="transport">
           <button id="play" class="play-button" aria-label="Play recording">
             <span id="play-icon">▶</span
-            ><span id="play-label">Begin observation</span></button
+            ><span id="play-label">Play the experiment</span></button
           ><button id="restart" class="restart" aria-label="Restart recording">
             ↺
           </button>
           <div class="scrubber">
             <div class="scrubber-label mono">
               <span id="time">T + 000.00</span
-              ><span>160 SIMULATED SECONDS</span>
+              ><span>160 SECONDS INSIDE THE WORLD</span>
             </div>
             <input
               id="timeline"
@@ -214,35 +213,36 @@
         </div>
         <div class="chapter-navigation" aria-label="Jump to a chapter">
           <button data-chapter="0" class="active">
-            <span class="mono">01</span> Encounter <span>↗</span></button
+            <span class="mono">01</span> Explore <span>↗</span></button
           ><button data-chapter="1">
-            <span class="mono">02</span> Construct <span>↗</span></button
+            <span class="mono">02</span> Arrange <span>↗</span></button
           ><button data-chapter="2">
-            <span class="mono">03</span> Disrupt <span>↗</span></button
+            <span class="mono">03</span> Take apart <span>↗</span></button
           ><button data-chapter="3">
-            <span class="mono">04</span> Reconstruct <span>↗</span></button
+            <span class="mono">04</span> Rebuild <span>↗</span></button
           ><button data-chapter="4">
-            <span class="mono">05</span> Use <span>↗</span></button
+            <span class="mono">05</span> Eat <span>↗</span></button
           ><button data-chapter="5">
-            <span class="mono">06</span> Outcome <span>↗</span>
+            <span class="mono">06</span> Result <span>↗</span>
           </button>
         </div>
       </section>
       <section class="afterword">
         <p>
-          <span class="asterisk">✳</span> Survival is not the same as
-          understanding.
+          <span class="asterisk">✳</span> Finding something useful is just the
+          start.
         </p>
         <div>
-          Four strategies. 192 episodes. One question worth asking.<br /><a
+          This is one recorded example. The full study tested four strategies
+          across 192 runs.<br /><a
             href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md"
-            >Read the reproducible study ↗</a
+            >See the full results ↗</a
           >
         </div>
       </section>
       <footer class="mono">
         <span>WORLDZERO / AN OPEN RESEARCH INSTRUMENT</span
-        ><span>OBSERVE → INTERVENE → VERIFY</span
+        ><span>LOOK → TRY → TEST AGAIN</span
         ><span>APACHE 2.0 <span class="orange">↗</span></span>
       </footer>
     </main>

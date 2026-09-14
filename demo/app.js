@@ -11,39 +11,39 @@
   const chapters = [
     {
       time: 0,
-      title: "First,<br><em>look around.</em>",
+      title: "Look around.<br><em>Stay alive.</em>",
       description:
-        "Objects, resources, and no explanation. The agent must learn by acting.",
+        "The orange marker is the agent. It can move, carry blocks, eat, or wait. It has not been told which blocks work together.",
     },
     {
       time: w.construction,
-      title: "An arrangement.<br><em>A possibility.</em>",
+      title: "Put the blocks<br><em>together.</em>",
       description:
-        "The modules form a functional arrangement. A consequence will follow. But one effect is not yet verification.",
+        "The blocks are now arranged so they can change nearby food. Watch for richer food to appear. Seeing it once is only a clue.",
     },
     {
       time: w.disruption,
       title: "Take it<br><em>apart.</em>",
       description:
-        "After observing a transformation, the agent picks up a module. The suspected mechanism is disrupted.",
+        "The agent has seen food change. Now it moves a block away. Taking the arrangement apart is a way to test whether the blocks caused the change.",
     },
     {
       time: w.reconstruction,
-      title: "Make it<br><em>happen again.</em>",
+      title: "Put it back.<br><em>Try again.</em>",
       description:
-        "The agent reconstructs the arrangement. Watch for the effect to recur, then for the agent to observe it.",
+        "The agent puts the block back. Will the food change again? Watch until it does, and the agent sees the change.",
     },
     {
       time: w.benefit,
-      title: "Knowledge,<br><em>put to use.</em>",
+      title: "Eat what<br><em>you helped make.</em>",
       description:
-        "The agent consumes a resource linked to the recurring effect. The recorded benefit completes the causal chain.",
+        "The agent eats richer food produced after rebuilding the arrangement. Its energy rises: the discovery has helped it stay alive.",
     },
     {
       time: 160,
-      title: "A beginning,<br><em>not an answer.</em>",
+      title: "It worked.<br><em>Then worked again.</em>",
       description:
-        "The verifier survived and reached Level 4. This is one scripted example, not evidence of general intelligence.",
+        "The program rebuilt the arrangement, saw the food change again, ate it, and survived. Now compare it with a program that keeps what it finds.",
     },
   ];
   let time = 0,
@@ -55,7 +55,10 @@
   let last = performance.now(),
     renderedKey = "",
     activeChapter = -1;
-  const names = { verify: "SEARCH + VERIFY", retain: "SEARCH + RETAIN" };
+  const names = {
+    verify: "FIND IT, THEN TEST IT",
+    retain: "FIND IT, THEN KEEP IT",
+  };
   function frameAt(run, t) {
     let i = 0;
     while (i + 1 < run.frames.length && run.frames[i + 1].time <= t + 1e-7) i++;
@@ -119,10 +122,15 @@
     );
     if (chapter !== activeChapter) {
       activeChapter = chapter;
-      $("chapter-title").innerHTML = chapters[chapter].title;
+      $("chapter-title").innerHTML =
+        policy === "retain"
+          ? chapter === 5
+            ? "Alive,<br><em>but untested.</em>"
+            : "Keep what<br><em>works.</em>"
+          : chapters[chapter].title;
       $("chapter-description").textContent =
         policy === "retain"
-          ? "The chapter markers follow the verifier. This matched retain strategy searches for a useful arrangement, then keeps it instead of deliberately taking it apart."
+          ? "This program starts in the same world. It looks for a useful arrangement and keeps it. It does not deliberately take it apart and rebuild it to test the effect. Chapters follow the testing strategy."
           : chapters[chapter].description;
       $("chapter-index").textContent = `0${chapter + 1} / 06`;
       document.querySelectorAll("[data-chapter]").forEach((b, i) => {
@@ -153,7 +161,7 @@
     $("energy-fill").style.width =
       Math.min(100, Math.max(0, (frame.energy / 30) * 100)) + "%";
     $("action").textContent =
-      `${frame.action.type}${frame.action.direction ? " / " + frame.action.direction : ""} · FRAME ${index.toString().padStart(3, "0")}`;
+      `${{ MOVE: "MOVING", PICK: "PICKING UP A BLOCK", DROP: "PLACING A BLOCK", CONSUME: "EATING", WAIT: "WAITING", OBSERVE: "LOOKING AROUND" }[frame.action.type] || frame.action.type}${frame.action.direction ? " " + { N: "NORTH", E: "EAST", S: "SOUTH", W: "WEST" }[frame.action.direction] : ""} · STEP ${index.toString().padStart(3, "0")}`;
     $("time").textContent = "T + " + time.toFixed(2).padStart(6, "0");
     $("timeline").value = time;
     $("timeline").setAttribute(
@@ -173,30 +181,30 @@
     $("evidence-footnote").textContent =
       policy === "retain"
         ? time >= 160
-          ? "Episode complete: survived · Level 2. No qualifying reconstruction witness."
-          : "This strategy has no qualifying reconstruction witness. The ledger tracks the validated causal chain."
+          ? "It survived, but did not demonstrate the take-apart-and-rebuild test. Its benchmark score is Level 2."
+          : "This checklist tracks the complete rebuilding test. Blank marks do not mean this program never arranged blocks or saw food change."
         : time >= 160
-          ? "Episode complete: survived · Level 4 under levels-v3. Transfer was not evaluated."
+          ? "It repeated the effect, ate the richer food, and survived. Its benchmark score is Level 4."
           : time >= w.benefit
-            ? "Linked benefit recorded. The agent must still survive to complete the level requirements."
+            ? "The richer food gave it energy. It still needs to survive until the experiment ends."
             : time >= w.recurrence_observation
-              ? "Reconstruction and recurrence observed. A linked benefit is the next piece of evidence."
-              : "Evidence appears as the recorded sequence unfolds.";
+              ? "It rebuilt the arrangement and saw the food change again. Next: can it use that food?"
+              : "Watch this checklist fill in as the program tests the arrangement.";
     $("play-icon").textContent = playing ? "Ⅱ" : time >= 160 ? "↺" : "▶";
     $("chamber-play").textContent = playing ? "Ⅱ" : time >= 160 ? "↺" : "▶";
     $("chamber-play").setAttribute(
       "aria-label",
       playing
-        ? "Pause observation in the world"
-        : "Begin observation in the world",
+        ? "Pause the experiment in the world"
+        : "Play the experiment in the world",
     );
     $("play-label").textContent = playing
-      ? "Pause observation"
+      ? "Pause the experiment"
       : time >= 160
         ? "Watch again"
         : time > 0
-          ? "Resume observation"
-          : "Begin observation";
+          ? "Continue watching"
+          : "Play the experiment";
     $("play").setAttribute(
       "aria-label",
       playing
@@ -233,28 +241,28 @@
     activeChapter = -1;
     renderedKey = "";
     $("specimen-label").textContent = comparing
-      ? "MATCHED SEED / SYNCHRONIZED TIME"
-      : "FIG. 01 — " + names[policy];
+      ? "SAME STARTING WORLD / SAME CLOCK"
+      : "" + names[policy];
     render();
   });
   $("compare").addEventListener("click", () => {
     comparing = !comparing;
     $("compare").setAttribute("aria-pressed", comparing);
     $("compare").innerHTML = comparing
-      ? "Single observation <span>↗</span>"
-      : "Compare the two <span>⇄</span>";
+      ? "Watch one strategy <span>↗</span>"
+      : "Watch both strategies <span>⇄</span>";
     $("chamber").classList.toggle("comparison", comparing);
     $("specimen-label").textContent = comparing
-      ? "MATCHED SEED / SYNCHRONIZED TIME"
-      : "FIG. 01 — " + names[policy];
+      ? "SAME STARTING WORLD / SAME CLOCK"
+      : "" + names[policy];
     render();
   });
   $("view-toggle").addEventListener("click", () => {
     localView = !localView;
     $("view-toggle").setAttribute("aria-pressed", localView);
     $("view-label").textContent = localView
-      ? "LOCAL VISIBILITY MASK"
-      : "OBSERVER VIEW";
+      ? "ONLY NEARBY SQUARES ARE VISIBLE"
+      : "YOU SEE THE WHOLE WORLD";
     render();
   });
   document.querySelectorAll("[data-chapter]").forEach((b) =>
@@ -269,16 +277,16 @@
     render();
     $("dialog-eyebrow").textContent =
       kind === "rule"
-        ? "FOR THE OBSERVER / HIDDEN FROM THE AGENT"
-        : "RESEARCH NOTES / SPECIMEN 001";
+        ? "THE ANSWER / NEVER GIVEN TO THE AGENT"
+        : "HOW TO READ THIS EXPERIMENT";
     $("dialog-title").textContent =
       kind === "rule"
-        ? "A useful arrangement changes the world."
-        : "A world with no instructions for its hidden rule.";
+        ? "Two blocks can change the food."
+        : "Watch a program test a hidden rule.";
     $("dialog-body").innerHTML =
       kind === "rule"
-        ? `<div class="rule-diagram">MODULE B + MODULE C, IN THE RIGHT RELATION<br>↓<br>NEARBY RAW RESOURCE → RICH RESOURCE</div><p>This recorded world contains catalysis. An eligible module arrangement enables nearby resources to transform. The agent is never told the relevant pair or relation.</p><p>The verifier discovers a useful arrangement, disrupts it, rebuilds it, observes the effect recur, and consumes a linked output. The study validates that chain against the trace.</p><p>Letters, resource colors, and the full map are observer aids. The local visibility mask shows the agent’s observation radius; it does not reproduce the agent’s exact input format.</p><p><a href="${data.runs[policy].trace_url}">Inspect the original trace ↗</a></p>`
-        : `<p>WorldZero tests whether an agent can discover and control an unfamiliar causal mechanism before its finite lifetime ends.</p><p>You are watching recorded scripted policies, with no live model calls. Both strategies use seed 408557419 under the same pressure budgets. Playback shows the most recent recorded action state at each simulated time; it does not invent intermediate physics.</p><p>The verifier’s chapters come from the validated causal witness. The evidence ledger tracks that chain, rather than assigning a score before the episode finishes.</p><p>The full study covers 192 episodes, including matched null worlds. This selected example illustrates a successful verifier; it is not representative of every run.</p><p><a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md">Read the study ↗</a> · <a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-rescore/README.md">Read the scoring correction ↗</a></p>`;
+        ? `<div class="rule-diagram">PLACE BLOCKS B AND C NEXT TO EACH OTHER<br>↓<br>NEARBY FOOD CAN BECOME RICHER FOOD</div><p>Richer food gives the agent more energy. It is never told which blocks matter or how to arrange them.</p><p>In this example, it finds a useful arrangement, takes it apart, puts it back, and sees the food change again. Then it eats that food. The recorded actions let us check that this sequence really happened.</p><p>You see labels and colors added to explain the recording. The agent receives nearby observations instead of this illustrated overview. “Show what the agent can see” limits the map to that nearby area.</p><p><a href="${data.runs[policy].trace_url}">Inspect the original recording data ↗</a></p>`
+        : `<p><strong>The orange marker is an agent:</strong> a program that decides where to move and what to do. The green blocks can be carried. Food supplies energy, which the agent needs to stay alive.</p><p><strong>The challenge:</strong> find a useful arrangement without being told the hidden rule. Taking it apart and rebuilding it helps test whether the arrangement produces the same effect again.</p><p><strong>Your role:</strong> press Play, skip to a chapter, or compare two strategies. You control the recording, not the program’s decisions. Both programs started in the same world.</p><p>This demo replays simple, hand-written programs. It is not a live AI model thinking. The map shows saved states after actions, and the checklist follows the testing strategy’s recorded evidence.</p><p>This is one successful example from a 192-run study. Other runs were less successful, and some worlds had no useful rule. The full results include those too.</p><p><a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md">See the full results ↗</a> · <a href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-rescore/README.md">How the scores are calculated ↗</a></p>`;
     dialog.showModal();
   }
   $("reveal").addEventListener("click", () => showDialog("rule"));
