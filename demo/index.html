@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#eeeee4" />
     <meta
       name="description"
-      content="Enter WorldZero. Watch an agent investigate a world whose rules it was never told. An interactive replay of a real, reproducible experiment."
+      content="WorldZero is an open-source test environment for AI agents. Test whether a program can discover hidden rules through experiments. Watch the demo or build your own agent."
     />
-    <title>WorldZero — An observatory of discovery</title>
+    <title>WorldZero — A test world for AI discovery</title>
     <link rel="stylesheet" href="style.css" />
     <script src="data.js" defer></script>
     <script src="app.js" defer></script>
@@ -45,12 +45,21 @@
             WORLD WORKS?
           </p>
           <h1 id="title">A tiny world.<br />A <em>hidden rule.</em></h1>
+          <p class="project-definition">
+            <strong
+              >WorldZero is an open-source test environment for AI
+              agents.</strong
+            >
+            It measures whether a program can discover an unknown rule by
+            experimenting, check that it works again, and use what it learns.
+          </p>
         </div>
         <div class="intro-note">
           <span class="note-index mono">[ WHAT YOU’RE WATCHING ]</span>
           <p>
-            An agent is a program that chooses what to do. Here, it moves blocks
-            and eats food to stay alive. Can it find what makes the food change?
+            An agent is a program that chooses what to do. This demo replays a
+            simple, hand-written agent moving blocks and eating food to stay
+            alive. Press Play to watch it test a hidden rule.
           </p>
           <span class="recorded mono"
             ><i></i> RECORDED EXAMPLE · SCRIPTED PROGRAM</span
@@ -237,6 +246,28 @@
           across 192 runs.<br /><a
             href="https://github.com/skishore23/worldzero/blob/main/evidence/verification-study/README.md"
             >See the full results ↗</a
+          >
+        </div>
+      </section>
+      <section class="project-purpose" aria-labelledby="purpose-title">
+        <div>
+          <p class="eyebrow mono">BEYOND THIS DEMO</p>
+          <h2 id="purpose-title">A place to test<br /><em>your own AI.</em></h2>
+        </div>
+        <div>
+          <p>
+            WorldZero is for researchers and developers building AI agents.
+            Bring your own model or program, decide how it explores and
+            remembers, and test it in worlds whose rules it has not been told.
+          </p>
+          <p>
+            WorldZero records what the agent does: whether it builds something
+            useful, repeats an effect, and benefits from it. Some test worlds
+            have no useful rule, so unsupported discovery claims count too.
+          </p>
+          <a
+            href="https://github.com/skishore23/worldzero/blob/main/docs/AGENT_SDK.md"
+            >Build and test your own agent ↗</a
           >
         </div>
       </section>

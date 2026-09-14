@@ -1142,3 +1142,70 @@ dialog .eyebrow {
     top: 16px;
   }
 }
+.project-definition {
+  max-width: 570px;
+  margin: 22px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #566159;
+}
+.project-definition strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.intro > div:first-child {
+  flex: 1;
+}
+.intro-note {
+  flex-shrink: 0;
+}
+.project-purpose {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  padding: 34px 0 40px;
+  border-top: 1px solid var(--line);
+}
+.project-purpose .eyebrow {
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.project-purpose h2 {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+  margin: 0;
+}
+.project-purpose p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 15px;
+  color: #566159;
+}
+.project-purpose a {
+  font-size: 13px;
+  text-underline-offset: 5px;
+}
+@media (max-width: 820px) {
+  .project-definition {
+    font-size: 13px;
+  }
+}
+@media (max-width: 580px) {
+  .project-definition {
+    margin-top: 18px;
+    font-size: 14px;
+  }
+  .project-purpose {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .project-purpose h2 {
+    font-size: 31px;
+  }
+  .project-purpose p:not(.eyebrow) {
+    font-size: 13px;
+  }
+}
