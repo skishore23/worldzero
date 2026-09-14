@@ -1,6 +1,7 @@
 {
   "schema": "worldzero-public-files-v1",
   "files": [
+    ".github/workflows/pages.yml",
     ".github/workflows/tests.yml",
     ".gitignore",
     "CHANGELOG.md",

@@ -1,5 +1,7 @@
 # WorldZero
 
+**[▶ Try the interactive browser demo](https://skishore23.github.io/worldzero/)** · No install or API key needed.
+
 **Can your AI discover and control a law it was never told?**
 
 WorldZero is an interactive causal-reasoning environment. An agent enters an unfamiliar stochastic world, receives only local public observations, and can move, pick up, place, consume, or wait. The rule governing the world is hidden.
@@ -16,9 +18,10 @@ observe → form a hypothesis → intervene → measure → verify → reuse
 
 ## What can I do with it?
 
-Try the [browser field observatory](demo/README.md): a recorded experiment with
+Try the [live browser field observatory](https://skishore23.github.io/worldzero/): a recorded experiment with
 chapter navigation, an evidence ledger, and synchronized strategy comparison.
-Run `python -m http.server 8771 --bind 127.0.0.1 --directory demo` from this
+For [local hosting and reproduction](demo/README.md),
+run `python -m http.server 8771 --bind 127.0.0.1 --directory demo` from this
 checkout, then open <http://127.0.0.1:8771>.
 
 | Goal | Start here | What you get |

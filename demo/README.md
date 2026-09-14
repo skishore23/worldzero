@@ -1,5 +1,7 @@
 # WorldZero field observatory
 
+**[Open the live demo](https://skishore23.github.io/worldzero/)** — hosted on GitHub Pages.
+
 A static, interactive replay of two actual scripted trajectories from the
 published verification study. No build tools, external fonts, API keys, network
 requests, or live inference are needed for playback.
@@ -12,6 +14,11 @@ python -m http.server 8771 --bind 127.0.0.1 --directory demo
 
 Open <http://127.0.0.1:8771>. The page also works by opening `index.html` directly.
 Publish the contents of this directory to any static host to share it publicly.
+
+The GitHub Pages workflow publishes `demo/` when its files change on `main`,
+after checking the recording projection and JavaScript syntax. It can also be
+run manually from the repository's Actions tab. The workflow uploads this
+directory only; no API keys or server runtime are used by the hosted page.
 
 Controls: play/pause, restart, scrub, speed, six chapter jumps, strategy selector,
 synchronized comparison, local visibility mask, and hidden-rule reveal. Space
