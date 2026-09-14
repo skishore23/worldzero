@@ -4,7 +4,7 @@
 
 **Can your AI discover and control a law it was never told?**
 
-WorldZero is an interactive causal-reasoning environment. An agent enters an unfamiliar stochastic world, receives only local public observations, and can move, pick up, place, consume, or wait. The rule governing the world is hidden.
+WorldZero is an open-source research benchmark for testing whether AI agents can discover, verify, and use hidden rules in simulated worlds. An agent enters an unfamiliar stochastic world, receives only local public observations, and can move, pick up, place, consume, or wait. The rule governing the world is hidden.
 
 The challenge is simple:
 

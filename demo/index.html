@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#eeeee4" />
     <meta
       name="description"
-      content="WorldZero is an open-source test environment for AI agents. Test whether a program can discover hidden rules through experiments. Watch the demo or build your own agent."
+      content="WorldZero is an open-source research benchmark for testing whether AI agents can discover, verify, and use hidden rules in simulated worlds. Watch a recorded experiment or test your own agent."
     />
-    <title>WorldZero — A test world for AI discovery</title>
+    <title>WorldZero — A research benchmark for AI discovery</title>
     <link rel="stylesheet" href="style.css" />
     <script src="data.js" defer></script>
     <script src="app.js" defer></script>
@@ -47,24 +47,77 @@
           <h1 id="title">A tiny world.<br />A <em>hidden rule.</em></h1>
           <p class="project-definition">
             <strong
-              >WorldZero is an open-source test environment for AI
-              agents.</strong
+              >WorldZero is an open-source research benchmark for testing
+              whether AI agents can discover, verify, and use hidden rules in
+              simulated worlds.</strong
             >
-            It measures whether a program can discover an unknown rule by
-            experimenting, check that it works again, and use what it learns.
+            A benchmark gives different agents repeatable tests and measures
+            what they do.
           </p>
         </div>
         <div class="intro-note">
-          <span class="note-index mono">[ WHAT YOU’RE WATCHING ]</span>
+          <span class="note-index mono">[ THE PROBLEM ]</span>
           <p>
-            An agent is a program that chooses what to do. This demo replays a
-            simple, hand-written agent moving blocks and eating food to stay
-            alive. Press Play to watch it test a hidden rule.
+            Finding something useful once could be luck. WorldZero tests whether
+            an agent can take an arrangement apart, rebuild it, see the effect
+            again, and benefit from it—all within a limited energy and time
+            budget.
           </p>
           <span class="recorded mono"
             ><i></i> RECORDED EXAMPLE · SCRIPTED PROGRAM</span
           >
         </div>
+      </section>
+      <section class="world-primer" aria-labelledby="primer-title">
+        <div class="primer-heading">
+          <h2 id="primer-title">Before you press <em>Play.</em></h2>
+          <a href="#experiment">Skip to the replay ↓</a>
+        </div>
+        <p class="primer-intro">
+          This recording follows a simple, hand-written program through one
+          test. “Food,” “energy,” and “life” are simulated resources and limits
+          inside the experiment.
+        </p>
+        <dl class="world-basics">
+          <div>
+            <dt><span class="mono">01</span> The agent</dt>
+            <dd>
+              The orange marker is a program that chooses its next action. It
+              can move, carry a block, eat, or wait. It sees only nearby
+              squares.
+            </dd>
+          </div>
+          <div>
+            <dt><span class="mono">02</span> The blocks</dt>
+            <dd>
+              The green blocks can be moved around. In this test, a particular
+              arrangement can change nearby food. The agent is not told which
+              blocks matter or how to arrange them.
+            </dd>
+          </div>
+          <div>
+            <dt><span class="mono">03</span> Food &amp; energy</dt>
+            <dd>
+              Food is a resource that restores energy when eaten. Richer food
+              gives more energy. Time and actions use energy, so the agent
+              cannot experiment forever without eating.
+            </dd>
+          </div>
+          <div>
+            <dt><span class="mono">04</span> One lifetime</dt>
+            <dd>
+              A lifetime is one run, lasting up to 160 simulated seconds here.
+              Running out of energy ends it early. “Surviving” means reaching
+              the time limit with energy left.
+            </dd>
+          </div>
+        </dl>
+        <p class="primer-goal">
+          <strong>What counts as progress?</strong> Find a useful arrangement,
+          test it by rebuilding it, observe its effect again, and use the
+          result. Survival and verification are measured separately. You control
+          the replay; the recorded program chose its own actions.
+        </p>
       </section>
       <section
         id="experiment"
@@ -264,6 +317,11 @@
             WorldZero records what the agent does: whether it builds something
             useful, repeats an effect, and benefits from it. Some test worlds
             have no useful rule, so unsupported discovery claims count too.
+          </p>
+          <p>
+            This is an experimental research benchmark. The published study
+            compares hand-written strategies; it does not yet establish how well
+            WorldZero distinguishes the abilities of different AI models.
           </p>
           <a
             href="https://github.com/skishore23/worldzero/blob/main/docs/AGENT_SDK.md"
